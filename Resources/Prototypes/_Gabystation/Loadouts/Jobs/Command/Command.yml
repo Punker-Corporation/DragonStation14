@@ -1,0 +1,41 @@
+# SPDX-FileCopyrightText: 2025 GabyChangelog <agentepanela2@gmail.com>
+# SPDX-FileCopyrightText: 2025 VictorJob <victorjobnogueira12@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# All
+- type: loadout
+  id: ClothingNeckAutoridade
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Command
+        time: 86400 #24 hrs
+  storage:
+    back:
+    - ClothingNeckAutoridade
+
+#Captain
+- type: loadout
+  id: CaptainMarinheiroSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPijamaCaptain
+
+- type: loadout
+  id: CaptainCapMarinheiro
+  equipment:
+    head: ClothingHeadHatCapMarinheiro
+
+# HoS
+- type: loadout
+  id: HoSLawbringerSkin
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobHeadOfSecurity
+      time: 72000 # 20 hrs
+  storage:
+    back:
+    - ChangeLawbringerSkinKit

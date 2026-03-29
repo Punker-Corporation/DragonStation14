@@ -1,0 +1,57 @@
+<!--
+SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
+SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 Myakot <30875116+Myakot@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 YuNii <benjamin@bhenrich.de>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Cargos
+
+  SS14 tem um grande número de cargos, divididos em sete departamentos principais:
+
+  ## Serviço
+  [color=#9fed58]Serviço[/color] é um departamento diversificado que inclui o chefe de pessoal e outros cargos que existem para servir a estação.
+
+  Ele funciona principalmente com pessoas que entretem, limpam e servem o restante da tripulação, com exceção dos passageiros que não têm um cargo específico além de se perderem na manutenção.
+
+  ## Carga
+  [color=#b18644]Carga[/color] é composto pelos técnicos de carga, especialistas em resgate e o almoxarife. Como departamento, é responsável pela distribuição de recursos e comércio, sendo capaz de comprar e vender coisas no mercado galáctico.
+
+  Na maior parte, isso significa que eles vasculham a estação e destroços variados para encontrar materiais para vender e redistribuir, e comprar materiais solicitados por outros departamentos.
+
+  ## Segurança
+  [color=#cb0000]Segurança[/color] é composto pelos cadetes de segurança, advogados, detetive, oficiais de segurança, carcereiro e o chefe de segurança. Como departamento, é responsável por lidar com bagunceiros e ameaças não-humanoides, como ratos gigantes e carpas.
+
+  Como resultado disso, e pela necessidade de andar na linha tênue, a segurança às vezes se vê sobrecarregada por tripulantes irritados (não mate o palhaço), e é importante que seus membros tentem se comportar da melhor maneira possível.
+
+  ## Médico
+  [color=#5b97bc]Médico[/color] é composto pelos estagiários médicos, químicos, médicos e o chefe de médicos. Como departamento, é responsável por cuidar da tripulação, tratar e/ou clonar os feridos e mortos, tratar doenças e evitar que todos morram de uma morte horrível e sangrenta em algum armário.
+
+  O departamento médico é um dos mais bem equipados, com a capacidade de localizar tripulantes feridos usando o monitor de tripulação, um suprimento quase infinito de químicos, caso a química esteja em boa forma, e a habilidade de diagnosticar e vacinar rapidamente contra doenças contagiosas.
+
+  ## Ciência
+  [color=#c96dbf]Ciência[/color] é composto por assistentes de pesquisa, cientistas e o diretor de pesquisa. Como departamento, é responsável por pesquisar tecnologias e artefatos, atualizar máquinas e imprimir novos e úteis dispositivos.
+
+  Os cientistas devem procurar novos artefatos para estudar, bem como solicitar aos departamentos que ajudem a atualizar suas máquinas.
+
+  ## Engenharia
+  [color=#f39f27]Engenharia[/color] é composto por assistentes técnicos, engenheiros da estação, técnicos atmosféricos e o engenheiro chefe. Como departamento, é responsável por manter a estação energizada, sua estrutura intacta e seu fornecimento de ar funcionando.
+
+  Engenharia está bem equipada para entrar no espaço de forma segura, e como tal, deve sempre tentar reparar partes inabitáveis da estação.
+
+  ## Comando
+  [color=#1b67a5]Comando[/color] é composto por todos os chefes de departamento. É responsável por manter a estação e seus departamentos funcionando de maneira eficiente.
+
+  Os membros do Comando devem ser sempre relativamente competentes em seus respectivos departamentos e tentar delegar responsabilidades e direcionar o trabalho.
+
+  # Mudando seu Cargo
+  O [color=#9fed58]Chefe de Pessoal[/color] é a pessoa responsável por mudar os acessos aos IDs e distribuir as chaves de criptografia. Vá até o escritório dele e avise qual cargo você gostaria de assumir.
+
+  Normalmente, ele vai querer que você consiga um papel [color=#a4885c]carimbado[/color] por um chefe de departamento. Não se preocupe, basta encontrá-los e entregar o papel.
+</Document>

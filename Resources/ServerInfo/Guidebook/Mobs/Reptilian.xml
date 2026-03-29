@@ -1,0 +1,24 @@
+<!--
+SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Reptilianos
+
+  <Box>
+    <GuideEntityEmbed Entity="MobReptilian" Caption=""/>
+  </Box>
+
+  Podem comer carne crua e beber sangue sem nenhum efeito negativo.
+  Eles preferem uma temperatura um pouco mais alta do que humanos.
+  Eles podem puxar objetos com suas caudas, mantendo suas mãos livres.
+
+  Seus ataques desarmados causam dano [color=#ec3a3a]Cortante[/color] ao invés de [color=#ec3a3a]Contundente[/color].
+
+  Eles tomam [color=#ffa500]30% mais dano de Frio[/color].
+
+</Document>

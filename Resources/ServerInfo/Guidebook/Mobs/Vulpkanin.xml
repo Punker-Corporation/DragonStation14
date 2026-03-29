@@ -1,0 +1,21 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Vulpkanin
+  <Box>
+    <GuideEntityEmbed Entity="MobVulpkanin" Caption=""/>
+  </Box>
+
+  Vulpkanin são humanoides caninos, possuindo caudas e orelhas distintivas.
+  - Enxergam o mundo em tons de vermelho e verde.
+  - Seus ataques desarmados causam [color=#ec3a3a]dano Contundente e Cortante[/color].
+  - Sua pelagem os isola da temperatura ambiente ao custo de os tornarem [color=#ec3a3a]15% mais vulneráveis a dano de Calor[/color].
+
+</Document>

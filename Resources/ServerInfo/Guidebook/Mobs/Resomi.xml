@@ -1,0 +1,31 @@
+<!--
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 AstroDogeDX <48888500+AstroDogeDX@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Resomi
+
+  <Box>
+    <GuideEntityEmbed Entity="MobResomiDummy" Caption=""/>
+  </Box>
+
+  Resomi são uma especíe aviana que vêm de um mundo congelado.
+
+  Como muitas espécies não-humanas, Resomi podem digerir carne crua e outras proteínas animais não-preparadas.
+
+  Como um resultado das condições de seu planeta natal e comida à base de amônia, Resomi são [color=#8658fc]imunes a dano de Frio e outros efeitos[/color].
+  Consequentemente, eles acham temperaturas que outras espécies considerariam confortáveis como sendo muito quentes, começando a sofrer com apenas 30°C
+
+  Junto com sua tolerância a temperaturas, eles tomam [color=#ffa500]30% mais dano de Calor[/color] e [color=#ffa500]15% mais dano Bruto[/color].
+
+  Além de terem ossos frágeis.
+  
+  Por conta de seu tamanho pequeno, cabem em duffelbags. Também pesam menos, os dificultando a puxar outras espécies.
+
+  Seus ataques desarmados causam dano [color=#ec3a3a]Cortante[/color].
+
+</Document>

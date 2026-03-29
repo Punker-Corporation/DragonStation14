@@ -1,0 +1,133 @@
+<!--
+SPDX-FileCopyrightText: 2023 Errant <35878406+Errant-4@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 dribblydrone <119393097+dribblydrone@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Piras314 <92357316+Piras314@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Operativos Nucleares
+
+  <Box>
+    [color=#999999][italic]"OPERATIVOS, FIQUEM APOSTOS. SUAS OBJETIVOS SÃO SIMPLES.[/italic][/color]
+  </Box>
+  <Box>
+    [color=#999999][italic]ENTREGUEM A CARGA E SAIAM ANTES QUE A CARGA DETONE. INICIEM A MISSÃO."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandEnlistGorlex" Caption=""/>
+  </Box>
+
+  Você acaba de ser escolhido para ser um operativo nuclear para o [color=#ff0000]Syndicate[/color]. Seu único objetivo é explodir uma das melhores naves da Nanotrasen com um explosivo nuclear de fissão.
+
+  ## Operativos
+  Sua equipe será composta por várias funções diferentes, que incluem:
+  - [bold]Operativos[/bold], soldados padrão que realizam o trabalho pesado.
+  - O [bold]Médico[/bold], que trabalha com reagentes para fazer medicamentos ou armas químicas.
+  - O [bold]Comandante[/bold], que traça o plano e lidera a equipe.
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndie"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieMedic" Caption="traje do médico"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieCommander" Caption="traje do comandante"/>
+  </Box>
+
+  Se você foi selecionado como Médico ou Comandante e não se sente preparado, um de seus colegas pode assumir a responsabilidade.
+
+  ## O Disco
+
+  Cada operativo começa com um [color=cyan]rastreador[/color], que você deve ligar e manter consigo o tempo todo. Ele sempre apontará para o [color=cyan]disco de autenticação nuclear.[/color]
+  O disco pertence ao [color=yellow]Capitão[/color], que quase sempre o terá consigo. Siga a direção da seta no rastreador até o disco e [italic]faça o que for necessário para obtê-lo[/italic].
+
+  <Box>
+    <GuideEntityEmbed Entity="PinpointerNuclear"/>
+    <GuideEntityEmbed Entity="NukeDisk"/>
+  </Box>
+
+  ## Preparação
+  Cada membro da sua equipe recebeu um [color=cyan]uplink[/color] para comprar tudo o que precisarão para a missão, similar aos [textlink="traidores." link="Traitors"]
+
+  <Box>
+    <GuideEntityEmbed Entity="BaseUplinkRadio200TC" Caption="seu uplink"/>
+  </Box>
+
+  Você pode adquirir os mesmos tipos de equipamentos que os traidores, mas com itens de qualidade superior e mais telecristais para gastar.
+  <Box>
+    <GuideEntityEmbed Entity="WeaponLightMachineGunL6" Caption="Armamento"/>
+    <GuideEntityEmbed Entity="MagazineLightRifleBox" State="icon" Caption="Munição"/>
+    <GuideEntityEmbed Entity="C4" Caption="Explosivos"/>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitJuggernaut" Caption="Vestimentas"/>
+    <GuideEntityEmbed Entity="Stimpack" Caption="Químicos"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Disfarce"/>
+    <GuideEntityEmbed Entity="Emag" Caption="Sabotagem"/>
+    <GuideEntityEmbed Entity="MacroBombImplanter" Caption="Implantes"/>
+    <GuideEntityEmbed Entity="BorgChassisSyndicateAssault" Caption="Aliados"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesOutlawGlasses" Caption="Inútil"/>
+  </Box>
+
+  Você também precisará decidir se deseja [color=red]declarar guerra[/color] ou não. Fazer isso concede à sua equipe [bold]200 telecristais extras cada.[/bold]
+  No entanto, a tripulação saberá imediatamente da sua existência e terá bastante tempo para se preparar para sua chegada.
+
+  Apenas o [bold]Comandante[/bold] pode declarar guerra. Faça sua escolha rapidamente, [italic]essa é uma oferta limitada![/italic]
+  <Box>
+    <GuideEntityEmbed Entity="NukeOpsDeclarationOfWar"/>
+  </Box>
+
+  ## Chegando à Estação
+  Você tem o plano, tem o equipamento. Agora, execute.
+
+  Pegue um [bold]jetpack[/bold] na sua armaria e vá com os outros operativos até sua [color=cyan]nave.[/color]
+  Entre outras coisas que você pode precisar, encontrará um [bold]computador de IFF[/bold] na nave. Ele permite que você se esconda de outras naves e scanners de massa quando [italic]Mostrar IFF[/italic] e [italic]Mostrar Nave[/italic] estão desativados.
+
+  Quando todos estiverem prontos, use o FTL para chegar à estação e voar até ela com um jetpack. Não esqueça o código, seus rastreadores e a bomba se estiverem levando-a.
+
+  <Box>
+    <GuideEntityEmbed Entity="JetpackBlack"/>
+    <GuideEntityEmbed Entity="ComputerIFFSyndicate"/>
+  </Box>
+
+  ## A Bomba e o Procedimento de Armamento
+  Você tem um papel com os [color=cyan]códigos de autenticação nuclear[/color] na sua nave. [bold]Verifique se o ID da bomba corresponde ao da sua nave.[/bold] Se não corresponder, você armará a bomba da estação.
+
+  - Obtenha o [bold]disco de autenticação nuclear[/bold] e insira-o na bomba.
+  - Digite o [bold]código de autenticação nuclear[/bold] e pressione "[bold]E[/bold]" no teclado para inserir.
+  - [bold]Para iniciar a sequência de autodestruição, pressione [color=#EB2D3A]ARMAR[/color][/bold]. Após 300 segundos, a bomba explodirá.
+  - [bold]Defenda a bomba[/bold], mesmo que seja ao custo de suas vidas! O sucesso da missão não inclui seu retorno.
+  - Leva 30 segundos para alguém [bold]desarmar[/bold] a bomba. Rearmá-la é possível, mas as chances de sucesso da missão diminuem se isso acontecer.
+  - Caso a bomba seja rearmada, o cronômetro começará de onde parou.
+
+  <Box>
+    <GuideEntityEmbed Entity="NuclearBomb" Caption="O Explosivo Nuclear de Fissão"/>
+  </Box>
+
+  ## Condições de Vitória
+
+  O [color=#00ff00]vencedor[/color] da rodada é anunciado na tela de fim de rodada, junto com a escala de sua vitória.
+
+  [bold][color=red]Grande Vitória do Syndicate![/color][/bold]
+  - A bomba detona na estação.
+  - A tripulação escapa na evacuação, mas a bomba ainda está armada.
+  - A bomba é armada e entregue ao Comando Central na nave de evacuação.
+
+  [bold][color=red]Pequena Vitória do Syndicate[/color][/bold]
+  - A tripulação escapa, mas todos os operativos sobrevivem.
+  - A tripulação escapa e alguns operativos morrem, mas a tripulação perde o disco.
+
+  [bold][color=#999999]Vitória Neutra[/color][/bold]
+  - A bomba detona fora da estação.
+
+  [bold][color=green]Pequena Vitória da Tripulação[/color][/bold]
+  - A tripulação escapa com o disco, e alguns operativos morrem.
+
+  [bold][color=green]Grande Vitória da Tripulação![/color][/bold]
+  - Todos os operativos morrem.
+  - A tripulação explode o posto avançado dos operativos nucleares com a bomba.
+</Document>

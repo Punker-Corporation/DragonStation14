@@ -1,0 +1,5 @@
+- type: sourcePort
+  id: BluespaceSender
+  name: signal-port-name-gas-sender
+  description: signal-port-description-gas-sender
+  defaultLinks: [ BluespaceGasUtilizer ]

@@ -1,0 +1,63 @@
+<!--
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+# Comando
+Os chefes de cada departamento se reúnem para formar o departamento de [color=#1b67a5]Comando[/color], uma força a ser respeitada e os responsáveis pela estação. Eles geralmente têm acesso a equipamentos especiais e suas próprias salas. São frequentemente alvo de caçadas para serem mortos.
+
+## Pessoal
+O [color=#1b67a5]Comando[/color] é composto pelos chefes de cada departamento, sendo o [color=#9fed58]Chefe de Funcionários[/color], o [color=#cb0000]Chefe de Segurança[/color], o [color=#5b97bc]Chefe de Medicina[/color], o [color=#f39f27]Chefe de Engenharia[/color], o [color=#c96dbf]Diretor de Pesquisa[/color], o [color=#b18644]Almoxarife[/color] e, acima de tudo, o [color=#1b67a5]Capitão[/color].
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineCaptain" Caption="Capitão"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfPersonnel" Caption="Chefe de Funcionários"/>
+    <GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="Chefe de Segurança"/>
+    <GuideEntityEmbed Entity="ToyFigurineChiefMedicalOfficer" Caption="Chefe de Medicina"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineChiefEngineer" Caption="Chefe de Engenharia"/>
+    <GuideEntityEmbed Entity="ToyFigurineResearchDirector" Caption="Diretor de Pesquisa"/>
+    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="Almoxarife"/>
+  </Box>
+
+## Assumindo o Controle
+Parabéns pela sua promoção! Além de toda a papelada extra, suas novas [color=#a4885c]responsabilidades[/color] incluem administrar seu departamento, fazer mudanças e definir prioridades, manter o pessoal e os equipamentos seguros, além de relaxar enquanto seus subordinados fazem todo o trabalho.
+
+Não se esqueça, você ainda tem um trabalho! Seus equipamentos sofisticados não lhe garantem um dia de folga, você ainda precisa suprir lacunas de pessoal, ajudar os trabalhadores com dificuldades e ensinar os novatos.
+
+Você pode até se sair bem só ficando parado e deixando as pessoas te odiarem, mas é mais sábio se envolver e trabalhar ao lado delas.
+Lembre-se de mover seus trabalhadores para fazer o que eles gostam ou o que fazem de melhor.
+
+## Seu Armário
+
+Para lidar com suas novas tarefas esmagadoras, cada chefe recebe itens especiais para liderar seus subordinados. A maioria das suas novas ferramentas brilhantes pode ser encontrada no seu [color=#a4885c]armário[/color].
+  <Box>
+    <GuideEntityEmbed Entity="LockerCaptain"/>
+  </Box>
+
+Seu [color=#a4885c]controle remoto[/color] é muito simples, mas profundamente subestimado. Uma pequena, mas poderosa ferramenta, seu controle remoto pode abrir e fechar [color=#a4885c]portas herméticas[/color], girar os [color=#a4885c]parafusos[/color] para trancá-las ou alternar o [color=#a4885c]acesso de emergência[/color]. E pode fazer isso à distância.
+  <Box>
+    <GuideEntityEmbed Entity="DoorRemoteCommand"/>
+  </Box>
+O controle remoto influencia o movimento das pessoas. Os chefes podem trancar o pessoal em áreas perigosas ou deixar pessoas entrarem rapidamente para pegar algo.
+
+Você também tem acesso ao seu próprio canal de [color=#1b67a5]Comando[/color], como todos os outros departamentos. No entanto, o seu é especialmente valioso, pois as pessoas que podem ouvir você têm [color=#a4885c]departamentos inteiros[/color] ao seu alcance.
+Use isso para se comunicar com outros chefes e ser um representante do que seus trabalhadores querem ou precisam.
+
+O [color=#1b67a5]Capitão[/color] e o [color=#9fed58]Chefe de Funcionários[/color] têm acesso à lucrativa [color=#a4885c]chave mestre de criptografia[/color], permitindo que eles sintonizem todos os canais de rádio da estação. Isso é extremamente valioso, pois você pode coordenar entre os departamentos pessoalmente.
+[color=#a4885c]Não desperdice essa vantagem vital![/color]
+  <Box>
+    <GuideEntityEmbed Entity="ClothingHeadsetCommand"/>
+    <GuideEntityEmbed Entity="EncryptionKeyStationMaster"/>
+  </Box>
+
+Para tornar o pântano de papelada (que definitivamente vai te sobrecarregar) ainda mais difícil de lidar, você generosamente recebeu um [color=#a4885c]carimbo[/color] no seu armário. Use isso para assinar documentos. Depois de carimbado, o documento não pode ser editado. Olhe bem antes de carimbar.
+  <Box>
+    <GuideEntityEmbed Entity="RubberStampCaptain"/>
+  </Box>
+</Document>

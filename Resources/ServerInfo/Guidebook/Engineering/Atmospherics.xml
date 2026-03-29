@@ -1,0 +1,64 @@
+<!--
+SPDX-FileCopyrightText: 2023 Albert Snow <ajsnow2012@gmail.com>
+SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 Warentan <113652968+Warentan@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 end <72604018+laok233@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Iztok Bajcar <50874197+iztokbajcar@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Terraspark4941 <terraspark4941@gmail.com>
+SPDX-FileCopyrightText: 2024 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 marc-pelletier <113944176+marc-pelletier@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Atmosfera
+
+  Configurar corretamente a atmosfera é essencial para o conforto a longo prazo da sua tripulação. O seguinte guia tenta cobrir o básico.
+
+  ## Mistura padrão
+  A preença de O2 puro pode-se tornar uma ameaça e nem todos os tripulantes respiram oxigênio. O oxigênio é um gas reativo e essencial para reações de combustão. Sua presença em alta quantidades pode se tornar perigoso. Por sua vez, o nitrogênio não oferece nenhum risco da tripulação, mas nem todos os tripulantes são capazes de respirar.
+  
+  Dessa forma, é recomendado que você busque uma mistura de [color=#a4885c]78% N2 e 22% O2 a 101.24kPa[/color]. Também recomendamos que a bomba de saída de gás do Subdepartamento da Atmosfera seja ajustada para pelo menos 300kPA. Isso ajuda numa repressurização mais rápida dos ambientes, sem representar muito risco de sobrepressurização.
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister"/>
+    <GuideEntityEmbed Entity="NitrogenCanister"/>
+    <GuideEntityEmbed Entity="AirCanister"/>
+  </Box>
+  Variações nessa mistura podem ser necessárias para o conforto a longo prazo de tripulações atípicas (por exemplo, Voxes, que são envenenados por oxigênio e respiram nitrogênio). Para tripulações atípicas, é recomendado tentar dar a eles seu próprio espaço pessoal. Tenha em mente que qualquer método têm vazamentos e você precisará de filtradores para limpar qualquer gás vazado.
+  <Box>
+    <GuideEntityEmbed Entity="NitrogenCanister"/>
+    <GuideEntityEmbed Entity="StorageCanister"/>
+  </Box>
+
+  ## Ventilação e filtradores
+  As ventilações e filtradores são dispositivos centrais de atmofera que preenchem e purificam os ambientes, respectivamente. Por padrão, eles são configurados para preencher os ambientes até a pressão padrão (101.24kPa) e para remover todos os gases não-O2/N2 de um ambiente. Eles podem ser reconfigurados a partir das configurações padrão ao conectá-los a um Alarme de Gás, permitindo configurar como eles respondem a vários tipos de gases ou níveis de pressão.
+
+  <Box>
+    <GuideEntityEmbed Entity="GasVentPump"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+  </Box>
+  Durante a operação padrão, se uma ventilação normal detectar que o ambiente externo é o espaço, ela cessará automaticamente a operação até que uma pressão mínima seja alcançada, para evitar a destruição de gases úteis. Isso pode ser corrigido ao pressurizar o ambiente até essa pressão mínima, reabastecendo-o com um cilindro de gás (potencialmente múltiplos, se o ambiente for de tamanho significativo).
+
+  Caso você se depare com uma situação onde os filtradores não estão limpando o ambiente rápido o suficiente (e a funcionalidade "sifão" ainda não conseguir acompanhar), utilize filtradores portáteis, arrastando-os até o local afetado e fixando-os no lugar. Eles funcionam muito mais rápido do que os filtradores típicos e podem limpar rapidamente um ambiente. Vazamentos grandes podem exigir o uso de múltiplos filtradores.
+  <Box>
+    <GuideEntityEmbed Entity="PortableScrubber"/>
+  </Box>
+  # Misturas de gás e câmaras de combustão
+  Caso termine todas as tarefas em mãos, você pode ganhar um dinheiro extra criando novos gases químicos.
+
+  ## Folha de referência
+  - A mistura de atmosfera padrão é [color=#a4885c]78% N2 e 22% O2 a 101.24kPa.[/color]
+  - Os gases obedecem matemática real. Use a seguinte equação:
+  <Box>
+    [color=cyan]PV = nRT[/color]
+  </Box>
+  <Box>
+    ([color=cyan]Pressão (em kPa) * Volume (em L) = Quantidade de Mols * R * Temperatura (em K)[/color])
+  </Box> 
+  Onde R é a Constante universal dos gases ideais, aproximadamente 8.31.
+
+</Document>

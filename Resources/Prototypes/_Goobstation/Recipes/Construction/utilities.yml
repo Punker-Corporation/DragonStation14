@@ -1,0 +1,79 @@
+# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 BombasterDS <deniskaporoshok@gmail.com>
+# SPDX-FileCopyrightText: 2025 BombasterDS2 <shvalovdenis.workmail@gmail.com>
+# SPDX-FileCopyrightText: 2025 GoobBot <uristmchands@proton.me>
+# SPDX-FileCopyrightText: 2025 Ilya246 <57039557+Ilya246@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2025 Ilya246 <ilyukarno@gmail.com>
+# SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: construction
+  id: DisposalBlocker
+  graph: DisposalPipe
+  targetNode: blocker
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: GasFilterInline
+  graph: GasTrinary
+  targetNode: inline_filter
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterInline
+  - GasFilterInlineAlt1
+  - GasFilterInlineAlt2
+
+- type: construction
+  id: GasFilterInlineAlt1
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: inline_filterAlt1
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterInline
+  - GasFilterInlineAlt1
+  - GasFilterInlineAlt2
+
+- type: construction
+  id: GasFilterInlineAlt2
+  hide: true
+  graph: GasTrinary
+  startNode: start
+  targetNode: inline_filterAlt2
+  category: construction-category-utilities
+  placementMode: AlignAtmosPipeLayers
+  canBuildInImpassable: false
+  conditions:
+  - !type:NoUnstackableInTile
+  alternativePrototypes:
+  - GasFilterInline
+  - GasFilterInlineAlt1
+  - GasFilterInlineAlt2
+
+- type: construction
+  id: HeatExchangerInline
+  graph: GasBinary
+  targetNode: inlineradiator
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+
+- type: construction
+  id: HeatExchangerInlineBend
+  graph: GasBinary
+  targetNode: bendinlineradiator
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false

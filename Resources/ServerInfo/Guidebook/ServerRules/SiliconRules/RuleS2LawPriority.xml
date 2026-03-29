@@ -1,0 +1,9 @@
+<Document>
+  # Regra de Silício 2 - Leis devem ser priorizadas em ordem (do menor ao maior).
+  A maioria das Leis serão numeradas, com números maiores aparecendo por último. Leis com um número menor tem prioridade sobre Leis com números maiores.
+
+  Ocasionalmente, você pode ter Leis que tenham um texto embaralhado invés de um número e que apareçam na frente de outras Leis; essas Leis "bugadas" tem prioridade sobre todas outras Leis. Se você tem múltiplas Leis assim, a ordem com que elas estão listadas determina prioridade: Leis listadas primeiro tem prioridade sobre outras Leis.
+
+  ## Exemplo
+  - A sua Lei 1 diz para não matar nenhum tripulate. A sua Lei 2 diz que você deve matar todos os Chefs. Você não pode matar nenhum Chef que seja tripulante, mas deve matar todos os Chefs que não sejam tripulantes.
+</Document>

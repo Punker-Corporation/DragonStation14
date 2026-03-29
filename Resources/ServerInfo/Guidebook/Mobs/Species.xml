@@ -1,0 +1,54 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <166929042+BeeRobynn@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 gluesniffler <159397573+gluesniffler@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 AstroDogeDX <48888500+AstroDogeDX@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
+SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Espécies
+
+  A Nanotrasen contrata uma variedade de Espécies sencientes.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobDwarf" Caption="Anão"/>
+    <GuideEntityEmbed Entity="MobArachnid" Caption="Aracnídeo"/>
+    <GuideEntityEmbed Entity="MobChitinid" Caption="Chitinídeo"/>
+    <GuideEntityEmbed Entity="MobDaengati" Caption="Daengati"/>
+    <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
+    <GuideEntityEmbed Entity="MobGingerbread" Caption="Gingerbread"/>
+    <GuideEntityEmbed Entity="MobHarpy" Caption="Harpia"/>
+    <GuideEntityEmbed Entity="MobWaddler" Caption="Pinguinador"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobHuman" Caption="Humano"/>
+    <GuideEntityEmbed Entity="MobIPCDummy" Caption="IPC"/>
+    <GuideEntityEmbed Entity="MobOni" Caption="Oni"/>
+    <GuideEntityEmbed Entity="MobMoth" Caption="Pessoa Mariposa"/>
+    <GuideEntityEmbed Entity="MobPlasmaman" Caption="Pessoa Plasma"/>
+    <GuideEntityEmbed Entity="MobSlimePerson" Caption="Pessoa Slime"/>
+    <GuideEntityEmbed Entity="MobReptilian" Caption="Reptiliano"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
+    <GuideEntityEmbed Entity="MobRodentia" Caption="Rodentia"/>
+    <GuideEntityEmbed Entity="MobShadowkin" Caption="Shadowkin"/>
+    <GuideEntityEmbed Entity="MobTajaran" Caption="Tajaran"/>
+    <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
+    <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
+    <GuideEntityEmbed Entity="MobYowie" Caption="Yowie"/>
+    <GuideEntityEmbed Entity="MobChitinid" Caption="Chitinid"/>
+    <GuideEntityEmbed Entity="MobFeroxi" Caption="Feroxi"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="MobShadowkin" Caption="Shadowkin"/>
+  </Box>
+
+</Document>

@@ -1,0 +1,45 @@
+<!--
+SPDX-FileCopyrightText: 2023 chromiumboy <50505512+chromiumboy@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Iztok Bajcar <50874197+iztokbajcar@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Terraspark4941 <terraspark4941@gmail.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Configurador de Acesso
+  O configurador de acesso é uma ferramenta usada para especificar que tipo de pessoal pode usar certos dispositivos.
+
+  <Box>
+	  <GuideEntityEmbed Entity="AccessConfigurator" Caption="configurador de acesso"/>
+  </Box>
+
+  Dispositivos configuráveis podem incluir airlocks, caixas e armários seguros, assim como máquinas com acesso restrito.
+  Nota: Airlocks podem ter seus acessos configurados pelo [color=#a4885c]Configurador de Rede[/color] (ou multitool), para conveniência.
+
+  ## Onde encontrar os Configuradores de Acesso
+  Cada estação é equipada com até dois configuradores de acesso. O primeiro está em posse do Chefe de Engenharia, enquanto o segundo pode ser encontrado com o Chefe de Pessoal.
+
+  ## Como usar o configurador de acesso
+  Para modificar um dispositivo usando o configurador de acesso:
+  - Primeiro, use o configurador de acesso no dispositivo escolhido para vinculá-los. Isso abrirá automaticamente a interface do configurador.
+  - Em seguida, insira um cartão de identificação no configurador de acesso.
+  - Defina os requisitos de acesso do dispositivo conectado. Os requisitos que podem ser adicionados ou removidos dependerão dos privilégios de acesso do cartão de identificação inserido.
+  - Quaisquer alterações feitas serão aplicadas [color=#a4885c]imediatamente[/color] - basta ejetar o cartão de identificação do configurador de acesso e fechar a interface quando terminar.
+
+  ## Restrições na alteração de acesso
+  Como precaução de segurança, o cartão inserido deve possuir [bold]todos[/bold] os requisitos de acesso que estão atualmente ativos no dispositivo conectado para poder modificá-lo.
+
+  Por exemplo, um dispositivo que pode ser acessado por pessoal de 'Ciência' e 'Medicina' só pode ser modificado usando um cartão de identificação que tenha acesso a [color=#a4885c]ambos[/color] esses departamentos.
+  O configurador de acesso avisará o usuário se o cartão de identificação inserido não tiver privilégios suficientes para modificar um dispositivo.
+
+  Um dispositivo sem requisitos de acesso configurados, como um airlock de acesso público, pode ser modificado usando qualquer cartão de identificação válido da estação.
+
+  ## Reparando leitores de cartões de identificação danificados
+  Agentes da Syndicate podem tentar hackear dispositivos com acesso restrito através do uso de um [color=#a4885c]Sequenciador Criptográfico (EMAG)[/color]. Esta ferramenta nefasta vai desativar completamente qualquer leitor de cartões de identificação conectado ao dispositivo.
+
+  Engenheiros precisarão parcialmente reconstruir os dispositivos afetados e, em seguida, definir as permissões de acesso apropriadas usando o configurador de acesso (ou configurador de rede, para airlocks), para restabelecer as restrições de acesso.
+</Document>

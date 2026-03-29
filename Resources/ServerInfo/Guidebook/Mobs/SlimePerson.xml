@@ -1,0 +1,39 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Just-a-Unity-Dev <67359748+Just-a-Unity-Dev@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 deepdarkdepths <155149356+deepdarkdepths@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 kbailey-git <84491830+kbailey-git@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Solstice <solsticeofthewinter@gmail.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Pessoas Slime
+
+  <Box>
+    <GuideEntityEmbed Entity="MobSlimePerson" Caption=""/>
+  </Box>
+
+  - Respiram nitrogênio ao invés de oxigênio, que é abundante no ar da estação, mas difícil de ser encontrado comprimido em tanques.
+  - [color=#ec3a3a]Tomam dano significativo se forem molhadas com água[/color], mas podem (e precisam) tomar água em segurança para se manterem hidratadas.
+  - Elas exalam óxido nitroso (nitrous oxide) mas não são afetadas por ele.
+  - Seus corpos processam apenas duas toxinas por vez, ao invés de três.
+
+  Pessoas slime têm um [bold]inventário 2x3 interno[/bold] dentro de suas membranas de slime. Qualquer um pode ver e retirar o que está dentro dessa membrana sem pedir,
+  então tome cuidado.
+
+  Pessoas slime [color=#ffa500]possuem regeneração acelerada[/color] comparada a outros humanoides.
+
+  Pessoas slimes não tem ossos e seus membros são removidos facilmente.
+  
+  O sangue de slime é tecnicamente uma fonte de comida razoável para outras espécies. No entanto, beber o sangue de seus colegas é normalmente visto com maus olhos.
+  Elas [color=#1e90ff]sufocam 80% mais devagar[/color], mas [color=#ffa500]tomam dano por pressão 9% mais rápido[/color]. Isso as torna a espécie mais capaz de sobreviver no vácuo. Por pouco tempo.
+
+  Elas tomam [color=#1e90ff]40% menos dano Contundente[/color] e [color=#1e90ff]20% menos dano de Veneno[/color], mas [color=#ffa500]50% mais dano de Frio[/color], [color=#ffa500]15% mais dano Cortante e Perfurante[/color].
+</Document>

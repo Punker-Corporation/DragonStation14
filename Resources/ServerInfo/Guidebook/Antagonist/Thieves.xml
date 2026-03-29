@@ -1,0 +1,79 @@
+<!--
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+
+  # Ladrões
+
+  <Box>
+    [color=#999999][italic]"Peguei! Vou levar isso! E aquilo! Ooh, não me importo se eu pegar isso também!"[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ClothingNeckCloakVoid" Caption=""/>
+  </Box>
+
+  Os ladrões são [color=green]criminosos[/color] pequenos, mas engenhosos, que não conseguem manter as mãos longe do que não lhes pertence. Você foi forçadamente implantado com um [bold]implante de pacifismo[/bold] após sua última prisão, mas isso não vai impedi-lo de tentar adicionar itens à sua coleção.
+
+  ## A Arte do Roubo
+  Ao contrário de outros antagonistas, [bold]ficar fora de problemas é quase um requisito para você[/bold] devido ao seu implante.
+  Você só pode fugir se [color=#cb0000]a Segurança[/color] começar uma briga com você, e como trabalha sozinho, não tem amigos para tirá-lo de apuros.
+
+  Mas, contra todas as probabilidades, você conseguirá roubar o que quiser usando determinação, truques de prestidigitação, algumas ferramentas e suas [color=cyan]mãos ágeis.[/color]
+
+  The pickpocketing skills you have give you a major advantage: [bold]furtar rapidamente objetos de outra pessoa sem que ela perceba[/bold]. Com um pouco de prática, você pode até roubar uma carteira e manter a conversa ao mesmo tempo.
+
+  É recomendado usar um par de luvas já que as suas impressões digitais ainda podem te revelar se o que foi roubado for encontrado.
+
+  ## Ferramentas do Ofício
+  Você tem mais dois ases na manga: seu [color=cyan]beacon[/color] e sua [color=cyan]caixa de ferramentas.[/color]
+
+  Seu [color=cyan]beacon[/color] fornece uma passagem segura para casa para objetos que podem não ser fáceis de carregar com você no transporte de evacuação. Basta encontrar um lugar isolado na estação para abrir o beacon e definir suas coordenadas para seu esconderijo.
+  Quaisquer itens brilhantes próximos a ele serão [bold]teletransportados para seu cofre ao final do turno,[/bold] cumprindo seus objetivos.
+
+  No entanto, isso revelará imediatamente sua localização se for encontrado, tornando extremamente fácil para as pessoas recuperarem seus pertences "desaparecidos". [bold]Certifique-se de escondê-lo bem![/bold]
+
+  <Box>
+    <GuideEntityEmbed Entity="ThiefBeacon"/>
+  </Box>
+
+  Sua [color=cyan]caixa de ferramentas[/color] contém... bem, o que você lembrou de embalar. [bold]Você pode selecionar dois kits pré-fabricados[/bold] para ajudá-lo a completar roubos mais ambiciosos.
+  Aprove suas escolhas em um lugar seguro, pois a caixa de ferramentas se dissolverá e os equipamentos cairão aos seus pés.
+
+  <Box>
+    <GuideEntityEmbed Entity="SatchelThief"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="StorageImplanter" Caption="Anatomia"/>
+    <GuideEntityEmbed Entity="C4" Caption="Explosivo"/>
+    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Camaleão"/>
+    <GuideEntityEmbed Entity="BaseUplinkRadio" Caption="Comunicador"/>
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Adormecedor"/>
+    <GuideEntityEmbed Entity="Fulton" Caption="Contrabandista"/>
+    <GuideEntityEmbed Entity="Telecrystal" Caption="Sindicalista"/>
+  </Box>
+
+  ## A Joia da Coleção
+  Sua cleptomania o levará a lugares. Um dia, você sentirá vontade de roubar algumas miniaturas. No outro, você desejará roubar uma máquina industrial.
+
+  Não importa. Todos farão parte de sua coleção em pouco tempo.
+
+  Você pode roubar itens ao [bold]tê-los em sua posse[/bold] quando chegar ao CentComm. Se isso não for possível, você pode roubar itens maiores ao [bold]deixá-los próximos ao seu beacon.[/bold]
+
+  Alguns dos objetivos mais [italic]animados[/italic] podem não cooperar com você. Certifique-se de que eles estejam vivos e com você ou com seu beacon ao final do turno.
+
+  Coisas que você pode desejar incluem, mas não se limitam a:
+
+  <Box>
+    <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Miniaturas"/>
+    <GuideEntityEmbed Entity="PassengerIDCard" Caption="Cartões de Identificação"/>
+    <GuideEntityEmbed Entity="ChemDispenser" Caption="Estruturas"/>
+    <GuideEntityEmbed Entity="MobCorgiIan" Caption="Animais/Pets"/>
+  </Box>
+
+</Document>

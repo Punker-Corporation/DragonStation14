@@ -1,0 +1,46 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2024 SolsticeOfTheWinter <solsticeofthewinter@gmail.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Harpias
+
+  <Box>
+    <GuideEntityEmbed Entity="MobHarpy" Caption=""/>
+  </Box>
+
+  Harpias são uma mutação aviana de humanos, com asas emplumadas e caudas bagunçadas.
+  Elas enxergam o mundo por uma visão ultravioleta, atacam com suas garras causando
+  dano [color=#ec3a3a]Perfurante[/color], e andam por aí com suas pernas digitígradas.
+  Sua habilidade característica, no entanto, é de alcançar os céus!
+
+  ## Quem canta os males espanta
+
+  Harpias são capazes de cantar com facilidade, te permitindo tocar música em qualquer lugar,
+  contanto que você não esteja de boca tapada/abafada.
+
+  ## Alcance os céus!
+
+  Harpias podem usar suas asas para voar e aumentar sua velocidade consideravelmente, por um alto custo de stamina e temporária incapacidade de usar suas mãos.
+  Suas asas as dão melhor aceleração quando não há gravidade na estação, mas não conseguem se mover sem equipamento no espaço aberto.
+
+  ## Fraquezas
+
+  - Graças a suas pernas digitígradas, são incapazes de vestir quaisquer calçados. Porém, também [color=#ffa500]correm 10% mais rápido do que os demais[/color].
+  - Elas tem ossos fracos.
+  - Elas são muito leves, tornando difícil carregar outras espécies.
+
+  <!--
+  Harpias também respiram [color=#1e90ff]3 vezes mais rápido[/color] que outras espécies.
+
+  Havia esse trecho em inglês, mas fizemos uns testes e não parece ter diferença no consumo de oxigênio ou no
+  tempo pra sufocar, caso alguém saiba explicar em melhores palavras, fique à vontade!
+  -->
+
+</Document>

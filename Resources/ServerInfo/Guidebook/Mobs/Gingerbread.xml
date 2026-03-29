@@ -1,0 +1,26 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2024 Piras314 <p1r4s@proton.me>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Gingerbreads
+
+  <Box>
+    <GuideEntityEmbed Entity="MobGingerbread" Caption=""/>
+  </Box>
+
+  Gingerbreads são uma espécie de confeitos sencientes. Eles têm açúcar ao invés de sangue, e podem ser cortados em biscoitos. Sendo feitos de massa/farinha, pesam metade de uma espécie feita de carne
+
+  ## Estatísticas de dano
+
+  - Tomam [color=#1e90ff]3x menos dano de Fogo[/color], mas [color=#ffa500]1.5x mais dano Contundente[/color].
+  - Também tomam [color=#ffa500]muito dano de Calor ao serem diretamente expostos à água[/color].
+  - [color=#1e90ff]Não tomam dano de Asfixia[/color], [color=#1e90ff]Perda de sangue[/color] ou [color=#1e90ff]Frio[/color] (porém ainda respiram, ficam desconfortáveis sem oxigênio/açúcar e ficam lentos pelo frio).
+
+</Document>

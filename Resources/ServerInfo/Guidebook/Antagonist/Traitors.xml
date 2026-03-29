@@ -1,0 +1,123 @@
+<!--
+SPDX-FileCopyrightText: 2023 Derby <Derby@ss14>
+SPDX-FileCopyrightText: 2023 DerbyX <50932435+DerbyX@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 liltenhead <104418166+liltenhead@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Aiden <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Boaz1111 <149967078+Boaz1111@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Piras314 <92357316+Piras314@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Traidores
+
+  <Box>
+    [color=#999999][italic]"WHISKEY. ECHO. WHISKEY. LIMA. ALPHA. DELTA. AGENTE, VOCÊ FOI ATIVADO."[/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandSyndicateRecruitment" Caption=""/>
+  </Box>
+  Traidores são antagonistas empregados pelo [color=#ff0000]Syndicate[/color]. Você é um agente adormecido que tem acesso a várias ferramentas e armas através do seu [bold]uplink[/bold].
+  Você também recebe [bold]código de palavras[/bold] para identificar outros agentes, e uma equipe coordenada de traidores pode ter [italic]resultados brutais[/italic].
+
+  Qualquer pessoa, além dos [textlink="department heads" link="Command"] ou membros da [textlink="Security" link="Security"], pode ser um traidor.
+
+  ## Uplink & Ativação
+  O [color=cyan]uplink[/color] é a sua ferramenta mais importante como traidor. Você pode trocar os 20 [color=red]telecristais[/color] (TC) com os quais você começa por itens que ajudarão com seus objetivos.
+
+  Ao pressionar [color=yellow][bold][keybind="OpenCharacterMenu"][/bold][/color], você verá o código pessoal do seu uplink. [bold]Definir o toque do seu PDA como esse código abrirá o uplink.[/bold]
+  Pressionar [color=yellow][bold][keybind="OpenCharacterMenu"][/bold][/color] também permite que você veja seus objetivos e os códigos de palavras.
+
+  Se você não tiver um PDA quando for ativado, um [color=cyan]implante uplink[/color] será fornecido [bold]pelo preço completo de [color=red]TC[/color] do implante.[/bold]
+  Ele pode ser acessado a partir da sua barra de atalhos.
+  <Box>
+    <GuideEntityEmbed Entity="PassengerPDA" Caption="PDA"/>
+    <GuideEntityEmbed Entity="Telecrystal" Caption="Telecristais"/>
+    <GuideEntityEmbed Entity="BaseUplinkRadio" Caption="Implante Uplink"/>
+  </Box>
+
+  [bold]Certifique-se de fechar o uplink do seu PDA para impedir que outras pessoas o vejam.[/bold] Você não quer que a [color=#cb0000]Segurança[/color] ponha as mãos nessa seleção premium de contrabando!
+
+  Os uplinks implantados normalmente não são acessíveis a outras pessoas, portanto, não possuem medidas de segurança. No entanto, podem ser removidos de você com um implante vazio.
+
+  <Box>
+    <GuideEntityEmbed Entity="WeaponPistolViper" Caption="Armas"/>
+    <GuideEntityEmbed Entity="FireAxe" State="icon" Caption="Corpo a Corpo"/>
+    <GuideEntityEmbed Entity="C4" Caption="Explosivos"/>
+    <GuideEntityEmbed Entity="Syringe" Caption="Implantes"/>
+    <GuideEntityEmbed Entity="ClothingBackpackDuffelSyndicate" Caption="Pacotes"/>
+  </Box>
+
+  As compras que você fizer devem ajudar com seus objetivos. Alguns equipamentos podem não ser úteis para você, e você terá que escolher entre ser sorrateiro ou ir para a agressão.
+
+  ## Coordenação
+  Códigos de palavras são palavras ou frases que todo traidor conhecerá. Eles fornecem uma maneira discreta de identificar ou estabelecer contato com um traidor colega, o que pode ser útil se seus objetivos inclur [italic][color=cyan]ajudar eles com seus objetivos.[/color][/italic]
+
+  Quando encontrar alguns amigos, [bold]você pode retirar [color=red]telecristais[/color] do seu uplink para dar a eles.[/bold] Eles podem colocar esses cristais em seus próprios uplinks para gastar por si mesmos.
+
+  Algumas ofertas disponíveis no seu uplink exigem mais do que 20 TC para comprar, então, se você quiser, terá que compartilhar.
+
+  ## Assassinato
+  Um dos seus objetivos pode ser [italic][color=cyan]matar ou abandonar um membro da tripulação.[/color][/italic]
+
+  Você pode [color=cyan]abandonar[/color] seu alvo impedindo que ele chegue ao CentComm via o transporte de evacuação ou uma cápsula de fuga.
+
+  Se não puder abandonar seu alvo ou ele for muito importante para deixar viver, terá que sujar as mãos e [color=cyan]matá-lo[/color]. Certifique-se de que seu alvo não esteja vivo quando o [bold]transporte de evacuação chegar ao CentComm,[/bold] e não deixe que ele seja reanimado.
+
+  Lembre-se, o Syndicate quer apenas que seus alvos morram. [color=red]Tente evitar assassinatos em massa ou danos significativos à estação,[/color] quanto mais vidas inocentes você tirar, mais responsabilidade você se torna.
+
+  ## Evasão & Autoterminação
+  Seus objetivos podem exigir que você [italic][color=cyan]chegue ao CentComm sem ser morto ou capturado.[/color][/italic] Não deixe a [color=#cb0000]Segurança[/color] te impedir, complete seus outros objetivos e [bold]volte vivo.[/bold]
+
+  Alternativamente, seus objetivos podem exigir que você [italic][color=cyan]morra uma morte gloriosa.[/color][/italic] [bold]Certifique-se de não voltar da morte,[/bold] ou você pode acordar algemado.
+
+  ## Apropriação
+  Mais frequentemente, você terá que [italic][color=cyan]roubar uma posse de um chefe de departamento.[/color][/italic]
+
+  O alvo pode estar no seu escritório ou com ele. Pode ser necessário matar quem estiver carregando, caso você não consiga roubar sem ser percebido.
+
+  Algumas das coisas que você pode ser encarregado são:
+  - Roubar o [color=yellow]Cartão de ID do Capitão[/color], [bold]pistola laser antiga[/bold], [bold]jetpack[/bold], ou [bold]disco de autenticação nuclear[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="CaptainIDCard" Caption=""/>
+    <GuideEntityEmbed Entity="WeaponAntiqueLaser" Caption=""/>
+    <GuideEntityEmbed Entity="JetpackCaptainFilled" Caption=""/>
+    <GuideEntityEmbed Entity="NukeDisk" Caption=""/>
+  </Box>
+  - Roubar o [color=#5b97bc]Chefe Médico[/color]'s [bold]hiposspray[/bold] ou [bold]monitor de tripulação portátil[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="Hypospray" Caption=""/>
+    <GuideEntityEmbed Entity="RapidSyringeGun" Caption=""/>
+  </Box>
+  - Roubar o [color=#c96dbf]Diretor de Pesquisa[/color]'s [bold]traje experimental[/bold] ou [bold]teleportador manual[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="ClothingOuterHardsuitRd" Caption=""/>
+    <GuideEntityEmbed Entity="HandTeleporter" Caption=""/>
+  </Box>
+  - Roubar o [color=#cb0000]Chefe de Segurança[/color]'s [bold]espingarda de energia[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="WeaponEnergyGunMultiphase" Caption=""/>
+    <GuideEntityEmbed Entity="WeaponEnergyShotgun" Caption=""/>
+  </Box>
+  - Roubar o [color=#f39f27]Chefe de Engenharia[/color]'s [bold]botas magnéticas avançadas[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="ClothingShoesBootsMagAdv" Caption=""/>
+  </Box>
+  - Roubar o [color=#b18644]Mestre de Armazém[/color]'s [bold]placa digital de requisição[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="BoxFolderQmClipboard" Caption=""/>
+  </Box>
+  - Matar Ian, o [color=#9fed58]Chefe de Pessoal[/color]'s cachorro, e obter a [bold]carne de corgi[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="MobCorgiIan" Caption=""/>
+    <GuideEntityEmbed Entity="FoodMeatCorgi" Caption=""/>
+  </Box>
+
+</Document>

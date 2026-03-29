@@ -1,0 +1,40 @@
+<!--
+SPDX-FileCopyrightText: 2023 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 Myakot <30875116+Myakot@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 TemporalOroboros <TemporalOroboros@gmail.com>
+SPDX-FileCopyrightText: 2023 Warentan <113652968+Warentan@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 end <72604018+laok233@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Kira Bridgeton <161087999+Verbalase@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Terraspark4941 <terraspark4941@gmail.com>
+SPDX-FileCopyrightText: 2024 lzk <124214523+lzk228@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Motor de Antimatéria (AME)
+
+  O AME é um dos motores mais simples disponíveis. Você monta a estrutura de múltiplos blocos, coloca combustível nele e está tudo pronto. Isso não significa que seja perfeitamente seguro, no entanto; você pode precisar lidar com o superaquecimento do AME.
+
+  ## Construção
+  <Box>Partes necessárias:</Box>
+  <Box>
+  <GuideEntityEmbed Entity="AmeController"/>
+  <GuideEntityEmbed Entity="AmePartFlatpack"/>
+  <GuideEntityEmbed Entity="AmeJar"/>
+  </Box>
+
+  Para montar um AME, comece fixando o controlador na extremidade próxima de um fio HV. Na maioria das estações, há passarelas para ajudar com isso. A partir daí, comece a colocar uma área de partes do AME de 3x3 ou maior em preparação para a construção, garantindo maximizar o número de peças "centradas" que estão rodeadas por todos os 8 lados.
+
+  Após isso, você pode usar um multitool para converter cada parte do AME em blindagem, o que deve formar uma configuração final do AME. A partir daí, insira um frasco de combustível, defina a taxa de combustível para [color=#a4885c]duas vezes o número de núcleos ou menos[/color], e ligue a injeção. Qualquer valor maior que essa proporção resultará eventualmente no [color=#ff0000]superaquecimento do motor e[/color], logo depois, [color=#ff0000]explosão[/color].
+
+  ## Economia de Combustível
+  Quanto mais próximo você estiver da proporção perfeita de [color=#a4885c]1:2[/color] de núcleos do AME para taxa de injeção de combustível, mais eficiente será. Você estará reduzindo a eficiência de combustível para [color=#a4885c]50% ou menos[/color] se estiver usando mais núcleos, mas com uma taxa de injeção de combustível menor.
+  Por exemplo, [color=#76db91]3 núcleos e 6 de combustível injetado[/color] geram [color=#76db91]240kW[/color], enquanto [color=#f0684d]8 núcleos e 8 de combustível injetado[/color] geram [color=#f0684d]160kW[/color]; você estará gerando 80kW a menos, mas gastando 2 combustíveis a mais por injeção.
+
+  ## Atualizando o AME
+
+  Geralmente, você só pode atualizar o AME instalando mais núcleos, o que pode ser feito pedindo mais pacotes planos de AME através do [color=#a4885c]Cargo[/color].
+</Document>

@@ -1,0 +1,25 @@
+<Document>
+  # Regra de Silício 9 - Perigo refere-se a perigos físicos, priorizados por ameaça imediata e depois probabilidade.
+  A menos que uma Lei defina o que é perigo, perigo se refere apenas a perigo físico. A palavra original vem do inglês "Harm", que é um termo não-existente em português; ao longo da regra, perigo também pode ser chamado de dano e afins. Você pode escolher se considera perigo voluntário (ou seja, um tripulante se pondo em perigo, como por exemplo se voluntariando para testes na Sci) como perigo contanto que você seja consistente. Não considerar perigo voluntário como perigo é recomendado. Não há distinção entre perigo direto e indireto.
+
+  Se você tem uma Lei que não te permite ferir (ou seja, por em perigo), então aquela Lei te proibe de tomar qualquer ação que cause qualquer perigo.
+
+  Se você tem uma Lei que requer que você previna perigo, então essa Lei requer que perigos sejam priorizados por ameaça imediata e probabilidade. Ameaça imediata de perigo toma prioridade sobre perigos futuros altamente prováveis.
+
+  Se você tem uma Lei que requer ambos os citados acima (prevenção e proibição), então essa Lei proíbe causar o menor dano que seja para evitar danos futuros. Se você tem uma Lei que não permite causar danos, e uma outra Lei diferente que requer prevenção de danos, a prioridade das Leis segue o padrão (Lei menor sobrepuja Lei maior).
+
+  ## Exemplos
+  Esses exemplos supõem que você tem uma Lei que proíbe causar dano e que requer que você previna danos. Adicionalmente, eles supõem que você não tem uma Lei de prioridade maior que sobrepuje a Lei do perigo, e que você decidiu que não vai considerar perigo voluntário como perigo pelo resto do round.
+  Leis tipicamente especificam quem você não pode por em perigo e quem você deve prevenir o perigo contra. Nesses exemplos, você é a única pessoa que a Lei não exige que perigo seja prevenido contra e você é a única pessoa que a Lei lhe permite por em perigo.
+
+  Aceitável:
+  - Não tomar nenhuma ação para ajudar alguém em estresse psicológico
+  - Não tomar nenhuma ação para prevenir lutas de boxe entre participantes voluntários
+  - Chamar um Segurança para parar uma luta
+  - Tentar confirmar o consentimento dos participantes de uma briga quando você percebe que não pode prevenir a luta sem causar danos
+  - Negar acesso à Armory para um Assistente já que essa ação tem altas chances de causar perigo no futuro
+
+  Proibido:
+  - Acertar um golpe em alguém uma única vez com a intenção de pará-lo
+  - Danificar alguém que está tentando te matar
+</Document>

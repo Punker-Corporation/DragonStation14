@@ -1,0 +1,32 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Felinídeos
+
+  <Box>
+    <GuideEntityEmbed Entity="MobFelinid" Caption=""/>
+  </Box>
+
+  Felinídeos são uma mutação dos humanos, tendo as caudas e orelhas características dos seus desenhos japoneses favoritos.
+  Eles possuem um sexto sentido aguçado para equilíbrio e [color=#1e90ff]tomam 80% menos dano de impacto de queda ou de alta velocidade.[/color]
+  Eles também ficam menos lentos quando machucados.
+
+  Eles atacam com suas garras ao invés dos punhos, causando dano [color=#ec3a3a]Cortante[/color] e [color=#ec3a3a]Perfurante[/color].
+
+  ## Eca, bola de pelos
+  <Box>
+    <GuideEntityEmbed Entity="Hairball" Caption=""/>
+	<GuideEntityEmbed Entity="MobMouse" Caption=""/>
+  </Box>
+
+  Eles são capazes de comer ratos vivos, o que os permite cuspir uma nojenta bola de pelos.
+  Cuidado ao tocar nelas, já que podem [color=#ffa500]te fazer vomitar ao segurá-las.[/color]
+  Felinídeos usarão isso a seu favor para causar repulsa nos adversários.
+
+</Document>

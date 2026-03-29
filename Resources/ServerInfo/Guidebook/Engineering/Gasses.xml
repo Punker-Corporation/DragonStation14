@@ -1,0 +1,641 @@
+<!--
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 ArtisticRoomba <145879011+ArtisticRoomba@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 SX_7 <sn1.test.preria.2002@gmail.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Gases
+  Os gases são uma parte crítica da operação da estação.
+  Você pode conhecê-los como aquilo que você respira, mas eles também são usados de muitas outras formas.
+
+  Alguns gases possuem certas propriedades que os tornam úteis para diferentes tarefas.
+  O Subdepartmaneto de Atmosfera da Engenharia pode sintetizar gases exóticos a partir de outros gases, que podem ser usados para fins especiais.
+
+ <Table Columns="5">
+    <ColorBox>
+      <Box>
+        Gás a produzir
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Temperatura necessária
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Gases de entrada
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Subprodutos
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Observações
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#13FF4B">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Tritium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Fogo
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#FF3300">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        O2, Plasma
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Vapor, CO2
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#3a758c">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Frezon
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        73k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#13FF4B">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        O2, N2, Trit
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#DA1010">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Nitrogênio
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Óxido Nitroso
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#3a758c">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        N2, Frezon
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Altamente endotérmico
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#7b68ee">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Pluoxium
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#453a59">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        150-250k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#453a59">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        CO2, O2, Trit
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Hidrogênio
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#9370db">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        BZ
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  under 310k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#59563a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Plasma, N2O
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Exotérmico, Depende da Pressão
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#fa8072">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Healium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#3a758c">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Frezon, BZ
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Exotérmico
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#a52a2a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Nitrium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  1500k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#9370db">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        N2, Trit, BZ
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Queima em O2
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Hidrogênio
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Eletrólise
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#bffffd">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Vapor
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2887E8">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Oxigênio
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Inflamável
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Proto-Nitrate
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  7500k
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Hidrogênio, Pluox
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Inflamável
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#1c1a1a">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Zauker
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Nitrium, Hyper-nob
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Mortal
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#e3574d">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Halon
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Eletrólise
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#9370db">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        BZ
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  O2
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Para a combustão
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#005959">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Helium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  270k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#9370db">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Proto-Nitrate, BZ
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#33cccc">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Hyper-Noblium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  10k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#13FF4B">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        N2, Trit, BZ
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Impede reações
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#525151">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Anti-Noblium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+	  Eletrólise-100k
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#33cccc">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Hyper-Noblium
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+  </Table>
+
+  ## Oxigênio
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister" Caption=""/>
+    <GuideEntityEmbed Entity="OxygenTank" Caption=""/>
+    <GuideEntityEmbed Entity="DoubleEmergencyOxygenTank" Caption=""/>
+    <GuideEntityEmbed Entity="ExtendedEmergencyOxygenTank" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyOxygenTank" Caption=""/>
+  </Box>
+
+  Um gás comum, usado pela maioria das espécies na estação para respirar.
+
+  O oxigênio é um oxidante, o que significa que ele é a base da combustão.
+  Isso o torna útil ao fundir gases em uma câmara de combustão, mas também perigoso quando misturado com gases inflamáveis.
+
+  ## Nitrogênio
+  <Box>
+    <GuideEntityEmbed Entity="NitrogenCanister" Caption=""/>
+    <GuideEntityEmbed Entity="NitrogenTank" Caption=""/>
+    <GuideEntityEmbed Entity="DoubleEmergencyNitrogenTank" Caption=""/>
+    <GuideEntityEmbed Entity="ExtendedEmergencyNitrogenTank" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyNitrogenTank" Caption=""/>
+  </Box>
+
+  Um gás inerte, usado junto ao oxigênio para criar uma atmosfera respirável.
+
+  O nitrogênio é muito estável e compõe a maior parte de uma atmosfera padrão.
+
+  Algumas espécies como Slimes respiram nitrogênio, enquanto a espécie Vox requer estritamente nitrogênio para respirar.
+
+  ## Mistura de Ar
+  <Box>
+    <GuideEntityEmbed Entity="AirCanister" Caption=""/>
+    <GuideEntityEmbed Entity="AirTank" Caption=""/>
+  </Box>
+
+  Uma mistura de gases respirável para a maioria das espécies na estação.
+  Consiste em 21% oxigênio e 79% nitrogênio.
+
+
+  ## Dióxido de Carbono
+  <Box>
+    <GuideEntityEmbed Entity="CarbonDioxideCanister" Caption=""/>
+  </Box>
+
+  Um gás residual produzido pela maioria das espécies na estação. Também é um subproduto comum da combustão.
+
+  Apesar de parecer inútil, alguns departamentos o utilizam em seu trabalho.
+
+  ## Vapor
+  <Box>
+    <GuideEntityEmbed Entity="WaterVaporCanister" Caption=""/>
+  </Box>
+  Um gás comum, produzido pela queima de plasma e outros processos.
+
+  O vapor possui alto calor específico em comparação com outros gases, o que o torna útil para transferência de calor.
+
+  ## Plasma
+  <Box>
+    <GuideEntityEmbed Entity="PlasmaCanister" Caption=""/>
+  </Box>
+  Um gás altamente inflamável usado em muitos processos na estação.
+
+  A engenharia usa esse gás para gerar energia e criar gases exóticos.
+
+  Ao queimá-lo, gera muito calor, bem como subprodutos como dióxido de carbono, vapor e trítio, dependendo da eficiência da combustão.
+
+  O plasma também possui alto calor específico, tornando-o útil para transferência de calor.
+
+  ## Tritium
+  <Box>
+    <GuideEntityEmbed Entity="TritiumCanister" Caption=""/>
+  </Box>
+  Um gás verde, claro, altamente inflamável e radioativo. Ele entra em combustão quando em contato com oxigênio e é muito útil para operar o [color=#a4885c]TEG[/color].
+    <Box>
+    <GuideEntityEmbed Entity="OxygenCanister"/>
+    <GuideEntityEmbed Entity="PlasmaCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="TritiumCanister"/>
+  </Box>
+  Pode ser produzido queimando 1% de Plasma e 96% ou mais de Oxigênio em uma Câmara de Combustão. (A proporção ideal é aproximadamente 3% de plasma e 97% de oxigênio quando injetado durante uma queima). 
+  
+  É recomendado extrair esse gás o mais rápido possível para evitar a sua queima.
+  
+  ## Frezon
+  <Box>
+    <GuideEntityEmbed Entity="FrezonCanister" Caption=""/>
+  </Box>
+
+  Um gás muito procurado devido à dificuldade de criação e suas muitas propriedades.
+
+  Possui calor específico altíssimo, sendo excelente para transferir grandes quantidades de calor. 
+  
+  Isso quer dizer que pouca quantidade de frezon é capaz de carregar muita energia. É preciso de muito calor ou muito frio para esquentar ou esfriar o frezon.
+
+  Frezon pode se combinar com o nitrogênio da atmsofera para criar óxido nitroso. Em temperaturas extremas é capaz de congelar ou fritar a estação.
+  <Box>
+    <GuideEntityEmbed Entity="TritiumCanister"/>
+    <GuideEntityEmbed Entity="AirCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="FrezonCanister"/>
+  </Box>
+  Se você quiser criar esse gás por conta própria, aqui está o que precisa saber:
+  - O Frezon é produzido pela combinação de oxigênio, trítio e nitrogênio.
+  - Trítio e oxigênio são misturados em uma proporção de aproximadamente 1:8.
+  - O nitrogênio é necessário como catalisador da reação. A quantidade de nitrogênio consumido depende da eficiência da reação.
+  - A reação do Frezon só ocorre em temperaturas criogênicas, abaixo de 73,15 K. A eficiência da reação (quanto frezon é produzido) depende da temperatura. Quanto mais próximo de 73,15 K, mais frezon é produzido e menos nitrogênio é consumido.
+
+  Lembre-se: O Subdepartamento da Atmosfera é sobre experimentação e otimização de processos. Tente até acertar!
+
+  ##Pluoxium
+  Um substituto não-reativo do oxigênio, que fornece oito vezes mais O2 para a corrente sanguínea, com apenas 3 kPa de pressão mínima necessária para respiração.
+
+  Produzido pela combinação de 66% de CO2, 33% de O2 e 1% de Trítio em reação exotérmica entre 50K e 273K. Essa reação produz hidrogênio como subproduto.
+
+  Além disso, o Cristal de Supermatéria (SM) cria Pluoxium quando há oxigênio presente na atmosfera.
+
+  <Box>
+    <GuideEntityEmbed Entity="OxygenCanister"/>
+    <GuideEntityEmbed Entity="CarbonDioxideCanister"/>
+    <GuideEntityEmbed Entity="TritiumCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="PluoxiumCanister"/>
+  </Box>
+
+  ##BZ
+  Um gás alucinógeno potente e também agente sonífero para slimes. É tóxico para respiração, causa irritações e tosses.
+  
+  BZ é um gás intermediário para reações mais complexas.
+
+  Pode ser feito ao combinar 33% de óxido nitroso e 66% de plasma numa reação exotérmica.
+
+  A reação se torna menos eficiente se a quantidade de plasma presente for maior que o triplo da quantidade de Óxido Nitroso.
+
+  Também ocorre mais rapidamente fora de canos e em ambientes de baixa pressão.
+
+  <Box>
+    <GuideEntityEmbed Entity="PlasmaCanister"/>
+    <GuideEntityEmbed Entity="NitrousOxideCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="BZCanister"/>
+  </Box>
+
+  ## Nitrous Oxide
+  <Box>
+    <GuideEntityEmbed Entity="NitrousOxideCanister" Caption=""/>
+    <GuideEntityEmbed Entity="EmergencyFunnyOxygenTank" Caption=""/>
+  </Box>
+  A recreational and waste gas, produced by slimes and the combination of frezon and nitrogen.
+
+  ## BZ
+  <Box>
+    <GuideEntityEmbed Entity="BZCanister" Caption=""/>
+  </Box>
+  BZ gas is a potent hallucinogenic, as well as a sleeping agent for slimes. It's made from Plasma and Nitroux Oxide. It is toxic to breathe and causes respiratory irritation and coughing. BZ sees frequent use as an ingredient in more complex gas reactions.
+
+  ## Healium
+  <Box>
+    <GuideEntityEmbed Entity="HealiumCanister" Caption=""/>
+  </Box>
+  Healium is a red gas, formed by BZ and Frezon in cold environments, which acts as a strong sleeping agent, while healing burns, bruises, and toxin damage. Excessive use will lead to inebriation.
+
+  ## Ammonia
+  <Box>
+    <GuideEntityEmbed Entity="AmmoniaCanister" Caption=""/>
+  </Box>
+  A gas produced by the decomposition of bodies. Can be condensed to create ammonia, which can be used to make space cleaner.
+
+  ## Nitrium
+  <Box>
+    <GuideEntityEmbed Entity="BZCanister"/>
+    <GuideEntityEmbed Entity="FrezonCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="HealiumCanister"/>
+  </Box>
+
+  ##Nitrium
+  Nitrium is a gaseous stimulant that when inhaled can enhance speed and endurance. At lower concentrations Nitrium will increase your top running speed while healthy and unimpaired. Additionally, at slightly higher concentrations, breathing Nitrium will prevent drowsiness. At high concentrations breathing it will begin to shut down a person's lungs, causing asphyxiation. 
+  It can be made by combining 47.5% Nitrogen, 47.5% Tritium, and 5% BZ at or above 1500k degrees. With higher tempature giving greater efficiency.
+
+  <Box>
+    <GuideEntityEmbed Entity="BZCanister"/>
+    <GuideEntityEmbed Entity="TritiumCanister"/>
+    <GuideEntityEmbed Entity="NitrogenCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="NitriumCanister"/>
+  </Box>
+
+  Nitrium degrades into nitrogen and hydrogen on contact with room temperature oxygen. This reaction can produce a good deal of heat, making the station uncomfortably warm in the event of a leak. 
+
+  ##Hydrogen
+  Hydrogen is a highly flammable but non-toxic gas that burns similarly to tritium, making it useful as a fuel source. It is produced by electrolyzing water vapor with an electrolyzer machine to produce hydrogen and oxygen. 
+
+  <Box>
+    <GuideEntityEmbed Entity="WaterVaporCanister"/>
+    <GuideEntityEmbed Entity="Electrolyzer"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="HydrogenCanister"/>
+  </Box>
+
+  When mixed with BZ at temperatures below 273 K and pressures above 10 MPa, hydrogen can form metal hydrogen, a rare material. Handle hydrogen carefully to prevent fires or explosions, and store canisters securely.
+   
+  ##Proto-Nitrate
+  Proto-Nitrate is a highly reactive, non-toxic gas. Combine 1 mole hydrogen with 0.1 moles pluoxium to yield 1.1 moles proto-nitrate exothermically, best at 5000-10000K. It reacts with hydrogen or tritium to adjust proto-nitrate or produce hydrogen, and with BZ at 260-280K to yield nitrogen, helium, and plasma. Handle carefully to avoid leaks.
+ 
+  <Box>
+    <GuideEntityEmbed Entity="HydrogenCanister"/>
+    <GuideEntityEmbed Entity="PluoxiumCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="ProtoNitrateCanister"/>
+  </Box>
+
+  ##Zauker
+  Zauker is a deadly gas if inhaled. Produce it by combining 0.2 moles hyper-noblium with 1 mole nitrium to yield 1 mole zauker exothermically. It decomposes with nitrogen into 0.3 moles oxygen and 0.7 moles nitrogen per mole zauker, also exothermic and inhibited similarly. Store securely to prevent leaks.
+ 
+  <Box>
+    <GuideEntityEmbed Entity="NitriumCanister"/>
+    <GuideEntityEmbed Entity="HyperNobliumCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="ZaukerCanister"/>
+  </Box>
+ 
+  ##Halon
+  Halon suppresses fires by consuming oxygen, at a ratio of 20 moles oxygen per 1 mole halon, above 343.15 K in an endothermic reaction, producing carbon dioxide. It's made in an exothermic reaction by electrolyzing BZ, yielding 2 moles halon and 0.2 moles oxygen per mole BZ. Use cautiously to avoid oxygen depletion.
+ 
+  <Box>
+    <GuideEntityEmbed Entity="BZCanister"/>
+    <GuideEntityEmbed Entity="Electrolyzer"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="HalonCanister"/>
+  </Box>
+ 
+  ##Helium
+  Helium is an inert, invisible gas produced via the decay of Proto-Nitrate. This decay can be caused by exposing Proto Nitrate and BZ together at just under room temperature (260-280k). It has minimal use in atmospherics, so scrub it to avoid diluting other gases.
+  <Box>
+    <GuideEntityEmbed Entity="ProtoNitrateCanister"/>
+    <GuideEntityEmbed Entity="BZCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="HeliumCanister"/>
+  </Box>
+
+  ##Hyper-Noblium
+  Hyper-Noblium is a rare gas known for its high thermal capacity. It is the best possible coolant in the sector, but also extremely difficult to produce. Expose N2 and Tritium to temperatures below 20 kelvin. Adding BZ to the reaction chamber will reduce the amount of Tritium consumed by the reaction. The reaction is also strongly exothermic, so your production rate will depend on how much cooling you can provide to the reaction.
+ 
+  <Box>
+    <GuideEntityEmbed Entity="TritiumCanister"/>
+    <GuideEntityEmbed Entity="NitrogenCanister"/>
+    <GuideEntityEmbed Entity="BZCanister"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="HyperNobliumCanister"/>
+  </Box>
+ 
+  ##Anti-Noblium
+  Anti-Noblium is a rare gas with niche uses, produced by electrolyzing hyper-noblium below 150 K, yielding 0.5 moles anti-noblium per mole hyper-noblium. Store carefully to preserve hyper-noblium stocks for other reactions.
+ 
+  <Box>
+    <GuideEntityEmbed Entity="HyperNobliumCanister"/>
+    <GuideEntityEmbed Entity="Electrolyzer"/>
+    <GuideEntityEmbed Entity="GasVentScrubber"/>
+    <GuideEntityEmbed Entity="AntiNobliumCanister"/>
+  </Box>
+  Made from Tritium, Nitrogen and BZ, Nitrium is a gaseous stimulant that when inhaled can enhance speed and endurance. At lower concentrations Nitrium will increase your top running speed while healthy and unimpaired. Additionally, at slightly higher concentrations, breathing Nitrium will prevent drowsiness. At high concentrations breathing it will begin to shut down a person's lungs, causing asphyxiation.
+  Nitrium degrades into nitrogen and water vapor on contact with room temperature oxygen. This reaction can produce a good deal of heat, making the station uncomfortably warm in the event of a leak.
+
+</Document>

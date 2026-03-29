@@ -1,0 +1,41 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 BeeRobynn <robynthewarcrime@proton.me>
+SPDX-FileCopyrightText: 2024 Errant <35878406+Errant-4@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Vox
+
+  <Box>
+    <GuideEntityEmbed Entity="MobVox" Caption=""/>
+  </Box>
+
+  [color=#ffa500]Aviso! Essa espécie não é recomendada a novos jogadores por conta de sua alergia letal a oxigênio![/color]
+
+  Vox respiram nitrogênio, e [color=#ffa500]oxigênio é tóxico para eles[/color].
+  Infelizmente, estações espaciais tendem a ser cheias de oxigênio,
+  então Vox precisam usar tanques de nitrogênio a quase todo momento para evitar uma exposição letal.
+
+  Vox sempre spawnam vestindo equipamento de respiração de nitrogênio ativo.
+  Também têm uma máscara de respiração reserva e tanque de nitrogênio emergencial na sua Caixa de Sobrevivência (Survival Box).
+
+  Em adição à comida comum, Vox também podem comer vários pacotes de lanches, carne crua e cascas de bananas e ovos sem efeitos negativos. Também gostam de beber combustível de solda.
+
+  Vox sabe lidar bem com o nojo
+  
+  Vox [color=#1e90ff]se recuperam lentamente de dano de Veneno[/color] sozinhos,
+  contanto que tomem cuidado para não passar de 20 de dano de Veneno.
+  Isso os permite aguentar respirar o ar da estação por até 30 segundos por vez sem danos permanentes,
+  os deixando rapidamente comer, beber, tomar medicamentos orais, e por aí vai.
+  Uma exposição de 30 segundos ao oxigênio leva dois minutos para se recuperarem.
+  Se sua saúde não parecer melhorar depois de um minuto após expostos a oxigênio, devem buscar ajuda médica.
+
+  Por serem meio-orgânicos e meio-silício, eles não apodrecem, mas também são impossíveis de serem clonados.
+
+  Vox causam [color=#ec3a3a]dano Cortante[/color] com seus ataques desarmados.
+
+</Document>

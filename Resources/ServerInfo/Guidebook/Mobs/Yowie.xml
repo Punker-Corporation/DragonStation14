@@ -1,0 +1,38 @@
+<!--
+SPDX-FileCopyrightText: 2024 Ashley Woodiss-Field <ash@DESKTOP-H64M4AI.localdomain>
+SPDX-FileCopyrightText: 2024 BeeRobynn <166929042+BeeRobynn@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 ColesMagnum <98577947+AW-FulCode@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 coderabbitai[bot] <136622811+coderabbitai[bot]@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Yowies
+
+  <Box>
+    <GuideEntityEmbed Entity="MobYowie" Caption=""/>
+  </Box>
+
+  Yowies já foram mitos urbanos, mas são uma espécie recém-descoberta de criaturas bípedes peludas.
+  Seus corpos são maiores do que da maioria de outras espécies, com a desvantagem de [color=#AAFF00]não caberem na maior parte de calçados e vestimentas externas da Nanotrasen[/color] (eles mal cabem em softsuits), ou [color=#AAFF00]não poderem ser carregados por outros[/color].
+  Sua pelagem também os faz tomar [color=#baf2ef]menos dano de Frio[/color].
+
+  Sua estatura faz seus ataques desarmados causarem [color=#ec3a3a]2x o dano[/color] de um soco humano.
+
+  Eles são grandes, os tornando alvos fáceis no combate, mas recebem [color=#1e90ff]25% menos dano Contundente, Cortante e Perfurante[/color].
+  Eles também pesam mais, os permitindo puxar espécies mais leves com facilidade.
+
+  ## Fuckin' skiz, mate
+  <Box>
+    <GuideEntityEmbed Entity="Joint" Caption=""/>
+  </Box>
+
+  A partir de conversas entre espécies, parece que historicamente eles viviam junto da humanidade durante sua existência na Terra, em regiões da Austrália, os fazendo desenvolver um forte sotaque australiano (com gírias inclusas).
+  Eles parecem ter dedicado a maior parte do seu tempo experimentando as drogas mais perigosas, e em consequência, possuem maior tolerância a muitos químicos. Além disso, é seu fígado que metaboliza esses químicos.
+
+
+</Document>

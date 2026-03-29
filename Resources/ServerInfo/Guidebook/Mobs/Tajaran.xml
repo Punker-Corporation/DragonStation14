@@ -1,0 +1,32 @@
+<!--
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
+SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Tajaran
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTajaran" Caption=""/>
+  </Box>
+
+  Tajaran são uma espécie de humanoides bípedes e onívoros, com características que lembram felinos terrestres.
+  Seus traços mais distintivos incluem sua pelagem, grandes orelhas no topo da cabeça e uma cauda que ajuda no equilíbiro.
+  Eles vêm da lua congelada de [color=turquoise]Ahdomai[/color], apenas recentemente "estreando" na era espacial.
+  Inicialmente uma sociedade seprada em clãs, Tajaran passaram por séculos de regimes ditatoriais.
+  Seguindo uma guerra civil, seu governo foi fragmentado e o poder retornou aos clãs, onde está até hoje.
+
+  ## Mecânicas
+
+  Por conta de sua [color=yellow]pequena estatura[/color], Tajara [color=#ec3a3a]tomam 15% mais dano Bruto[/color], mas também podem [color=#1e90ff]caber em duffelbags[/color].
+
+  Sua pelagem lhes dá certa [color=#1e90ff]resistência ao Frio[/color], ao custo de [color=#ec3a3a]tomar mais dano de Calor[/color].
+
+  Eles usam suas garras para ataques desarmados, causando [color=#ec3a3a]dano Cortante e Perfurante[/color].
+
+  Graças à sua agilidade inata, eles [color=#1e90ff]tomam menos dano de queda ou impactos[/color], e seus pés macios os permitem [color=#1e90ff]andar descalço sem fazer barulhos[/color].
+
+</Document>

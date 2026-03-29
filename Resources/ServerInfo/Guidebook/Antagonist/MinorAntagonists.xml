@@ -1,0 +1,90 @@
+<!--
+SPDX-FileCopyrightText: 2023 Derby <Derby@ss14>
+SPDX-FileCopyrightText: 2023 DerbyX <50932435+DerbyX@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 Kara <lunarautomaton6@gmail.com>
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Psychpsyo <60073468+Psychpsyo@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 Tayrtahn <tayrtahn@gmail.com>
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Antagonistas Menores
+
+  Os Antagonistas Menores são papéis controlados por fantasmas que dão aos mortos novas maneiras de causar caos na estação. Eles são gerados por eventos aleatórios.
+
+  # Clone Paradoxo
+
+  <Box>
+    <GuideEntityEmbed Entity="ParadoxCloneDummy"/>
+  </Box>
+
+  Uma cópia perfeita de um tripulante aleatório que foi lançada em nosso universo por uma anomalia espaço-temporal. Para corrigir o paradoxo e sobreviver, ela precisa encontrar e matar sua contraparte original.
+  
+  Não possui habilidades especiais, mas tem aparência, DNA, impressões digitais, roupas, equipamentos e identidades idênticas aos do original, tornando difícil descobrir quem é o verdadeiro e quem é o clone — a menos que você conheça bem seus companheiros de tripulação.
+  
+  # Aparição
+
+  <Box>
+    <GuideEntityEmbed Entity="MobRevenant"/>
+  </Box>
+
+  Aparições são seres etéreos feitos de ectoplasma que assombram a tripulação e roubam [color=#8f63e6]essência vital[/color] deles.
+  - Sua essência é sua própria [bold]força vital[/bold]. Receber dano reduz sua essência.
+  - A essência também é gasta para usar [bold]habilidades[/bold].
+  - Para ganhar essência, você primeiro deve [bold]inspecionar[/bold] várias almas para determinar seu valor. Almas mais valiosas concedem mais essência. Em seguida, você deve [bold]sifoná-la[/bold] quando a vítima estiver ferida, morta ou dormindo. Tudo isso é feito com [color=yellow][bold][keybind="Use"][/bold][/color].
+  - [bold]Essência roubada[/bold] é usada para adquirir novas habilidades que facilitam incapacitar a tripulação.
+  - Você está [bold]vulnerável[/bold] a ataques enquanto sifona uma alma ou usa uma habilidade. Você pode saber que está vulnerável quando possui o status [color=#8f63e6][italic]Corpóreo[/italic][/color].
+
+  # Rei dos Ratos
+
+  <Box>
+    <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
+    <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
+    <GuideEntityEmbed Entity="MobRatKing" Scale="2.4"/>
+    <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
+    <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
+  </Box>
+
+  Reis dos Ratos são roedores anormalmente grandes, capazes de [color=yellow]criar enormes exércitos de ratos[/color] ao consumir enormes quantidades de comida.
+  - Você possui várias habilidades que consomem sua [bold]fome.[/bold]
+  - Uma dessas habilidades é [color=yellow][italic]Levantar Exército[/italic][/color], que invoca um [bold]Servo Rato[/bold]. Você pode [bold]comandar[/bold] seus servos para permanecerem no lugar, seguirem você, atacarem um alvo específico ou atacarem indiscriminadamente.
+  - Você pode conjurar uma nuvem de [color=#77b58e]amônia[/color] usando [color=purple][italic]Domínio do Rei dos Ratos[/italic][/color]. Esse gás roxo é levemente venenoso para humanos, mas cura ratos.
+  - [color=#9daa98][italic]Vasculhe[/italic][/color] uma unidade de descarte usando o menu de contexto. Use isso para encontrar [bold]restos de comida[/bold] e aumentar seu exército.
+  - Além de suas habilidades, [bold]você é mais forte do que a maioria dos outros animais.[/bold] Você e seus servos são capazes de falar e ambos são pequenos o suficiente para passar por baixo de portas e mesas.
+  - [bold]Seus subordinados ainda são muito frágeis![/bold] Tenha cuidado com vácuos, explosões e o lado letal de uma arma de combate corpo a corpo.
+
+  # Dragão Espacial
+
+  <Box>
+    <GuideEntityEmbed Entity="MobCarp" Caption=""/>
+    <GuideEntityEmbed Entity="CarpRift" Caption=""/>
+    <GuideEntityEmbed Entity="MobDragon"/>
+    <GuideEntityEmbed Entity="CarpRift" Caption=""/>
+    <GuideEntityEmbed Entity="MobCarp" Caption=""/>
+  </Box>
+
+  Dragões espaciais são peixes extradimensionais gigantes que podem [color=red]devorar a tripulação[/color] e criar [color=#4b7fcc]fendas de carpas.[/color]
+  - Dragões possuem mandíbulas poderosas que permitem [color=red][italic]Devorar[/italic][/color] infraestruturas como portas, janelas e paredes.
+  - Eles também podem se curar usando [color=red][italic]Devorar[/italic][/color] em membros da tripulação inconscientes ou mortos.
+  - Seu [color=orange][italic]Sopro do Dragão[/italic][/color] é um [bold]projétil flamejante[/bold] que percorre um caminho reto, explodindo várias vezes e incendiando coisas pelo caminho. Tente não atingir suas carpas com isso!
+  - Você tem a habilidade de [color=#4b7fcc][italic]Invocar uma Fenda de Carpas[/italic][/color]. Fendas geram periodicamente [bold]carpas espaciais[/bold] e acumulam energia ao longo de 5 minutos, [bold]período em que estão vulneráveis.[/bold] Após 5 minutos, tornam-se invulneráveis e continuam gerando carpas enquanto o dragão viver.
+  - Você sofrerá um [bold]efeito debilitante temporário[/bold] se uma de suas fendas for destruída antes de terminar de carregar.
+  - Se passarem cinco minutos desde seu surgimento ou desde a última vez que uma fenda estava carregando, [bold]você desaparecerá.[/bold]
+  - Dragões com o máximo de 3 fendas totalmente carregadas [bold]nunca desaparecerão[/bold], mas ainda assim são mortais.
+
+  # Slimes e Aranhas
+
+  <Box>
+    <GuideEntityEmbed Entity="MobAdultSlimesBlueAngry" Caption=""/>
+    <GuideEntityEmbed Entity="MobGiantSpiderAngry" Caption=""/>
+  </Box>
+
+  Slimes e aranhas não possuem características notáveis, mas [color=cyan]infestarão a estação[/color] ocasionalmente. Ambos perseguirão e atacarão qualquer coisa que vejam.
+  - Slimes podem [bold]causar dano celular adicional ou envenenar[/bold], dependendo de sua cor. Água os machuca, assim como faria com um slime humanoide.
+  - Aranhas possuem uma mordida venenosa e podem [bold]criar teias[/bold] que dificultam o movimento. Teias são facilmente destruídas com lâminas. Elas também conseguem abrir portas herméticas.
+</Document>

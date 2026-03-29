@@ -1,0 +1,103 @@
+<!--
+SPDX-FileCopyrightText: 2023 deltanedas <39013340+deltanedas@users.noreply.github.com>
+SPDX-FileCopyrightText: 2023 deltanedas <@deltanedas:kde.org>
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Ghagliiarghii <68826635+Ghagliiarghii@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Ninja Espacial
+
+  <Box>
+    [color=#999999][italic]"Aranha da noite, silenciosa é minha mordida."[/italic][/color]
+  </Box>
+
+  Você é um mercenário de elite enviado pelo [color=#66FF00]Clã da Aranha[/color] para causar todo tipo de caos na estação. Você está equipado para agir de forma silenciosa, mas mortal.
+
+  Seja sujando as mãos ou evitando problemas, sua disciplina lhe ensinou que [italic]seus objetivos devem ao menos ser tentados[/italic]. Pela honra!
+
+  ## Equipamento Padrão
+  Você começa implantado com um [color=cyan]acidificador de morte[/color], garantindo que, caso seja capturado ou morto em ação, todo o seu precioso equipamento fique fora do alcance do inimigo.
+
+  Sua mochila está cheia de [bold]ferramentas[/bold] e uma [bold]caixa de sobrevivência[/bold]. Você também carrega um [color=cyan]jetpack[/color] e um [color=cyan]rastreador[/color] que o guiará até a estação.
+
+  <Box>
+    <GuideEntityEmbed Entity="JetpackBlack"/>
+    <GuideEntityEmbed Entity="PinpointerStation"/>
+  </Box>
+
+  ## Seu Traje
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingEyesVisorNinja" Caption="seu visor"/>
+    <GuideEntityEmbed Entity="ClothingOuterSuitSpaceNinja" Caption="seu traje"/>
+    <GuideEntityEmbed Entity="ClothingShoesSpaceNinja" Caption="suas botas"/>
+  </Box>
+
+  Seu item mais importante é [color=cyan]seu traje[/color]. Sem ele, nenhuma de suas habilidades funcionará.
+  O traje precisa de energia para funcionar, fornecida por sua [bold]bateria interna[/bold]. Ela pode ser substituída, e [italic]baterias de alta capacidade[/italic] tornam um [italic]ninja altamente eficiente[/italic].
+
+  [bold]Você pode recarregar sua bateria interna diretamente[/bold] usando [color=cyan]suas luvas[/color]. A carga atual pode ser visualizada examinando o traje ou verificando o alerta de bateria na tela.
+
+  Sua roupa também inclui [color=cyan]botas especiais[/color] que o mantêm ágil, estável e aterrado sem gastar energia. Além disso, você possui proteção contra flashes graças ao seu [color=cyan]visor[/color].
+
+  ## Luvas de Ninja
+
+  <Box>
+    <GuideEntityEmbed Entity="ClothingHandsGlovesSpaceNinja" Caption="suas luvas"/>
+  </Box>
+
+  [color=#66FF00]Essas belezinhas são a sua base.[/color] Elas são feitas de [bold]nanomáquinas isoladas[/bold], permitindo que você invada áreas restritas sem deixar impressões digitais.
+
+  Você possui uma ação para ativar ou desativar as luvas. Quando ativadas, permitem o uso de [bold]habilidades especiais[/bold], acionadas ao interagir com objetos usando as mãos vazias e com o modo de combate desativado.
+
+  As habilidades das luvas incluem:
+  - Hackear portas e escotilhas.
+  - Drenar energia de [bold]transformadores[/bold], como APCs, subestações ou SMESes (transformadores de maior tensão drenam energia de forma mais eficiente).
+  - Manipular [bold]equipamentos da estação[/bold] para cumprir [color=#66FF00]objetivos[/color].
+
+  ## Katana de Energia
+
+  <Box>
+    <GuideEntityEmbed Entity="EnergyKatana"/>
+  </Box>
+
+  [bold]Você jurou lealdade à espada e se recusa a usar armas de fogo.[/bold] Felizmente, você possui uma espada bem estilosa.
+
+  Sua [color=cyan]katana de energia[/color] causa bastante dano e pode ser [bold]recuperada à vontade[/bold] ao custo de energia do traje. Quanto mais longe ela estiver, mais energia será necessária para recuperá-la.
+
+  Enquanto estiver em sua mão, você também pode [color=cyan]se teletransportar[/color] para qualquer lugar visível, [bold]incluindo através de janelas[/bold]. As cargas para isso regeneram lentamente, então mantenha uma ou duas de reserva para fugas rápidas.
+
+  ## Carga do Clã da Aranha
+
+  <Box>
+    <GuideEntityEmbed Entity="SpiderCharge"/>
+  </Box>
+
+  Este é um [color=cyan]explosivo C-4 modificado[/color], encontrado no seu bolso. Ele cria uma grande explosão, mas [bold]deve ser armado no local-alvo[/bold], pois é um dos seus objetivos.
+
+  Não pode ser ativado manualmente, então simplesmente plante-o em uma parede ou mobília que não traga alegria. Escolha com sabedoria, pois ele não pode ser desativado depois de plantado.
+
+  ## Ninjutsu
+
+  <Box>
+    <GuideEntityEmbed Entity="NinjutsuScroll"/>
+  </Box>
+
+  As a true warrior of the Spider Clan, you are a master of [textlink="Ninjutsu" link="Ninjutsu"], a martial art honed over centuries by your teachers.
+  The art is not simply about strength or speed; it is about becoming one with the shadows and striking with deadly precision.
+
+  ## Objetivos
+
+  - Baixar \[9-13\] nós de pesquisa: Use suas luvas em um servidor de P&D com tecnologias desbloqueadas. Você pode precisar desbloquear tecnologias caso não haja o suficiente para roubar.
+  - Hackear \[15-40\] portas na estação: Use suas luvas para hackear várias portas.
+  - Detonar a carga do clã da aranha: Plante sua carga no local especificado e veja a explosão!
+  - Chamar uma [textlink="ameaça" link="MinorAntagonists"]: Use suas luvas em um console de comunicação.
+  - Marcar todos como procurados: Use suas luvas em um console de registros criminais.
+  - Sobreviver: Não morra.
+
+</Document>

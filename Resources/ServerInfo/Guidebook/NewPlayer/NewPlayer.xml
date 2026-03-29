@@ -1,0 +1,50 @@
+<!--
+SPDX-FileCopyrightText: 2024 Nemanja <98561806+EmoGarbage404@users.noreply.github.com>
+SPDX-FileCopyrightText: 2024 UBlueberry <161545003+UBlueberry@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+# Bem-vindo à Gaby Station 14!
+
+Você acabou de começar seu turno a bordo de uma estação espacial da Nanotrasen.
+Você e seus colegas de equipe têm a tarefa de trabalhar juntos, sobreviver e se divertir!
+
+[bold]Certifique-se de seguir todas as regras do servidor.[/bold] Você pode fazer perguntas ou relatar violações de regras para a [color=#EB2D3A][bold]equipe de administradores[/bold][/color] usando o [bold]menu de ajuda dos administradores[/bold]. ([italic]acessível pressionando [/italic][color=yellow][bold][keybind="OpenAHelp"/][/bold][/color])
+
+Guias mais detalhadas sobre [italic]funções específicas[/italic] e [italic]mecânicas[/italic] podem ser encontradas [textlink="aqui." link="SS14"/]
+
+Este guia pode ser reaberto a qualquer momento usando [color=yellow][bold][keybind="OpenGuidebook"][/bold][/color].
+
+## Controles Básicos
+A seguir estão os controles que você precisará para a jogabilidade regular:
+
+- Corra usando [color=yellow][bold][keybind="MoveUp"][keybind="MoveLeft"][keybind="MoveDown"][keybind="MoveRight"][/bold][/color]. Segure [color=yellow][bold][keybind="Walk"][/bold][/color] para andar
+
+- Examine o mundo ao seu redor com [color=yellow][bold][keybind="ExamineEntity"][/bold][/color]
+
+- Interaja com o mundo usando [color=yellow][bold][keybind="Use"][/bold][/color]
+
+- Passe o cursor sobre uma entidade e pressione [color=yellow][bold][keybind="UseSecondary"][/bold][/color] para exibir o [italic]menu de contexto[/italic], que contém interações adicionais
+
+- Troque de mãos usando [color=yellow][bold][keybind="SwapHands"][/bold][/color] e ative o item atualmente segurado com [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color]
+
+- Solte os itens segurados com [color=yellow][bold][keybind="Drop"][/bold][/color] ou jogue-os usando [color=yellow][bold][keybind="ThrowItemInHand"][/bold][/color]
+
+- Puxe e solte objetos com [color=yellow][bold][keybind="TryPullObject"][/bold][/color] e [color=yellow][bold][keybind="ReleasePulledObject"][/bold][/color]
+
+Uma lista mais completa pode ser encontrada na página de [textlink="controles" link="Controls"].
+
+## O que é o SS14?
+Space Station 14 é um jogo multiplayer sobre paranoia e caos em uma estação espacial, e um remake do cultuado Space Station 13.
+
+Junte-se a dezenas de outros jogadores em uma estação espacial intricadamente projetada e simulada, imergindo-se no roleplay e lidando com ameaças ao longo do caminho.
+
+SS14 é um [italic]jogo de código aberto[/italic] desenvolvido por pessoas [bold]como você![/bold]
+Recebe [color=lime]atualizações diárias[/color] e pode, por vezes, ser [color=#EB2D3A][bold]instável.[/bold][/color]
+
+[italic]Se você quiser relatar bugs ou ajudar no desenvolvimento, entre no discord e aprenda como começar.[/italic]
+
+</Document>

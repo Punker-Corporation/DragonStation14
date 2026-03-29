@@ -1,0 +1,34 @@
+<!--
+SPDX-FileCopyrightText: 2024 ScyronX <166930367+ScyronX@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Ted Lukin <66275205+pheenty@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 deltanedas <39013340+deltanedas@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 deltanedas <@deltanedas:kde.org>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+  # Onis
+
+  <Box>
+    <GuideEntityEmbed Entity="MobOni" Caption=""/>
+  </Box>
+
+  Pessoas grandes com uma variedade de cores que possuem chifres. Sua precisão com armas de fogo é terrível, mas sua força física os traz benefícios tanto dentro quanto fora de combate.
+
+  ## Dieta
+  - Praticamente qualquer coisa. Até mesmo varias coisas cruas.
+
+  ## Benefícios
+  - Tomam [color=#1e90ff]15% menos Contundente, Perfurante and Cortante.[/color].
+  - Causam mais dano corpo a corpo; 25% mais de dano Contundente, Cortante, Perfurante, Estamina, e Estrutural.
+  - Devido ao seu maior tamanho, eles podem facilmente carregar e puxar quaisquer outras especies.
+
+  ## Malefícios
+  - Onis são incapazes de atirar com precisão. Pode acontecer de até as balas sairem pelas suas costas.
+  - Eles são mais dificeis de carregar e puxar.
+  - Eles são maiores que humanos, fazendo com que eles sejam mais faceis de ser atingidos.
+
+</Document>

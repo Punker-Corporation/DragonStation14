@@ -1,0 +1,122 @@
+<!--
+SPDX-FileCopyrightText: 2024 Aidenkrz <aiden@djkraz.com>
+SPDX-FileCopyrightText: 2024 Kira Gbedan <161087999+Verbalase@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
+SPDX-FileCopyrightText: 2025 Rouge2t7 <81053047+Sarahon@users.noreply.github.com>
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+<Document>
+# Leis Espaciais
+
+A estação opera sob um conjunto abreviado de leis espaciais. Todos os membros da tripulação, passageiros e visitantes a bordo da estação devem conhecer e seguir essas leis (elas são bastante intuitivas, apenas a segurança e o capitão precisam conhecer os tempos de detenção).
+
+## Expectativas de segurança
+
+Todos os oficiais de segurança devem ser facilmente identificáveis e acessíveis (com exceção do detetive). Todos os oficiais de segurança devem estar uniformizados, portar identificação apropriada, mindshield e não podem utilizar equipamentos que alterem a visão, como, por exemplo, coração de animal espacial ou camuflagem camaleão.
+
+## Tratamento dos Prisioneiros
+
+Os prisioneiros ainda têm certos direitos que devem ser respeitados pelas autoridades:
+
+- Prisioneiros devem receber cuidados médicos adequados. Também devem ter acesso a aconselhamento psiquiátrico e espiritual, se solicitado.
+- Prisioneiros devem ter acesso a equipamentos de comunicação (rádios), desde que não sejam abusados.
+- Prisioneiros devem receber roupas, comida, água, abrigo e segurança. Se a prisão não for mais segura, o confinamento deve ser estabelecido em outro local.
+- Prisioneiros têm direito a um advogado durante um interrogatório, se solicitado e disponível.
+- Prisioneiros devem receber seu PDA mandatório após o término do confinamento, a menos que haja provas de adulteração, nesse caso o PDA deve ser retido e substituído por um novo.
+- Prisioneiros devem ter liberdade de movimento e não devem ser algemados ou contidos, a menos que haja risco de vida ou segurança. Prisioneiros mantidos por longos períodos ou em confinamento permanente devem ficar na cela comunitária, e não em uma cela solitária, a menos que representem risco à segurança.
+
+## Revistas
+
+Uma revista pessoal consiste na apreensão dos objetos da mochila, mãos, casaco, cinto, bolsos e chapéu de uma pessoa. Se qualquer contrabando for encontrado, o oficial pode optar por continuar com a detenção ou apenas confiscar os itens restritos. Após a revista, todos os itens legais devem ser devolvidos à pessoa.
+
+Um tripulante pode recusar legalmente qualquer revista sem mandado quando o nível de alerta estiver verde. Se o nível de alerta estiver azul ou superior, todas as revistas são legais e não precisam de mandado.
+
+## Implantação
+
+Qualquer prisioneiro sob custódia pode ser submetido a procedimentos de implantação ou remoção de implante, desde que seja razoável. O processo de adicionar um implante não deve prolongar a sentença do detento, a menos que seja estipulado. Um prisioneiro pode receber procedimentos de implantação sem atender às circunstâncias se der seu consentimento claro.
+
+**Escudos Mentais:** Podem ser aplicados a qualquer detento que tenha sido claramente controlado mentalmente ou tenha perdido o controle de si mesmo. Diferente da implantação padrão, você pode manter o prisioneiro até concluir a aplicação do Escudo Mental, desde que seja feito de forma oportuna. Se o detento se recusar a cooperar ou o implante falhar, ele pode ser acusado de Recusa de Proteção Mental.
+
+## Remoção de Implante
+
+Um suspeito pode ser forçado a remover implantes se houver provas razoáveis de que tenha sido implantado, como um oficial vendo-o usar um ou suas digitais estarem em um injetor descartado. A remoção de implante pode atrasar ou prolongar a sentença do prisioneiro até que ele coopere. Caso o detento dê permissão, a remoção pode ocorrer sem provas adicionais.
+
+## Sentenciamento
+
+Todas as sentenças devem ser aplicadas pelo Guarda (Warden). Se não houver um Guarda disponível, o Chefe de Segurança (HoS) assume o papel. Na ausência de ambos, o membro mais alto da segurança fica responsável.
+
+Use o bom senso ao emitir punições. Não busque sempre a pena máxima; leve em consideração a gravidade e apenas puna o necessário para que a pessoa aprenda a lição.
+
+**Cúmplices, Tentativa e Intenção:** Se alguém ajuda conscientemente e significativamente outra pessoa a cometer um crime, pode ser acusado de crimes relevantes. O mesmo vale para tentativas claras de cometer um crime.
+
+**Crimes Acumuláveis:** Se acusar alguém de dois ou mais crimes diferentes, combine os tempos de punição de cada crime.
+
+[bold]Todo prisioneiro que for transferido para prisão permanente ou executado deve ter a escolha ser julgado antes.[/bold]
+
+**[color=red][bold]"NÃO EXCEDA 20 MINUTOS COMO TEMPO DE PRISÃO"[/bold][/color]**
+
+Se o tempo total de prisão exceder 20 minutos, reduza para este limite. Se exceder 30 minutos, o detento pode ser transferido para a prisão permanente via julgamento.
+
+## Crimes
+
+### I Grau
+
+Para crimes menores, resolva o problema e avise a pessoa para não repetir. Caso persista, a detenção pode ser necessária.
+
+- **Distúrbio Público**
+  - **Descrição:** Causar distúrbios em público.
+  - **Máxima Punição:** 2 minutos
+  - **Notas:** Inclui nudez pública, insultos desnecessários e obstrução de autoridades.
+
+- **Furto Simples**
+  - **Descrição:** Roubar itens não essenciais ou de baixo valor.
+  - **Máxima Punição:** 3 minutos
+  - **Notas:** Devolva o item roubado e dê um aviso.
+
+### II Grau
+
+- **Crueldade Animal**
+  - **Descrição:** Causar sofrimento desnecessário a seres não sapientes.
+  - **Máxima Punição:** 3 minutos
+  - **Notas:** Não inclui testes autorizados em animais.
+
+- **Dano à Propriedade**
+  - **Descrição:** Danificar propriedades públicas ou privadas.
+  - **Máxima Punição:** 4 minutos
+
+### III Grau
+
+- **Assalto**
+  - **Descrição:** Uso de força física contra alguém sem intenção de matar.
+  - **Máxima Punição:** 6 minutos
+
+- **Fuga da Prisão**
+  - **Descrição:** Resistir e fugir durante a prisão.
+  - **Máxima Punição:** 4 minutos
+
+### IV Grau
+
+- **Tentativa de Homicídio**
+  - **Descrição:** Tentar matar alguém com intenção clara.
+  - **Máxima Punição:** 10 minutos
+
+- **Homicídio**
+  - **Descrição:** Matar um ser sapiente com intenção maliciosa.
+  - **Máxima Punição:** 10 minutos
+
+### V Grau
+
+- **Homicídio em Massa**
+  - **Descrição:** Matar três ou mais seres sapientes com intenção.
+  - **Máxima Punição:** Prisão Permanente
+
+- **Prevenção de Ressurreição**
+  - **Descrição:** Impedir a ressurreição de um corpo.
+  - **Máxima Punição:** Prisão Permanente
+
+- **Terrorismo**
+  - **Descrição:** Realizar ações destrutivas que ameacem ou destruam a estação.
+  - **Máxima Punição:** Execução
+</Document>
