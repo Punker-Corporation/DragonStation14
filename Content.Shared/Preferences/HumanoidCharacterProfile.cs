@@ -466,6 +466,9 @@ namespace Content.Shared.Preferences
             return new HumanoidCharacterProfile(this) { CDCharacterRecords = records };
         }
 
+        /// <summary>
+        /// Returns a copy of this profile with updated persistent fighter progression data.
+        /// </summary>
         public HumanoidCharacterProfile WithFighterProgression(PersistentFighterProgression? progression)
         {
             return new HumanoidCharacterProfile(this)
@@ -960,6 +963,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(BarkVoice); // Goob Station - Barks
             hashCode.Add((int) SpawnPriority);
             hashCode.Add((int) PreferenceUnavailable);
+            hashCode.Add(FighterProgression);
             return hashCode.ToHashCode();
         }
 

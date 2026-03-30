@@ -384,6 +384,9 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
+        /// <summary>
+        /// Converts a database profile row into the runtime humanoid profile used by preferences and spawning.
+        /// </summary>
         private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
@@ -434,7 +437,7 @@ namespace Content.Server.Database
                 ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
                 : PlayerProvidedCharacterRecords.DefaultRecords();
             var fighterProgression = profile.FighterProgression != null
-                ? JsonSerializer.Deserialize<PersistentFighterProgression>(profile.FighterProgression.RootElement.GetRawText())
+                ? JsonSerializer.Deserialize<PersistentFighterProgression>(profile.FighterProgression.RootElement)
                 : null;
 
             fighterProgression?.EnsureValid();
@@ -497,6 +500,9 @@ namespace Content.Server.Database
             );
         }
 
+        /// <summary>
+        /// Converts a runtime humanoid profile back into the database profile model.
+        /// </summary>
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
             profile ??= new Profile();

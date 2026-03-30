@@ -59,6 +59,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
     [Dependency] private readonly MobThresholdSystem _mobThresholds = default!;
     private static readonly ProtoId<TagPrototype> CarpTag = "Carp";
 
+    /// <summary>
+    /// Registers fighter progression event handlers for XP, UI, persistence, and spawn restoration.
+    /// </summary>
     public override void Initialize()
     {
         base.Initialize();
@@ -72,11 +75,17 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         SubscribeLocalEvent<FighterProgressionComponent, PowerLevelRefreshRequestedEvent>(OnPowerLevelRefreshRequested);
     }
 
+    /// <summary>
+    /// Recomputes threshold-derived bonuses whenever progression state changes.
+    /// </summary>
     private void OnFighterProgressionChanged(EntityUid uid, FighterProgressionComponent component, ref FighterProgressionChangedEvent args)
     {
         RefreshThresholdBonuses(uid, component);
     }
 
+    /// <summary>
+    /// Ensures eligible spawned characters receive fighter progression and restores saved progress when present.
+    /// </summary>
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
     {
         var shouldEnsureComponent = args.JobId is "Boxer" or "VisitorBoxer" || args.Profile.FighterProgression != null;
@@ -91,6 +100,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         UpdateUi(args.Mob, component);
     }
 
+    /// <summary>
+    /// Awards fighter XP for valid melee hits and advances active training or challenge progress.
+    /// </summary>
     private void OnMeleeHit(MeleeHitEvent args)
     {
         if (!TryComp<FighterProgressionComponent>(args.User, out var component))
@@ -132,6 +144,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
             UpdateUi(user, component);
     }
 
+    /// <summary>
+    /// Awards kill XP and completes kill-based fighter challenges when a valid fighter-origin kill occurs.
+    /// </summary>
     private void OnMobStateChanged(MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead || args.Origin == null)
@@ -152,6 +167,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         }
     }
 
+    /// <summary>
+    /// Adds fighter XP, applying the non-boxer cap before threshold advancement and persistence updates.
+    /// </summary>
     private void AddXp(EntityUid uid, FighterProgressionComponent component, int amount)
     {
         if (amount <= 0)
@@ -160,15 +178,15 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         if (!IsBoxerJob(uid))
             amount = Math.Min(amount, NonBoxerXpAwardCap);
 
-        if (amount <= 0)
-            return;
-
         component.CurrentXp += amount;
         ProcessThresholdAdvancement(uid, component);
         Dirty(uid, component);
         _ = SavePersistentProgression(uid, component);
     }
 
+    /// <summary>
+    /// Returns whether the entity's current job should receive uncapped fighter XP awards.
+    /// </summary>
     private bool IsBoxerJob(EntityUid uid)
     {
         if (!_mind.TryGetMind(uid, out var mindId, out _))
@@ -180,6 +198,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         return jobId.Value.Id is "Boxer" or "VisitorBoxer";
     }
 
+    /// <summary>
+    /// Resolves a pending branch choice, closes sibling paths, and persists the result.
+    /// </summary>
     private void OnChooseBranch(EntityUid uid, FighterProgressionComponent component, FighterChooseBranchMessage args)
     {
         if (!_prototype.TryIndex(args.SkillId, out FighterSkillPrototype? skill))
@@ -222,16 +243,25 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         _ = SavePersistentProgression(uid, component);
     }
 
+    /// <summary>
+    /// Refreshes the fighter progression UI when it is opened.
+    /// </summary>
     private void OnUiOpened(EntityUid uid, FighterProgressionComponent component, BoundUIOpenedEvent args)
     {
         UpdateUi(uid, component);
     }
 
+    /// <summary>
+    /// Refreshes the fighter progression UI after external power-level updates.
+    /// </summary>
     private void OnPowerLevelRefreshRequested(EntityUid uid, FighterProgressionComponent component, PowerLevelRefreshRequestedEvent args)
     {
         UpdateUi(uid, component);
     }
 
+    /// <summary>
+    /// Sends the current fighter skill tree state, XP, and power level to the bound UI.
+    /// </summary>
     private void UpdateUi(EntityUid uid, FighterProgressionComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -259,6 +289,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         _ui.SetUiState(uid, FighterSkillTreeUiKey.Key, state);
     }
 
+    /// <summary>
+    /// Consumes accumulated XP into threshold levels, auto-unlocks, or pending branch choices.
+    /// </summary>
     private void ProcessThresholdAdvancement(EntityUid uid, FighterProgressionComponent component)
     {
         while (component.CurrentXp >= GetCurrentXpThreshold(component))
@@ -291,6 +324,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         }
     }
 
+    /// <summary>
+    /// Unlocks a fighter skill, applies its immediate side effects, and saves the new progression state.
+    /// </summary>
     private void UnlockSkill(EntityUid uid, FighterProgressionComponent component, FighterSkillPrototype skill, string popupLoc = "fighter-progression-skill-unlocked")
     {
         if (component.UnlockedSkills.Contains(skill.ID))
@@ -317,6 +353,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         _ = SavePersistentProgression(uid, component);
     }
 
+    /// <summary>
+    /// Restores persistent fighter progression from a saved character profile onto the runtime component.
+    /// </summary>
     private void RestorePersistentProgression(EntityUid uid, FighterProgressionComponent component, PersistentFighterProgression saved)
     {
         saved.EnsureValid();
@@ -351,6 +390,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         Dirty(uid, component);
     }
 
+    /// <summary>
+    /// Reapplies unlock side effects that are not represented purely by stored numeric bonuses.
+    /// </summary>
     private void ApplyUnlockedSkillSideEffects(EntityUid uid, FighterProgressionComponent component)
     {
         foreach (var skillId in component.UnlockedSkills)
@@ -369,6 +411,9 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
             StripKiWarriorBlockedGear(uid);
     }
 
+    /// <summary>
+    /// Builds the compact persistence payload stored on the character profile.
+    /// </summary>
     private PersistentFighterProgression GetPersistentProgression(FighterProgressionComponent component)
     {
         return new PersistentFighterProgression
@@ -380,25 +425,38 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         };
     }
 
+    /// <summary>
+    /// Persists the fighter progression payload back into the player's selected humanoid profile.
+    /// </summary>
     private async Task SavePersistentProgression(EntityUid uid, FighterProgressionComponent component)
     {
-        if (!_playerManager.TryGetSessionByEntity(uid, out var session))
-            return;
+        try
+        {
+            if (!_playerManager.TryGetSessionByEntity(uid, out var session))
+                return;
 
-        if (!_preferencesManager.TryGetCachedPreferences(session.UserId, out var prefs))
-            return;
+            if (!_preferencesManager.TryGetCachedPreferences(session.UserId, out var prefs))
+                return;
 
-        if (!prefs.Characters.TryGetValue(prefs.SelectedCharacterIndex, out var selectedProfile))
-            return;
+            if (!prefs.Characters.TryGetValue(prefs.SelectedCharacterIndex, out var selectedProfile))
+                return;
 
-        if (selectedProfile is not HumanoidCharacterProfile humanoid)
-            return;
+            if (selectedProfile is not HumanoidCharacterProfile humanoid)
+                return;
 
-        var payload = GetPersistentProgression(component);
-        var updatedProfile = humanoid.WithFighterProgression(payload);
-        await _preferencesManager.SetProfile(session.UserId, prefs.SelectedCharacterIndex, updatedProfile);
+            var payload = GetPersistentProgression(component);
+            var updatedProfile = humanoid.WithFighterProgression(payload);
+            await _preferencesManager.SetProfile(session.UserId, prefs.SelectedCharacterIndex, updatedProfile);
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Failed to save fighter progression for {ToPrettyString(uid)}: {ex}");
+        }
     }
 
+    /// <summary>
+    /// Removes armor slots blocked by the Ki Warrior commitment path.
+    /// </summary>
     private void StripKiWarriorBlockedGear(EntityUid uid)
     {
         _inventory.TryUnequip(uid, "suitstorage", silent: true, force: true);
