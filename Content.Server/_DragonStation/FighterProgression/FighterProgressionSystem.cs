@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using Content.Goobstation.Shared.MartialArts;
 using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Damage.Components;
@@ -21,9 +22,13 @@ using Content.Shared._DragonStation.FighterProgression.Prototypes;
 using Content.Shared._DragonStation.PowerLevel;
 using Content.Shared._DragonStation.Transformations;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Preferences;
+using Content.Server.Preferences.Managers;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Roles.Jobs;
 
 namespace Content.Server._DragonStation.FighterProgression;
 
@@ -38,12 +43,16 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
     private const int CombatXpAwardCeiling = 20;
     private const float TrainingXpScalePerThreshold = 0.97f;
     private const int FallbackPowerLevel = 100;
+    private const int NonBoxerXpAwardCap = 5;
 
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedMartialArtsSystem _martialArts = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -57,22 +66,10 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
         SubscribeLocalEvent<MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<FighterProgressionComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<FighterProgressionComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<FighterProgressionComponent, FighterProgressionChangedEvent>(OnFighterProgressionChanged);
         SubscribeLocalEvent<FighterProgressionComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<FighterProgressionComponent, FighterChooseBranchMessage>(OnChooseBranch);
         SubscribeLocalEvent<FighterProgressionComponent, PowerLevelRefreshRequestedEvent>(OnPowerLevelRefreshRequested);
-    }
-
-    private void OnComponentStartup(EntityUid uid, FighterProgressionComponent component, ComponentStartup args)
-    {
-        RefreshThresholdBonuses(uid, component);
-    }
-
-    private void OnComponentShutdown(EntityUid uid, FighterProgressionComponent component, ComponentShutdown args)
-    {
-        RestoreThresholdBaselines(uid, component);
     }
 
     private void OnFighterProgressionChanged(EntityUid uid, FighterProgressionComponent component, ref FighterProgressionChangedEvent args)
@@ -82,10 +79,16 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
     {
-        if (args.JobId is not ("Boxer" or "VisitorBoxer"))
+        var shouldEnsureComponent = args.JobId is "Boxer" or "VisitorBoxer" || args.Profile.FighterProgression != null;
+        if (!shouldEnsureComponent)
             return;
 
-        EnsureComp<FighterProgressionComponent>(args.Mob);
+        var component = EnsureComp<FighterProgressionComponent>(args.Mob);
+
+        if (args.Profile.FighterProgression != null)
+            RestorePersistentProgression(args.Mob, component, args.Profile.FighterProgression);
+
+        UpdateUi(args.Mob, component);
     }
 
     private void OnMeleeHit(MeleeHitEvent args)
@@ -154,9 +157,27 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         if (amount <= 0)
             return;
 
+        if (!IsBoxerJob(uid))
+            amount = Math.Min(amount, NonBoxerXpAwardCap);
+
+        if (amount <= 0)
+            return;
+
         component.CurrentXp += amount;
         ProcessThresholdAdvancement(uid, component);
         Dirty(uid, component);
+        _ = SavePersistentProgression(uid, component);
+    }
+
+    private bool IsBoxerJob(EntityUid uid)
+    {
+        if (!_mind.TryGetMind(uid, out var mindId, out _))
+            return false;
+
+        if (!_jobs.MindTryGetJobId(mindId, out var jobId) || jobId == null)
+            return false;
+
+        return jobId.Value.Id is "Boxer" or "VisitorBoxer";
     }
 
     private void OnChooseBranch(EntityUid uid, FighterProgressionComponent component, FighterChooseBranchMessage args)
@@ -198,6 +219,7 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         ProcessThresholdAdvancement(uid, component);
         Dirty(uid, component);
         UpdateUi(uid, component);
+        _ = SavePersistentProgression(uid, component);
     }
 
     private void OnUiOpened(EntityUid uid, FighterProgressionComponent component, BoundUIOpenedEvent args)
@@ -292,6 +314,89 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         RaiseLocalEvent(uid, new FighterProgressionChangedEvent(), true);
         RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
         _popup.PopupEntity(Loc.GetString(popupLoc, ("skill", Loc.GetString(skill.Name))), uid, uid);
+        _ = SavePersistentProgression(uid, component);
+    }
+
+    private void RestorePersistentProgression(EntityUid uid, FighterProgressionComponent component, PersistentFighterProgression saved)
+    {
+        saved.EnsureValid();
+
+        RestoreThresholdBaselines(uid, component);
+
+        component.CurrentXp = saved.CurrentXp;
+        component.ThresholdsReached = saved.ThresholdsReached;
+        component.UnlockedSkills.Clear();
+        component.ClosedSkills.Clear();
+        component.PendingChoiceOptions.Clear();
+        component.ChallengeProgress.Clear();
+        component.MissedChallengeSkills.Clear();
+        component.BaseMobThresholds = null;
+        component.BaseStaminaCritThreshold = null;
+
+        foreach (var skillId in saved.UnlockedSkills)
+        {
+            if (_prototype.HasIndex<FighterSkillPrototype>(skillId))
+                component.UnlockedSkills.Add(skillId);
+        }
+
+        foreach (var skillId in saved.ClosedSkills)
+        {
+            if (_prototype.HasIndex<FighterSkillPrototype>(skillId))
+                component.ClosedSkills.Add(skillId);
+        }
+
+        ApplyUnlockedSkillSideEffects(uid, component);
+        RaiseLocalEvent(uid, new FighterProgressionChangedEvent(), true);
+        RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
+        Dirty(uid, component);
+    }
+
+    private void ApplyUnlockedSkillSideEffects(EntityUid uid, FighterProgressionComponent component)
+    {
+        foreach (var skillId in component.UnlockedSkills)
+        {
+            if (!_prototype.TryIndex(skillId, out FighterSkillPrototype? skill))
+                continue;
+
+            if (skill.MartialArtUnlock != null)
+                _martialArts.TryGrantMartialArtKnowledge(uid, skill.MartialArtUnlock.Value);
+
+            if (skill.ID == "FighterGoldenWarriorAwakening")
+                EnsureComp<TransformationComponent>(uid);
+        }
+
+        if (component.UnlockedSkills.Any(skillId => skillId.Id == "FighterKiWarriorPath"))
+            StripKiWarriorBlockedGear(uid);
+    }
+
+    private PersistentFighterProgression GetPersistentProgression(FighterProgressionComponent component)
+    {
+        return new PersistentFighterProgression
+        {
+            CurrentXp = component.CurrentXp,
+            ThresholdsReached = component.ThresholdsReached,
+            UnlockedSkills = component.UnlockedSkills.Select(skill => skill.Id).Distinct().ToList(),
+            ClosedSkills = component.ClosedSkills.Select(skill => skill.Id).Distinct().ToList(),
+        };
+    }
+
+    private async Task SavePersistentProgression(EntityUid uid, FighterProgressionComponent component)
+    {
+        if (!_playerManager.TryGetSessionByEntity(uid, out var session))
+            return;
+
+        if (!_preferencesManager.TryGetCachedPreferences(session.UserId, out var prefs))
+            return;
+
+        if (!prefs.Characters.TryGetValue(prefs.SelectedCharacterIndex, out var selectedProfile))
+            return;
+
+        if (selectedProfile is not HumanoidCharacterProfile humanoid)
+            return;
+
+        var payload = GetPersistentProgression(component);
+        var updatedProfile = humanoid.WithFighterProgression(payload);
+        await _preferencesManager.SetProfile(session.UserId, prefs.SelectedCharacterIndex, updatedProfile);
     }
 
     private void StripKiWarriorBlockedGear(EntityUid uid)

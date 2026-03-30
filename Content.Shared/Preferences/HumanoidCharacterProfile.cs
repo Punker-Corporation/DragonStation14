@@ -67,6 +67,7 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Goobstation.Common.Barks; // Goob Station - Barks
 using Content.Shared.Traits;
+using Content.Shared._DragonStation.FighterProgression;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -202,6 +203,8 @@ namespace Content.Shared.Preferences
         // Begin CD - Character records
         [DataField("cosmaticDriftCharacterRecords")]
         public PlayerProvidedCharacterRecords? CDCharacterRecords;
+        [DataField("fighterProgression")]
+        public PersistentFighterProgression? FighterProgression;
         // End CD - Character records
 
         public HumanoidCharacterProfile(
@@ -223,7 +226,8 @@ namespace Content.Shared.Preferences
             Dictionary<string, RoleLoadout> loadouts,
             ProtoId<BarkPrototype> barkVoice, // Goob Station - Barks
             // Begin CD - Character Records
-            PlayerProvidedCharacterRecords? cdCharacterRecords
+            PlayerProvidedCharacterRecords? cdCharacterRecords,
+            PersistentFighterProgression? fighterProgression
             // End CD - Character Records
         )
 
@@ -247,6 +251,7 @@ namespace Content.Shared.Preferences
             BarkVoice = barkVoice; // Goob Station - Barks
             // Begin CD - Character Records
             CDCharacterRecords = cdCharacterRecords;
+            FighterProgression = fighterProgression;
             // End CD - Character Records
 
             var hasHighPrority = false;
@@ -283,7 +288,8 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.BarkVoice, // Goob Station - Barks
-                other.CDCharacterRecords) // CD - Character Records
+                other.CDCharacterRecords,
+                other.FighterProgression == null ? null : new PersistentFighterProgression(other.FighterProgression)) // CD - Character Records
         {
         }
 
@@ -458,6 +464,14 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithCDCharacterRecords(PlayerProvidedCharacterRecords records)
         {
             return new HumanoidCharacterProfile(this) { CDCharacterRecords = records };
+        }
+
+        public HumanoidCharacterProfile WithFighterProgression(PersistentFighterProgression? progression)
+        {
+            return new HumanoidCharacterProfile(this)
+            {
+                FighterProgression = progression == null ? null : new PersistentFighterProgression(progression)
+            };
         }
         // End CD - Character Records
 
@@ -640,6 +654,8 @@ namespace Content.Shared.Preferences
             if (FlavorText != other.FlavorText) return false;
             if (CDCharacterRecords != null && other.CDCharacterRecords != null && // CD
                 !CDCharacterRecords.MemberwiseEquals(other.CDCharacterRecords)) return false; // CD
+            if (FighterProgression is null != other.FighterProgression is null) return false;
+            if (FighterProgression != null && !FighterProgression.MemberwiseEquals(other.FighterProgression)) return false;
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -833,6 +849,8 @@ namespace Content.Shared.Preferences
             {
                 CDCharacterRecords!.EnsureValid();
             }
+
+            FighterProgression?.EnsureValid();
             // End CD - Character Records
 
             // Checks prototypes exist for all loadouts and dump / set to default if not.

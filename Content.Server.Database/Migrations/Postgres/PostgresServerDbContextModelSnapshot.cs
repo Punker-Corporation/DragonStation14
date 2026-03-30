@@ -1183,6 +1183,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("real")
                         .HasColumnName("height");
 
+                    b.Property<JsonDocument>("FighterProgression")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("fighter_progression");
+
                     b.Property<JsonDocument>("Markings")
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");

@@ -159,6 +159,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
+using Content.Shared._DragonStation.FighterProgression;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -432,6 +433,11 @@ namespace Content.Server.Database
             var cdRecords = profile.CDProfile?.CharacterRecords != null
                 ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
                 : PlayerProvidedCharacterRecords.DefaultRecords();
+            var fighterProgression = profile.FighterProgression != null
+                ? JsonSerializer.Deserialize<PersistentFighterProgression>(profile.FighterProgression.RootElement.GetRawText())
+                : null;
+
+            fighterProgression?.EnsureValid();
             // End CD - Character Records
             var loadouts = new Dictionary<string, RoleLoadout>();
 
@@ -486,7 +492,8 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 barkVoice, // Goob Station - Barks
-                cdRecords // CD - Character Records
+                cdRecords,
+                fighterProgression // CD - Character Records
             );
         }
 
@@ -540,6 +547,9 @@ namespace Content.Server.Database
             );
 
             profile.BarkVoice = humanoid.BarkVoice; // Goob Station - Barks
+            profile.FighterProgression = humanoid.FighterProgression == null
+                ? null
+                : JsonSerializer.SerializeToDocument(humanoid.FighterProgression);
 
             // Gaby change start
             profile.AltTitles.Clear();
