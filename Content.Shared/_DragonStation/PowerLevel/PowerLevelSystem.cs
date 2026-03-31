@@ -256,13 +256,13 @@ public sealed class PowerLevelSystem : EntitySystem
             walkSpeed *= bonuses.PassiveSpeedMultiplier;
             sprintSpeed *= bonuses.PassiveSpeedMultiplier;
 
-            if (TryComp<TransformationComponent>(uid, out var transformation) && transformation.Active)
+            if (TryComp<SuperSaiyan1Component>(uid, out var transformation) && transformation.Active)
             {
                 walkSpeed *= transformation.SpeedModifier * bonuses.TransformationSpeedMultiplier;
                 sprintSpeed *= transformation.SpeedModifier * bonuses.TransformationSpeedMultiplier;
             }
         }
-        else if (TryComp<TransformationComponent>(uid, out var transformation) && transformation.Active)
+        else if (TryComp<SuperSaiyan1Component>(uid, out var transformation) && transformation.Active)
         {
             walkSpeed *= transformation.SpeedModifier;
             sprintSpeed *= transformation.SpeedModifier;
@@ -271,13 +271,15 @@ public sealed class PowerLevelSystem : EntitySystem
         return (walkSpeed, sprintSpeed);
     }
 
-    private (float Blunt, float Slash, float Piercing, float Heat, float Cold, float Explosion, float Stamina) GetDefenseCoefficients(EntityUid uid)
+    private (float Blunt, float Slash, float Piercing, float Heat, float Cold, float Shock, float Caustic, float Explosion, float Stamina) GetDefenseCoefficients(EntityUid uid)
     {
         var blunt = 1f;
         var slash = 1f;
         var piercing = 1f;
         var heat = 1f;
         var cold = 1f;
+        var shock = 1f;
+        var caustic = 1f;
         var explosion = 1f;
         var stamina = 1f;
 
@@ -288,17 +290,23 @@ public sealed class PowerLevelSystem : EntitySystem
             blunt *= bonuses.PassivePhysicalResistanceCoefficientMultiplier;
             slash *= bonuses.PassivePhysicalResistanceCoefficientMultiplier;
             piercing *= bonuses.PassivePhysicalResistanceCoefficientMultiplier;
-            heat *= bonuses.PassiveTemperatureResistanceCoefficientMultiplier;
-            cold *= bonuses.PassiveTemperatureResistanceCoefficientMultiplier;
+            var other = bonuses.PassiveOtherResistanceCoefficientMultiplier;
+            heat *= bonuses.PassiveTemperatureResistanceCoefficientMultiplier * other;
+            cold *= bonuses.PassiveTemperatureResistanceCoefficientMultiplier * other;
+            shock *= other;
+            caustic *= other;
+            explosion *= other;
         }
 
-        if (TryComp<TransformationComponent>(uid, out var transformation) && transformation.Active)
+        if (TryComp<SuperSaiyan1Component>(uid, out var transformation) && transformation.Active)
         {
             blunt *= transformation.BluntResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
             slash *= transformation.SlashResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
             piercing *= transformation.PiercingResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
             heat *= transformation.HeatResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
             cold *= transformation.ColdResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
+            shock *= transformation.ShockResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
+            caustic *= transformation.CausticResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier;
         }
 
         if (TryComp<DamageableComponent>(uid, out var damageable) &&
@@ -319,6 +327,15 @@ public sealed class PowerLevelSystem : EntitySystem
 
             if (modifierSet.Coefficients.TryGetValue("Cold", out var setCold))
                 cold *= setCold;
+
+            if (modifierSet.Coefficients.TryGetValue("Shock", out var setShock))
+                shock *= setShock;
+
+            if (modifierSet.Coefficients.TryGetValue("Caustic", out var setCaustic))
+                caustic *= setCaustic;
+
+            if (modifierSet.Coefficients.TryGetValue("Explosion", out var setExplosion))
+                explosion *= setExplosion;
         }
 
         var armorCoefficients = new CoefficientQueryEvent(~SlotFlags.POCKET);
@@ -339,6 +356,15 @@ public sealed class PowerLevelSystem : EntitySystem
         if (armorCoefficients.DamageModifiers.Coefficients.TryGetValue("Cold", out var wornCold))
             cold *= wornCold;
 
+        if (armorCoefficients.DamageModifiers.Coefficients.TryGetValue("Shock", out var wornShock))
+            shock *= wornShock;
+
+        if (armorCoefficients.DamageModifiers.Coefficients.TryGetValue("Caustic", out var wornCaustic))
+            caustic *= wornCaustic;
+
+        if (armorCoefficients.DamageModifiers.Coefficients.TryGetValue("Explosion", out var wornExplosion))
+            explosion *= wornExplosion;
+
         var explosionEvent = new GetExplosionResistanceEvent("Default");
         RaiseLocalEvent(uid, ref explosionEvent);
         explosion *= Math.Max(explosionEvent.DamageCoefficient, 0.0001f);
@@ -347,11 +373,11 @@ public sealed class PowerLevelSystem : EntitySystem
         RaiseLocalEvent(uid, ref staminaEvent);
         stamina *= Math.Max(staminaEvent.Value, 0.0001f);
 
-        return (blunt, slash, piercing, heat, cold, explosion, stamina);
+        return (blunt, slash, piercing, heat, cold, shock, caustic, explosion, stamina);
     }
 
     private static float GetWeightedDefenseAverage(
-        (float Blunt, float Slash, float Piercing, float Heat, float Cold, float Explosion, float Stamina) coefficients)
+        (float Blunt, float Slash, float Piercing, float Heat, float Cold, float Shock, float Caustic, float Explosion, float Stamina) coefficients)
     {
         return GetWeightedDefenseAverage(
             coefficients.Blunt,
@@ -359,6 +385,8 @@ public sealed class PowerLevelSystem : EntitySystem
             coefficients.Piercing,
             coefficients.Heat,
             coefficients.Cold,
+            coefficients.Shock,
+            coefficients.Caustic,
             coefficients.Explosion,
             coefficients.Stamina);
     }
@@ -369,16 +397,20 @@ public sealed class PowerLevelSystem : EntitySystem
         float piercing,
         float heat,
         float cold,
+        float shock,
+        float caustic,
         float explosion,
         float stamina)
     {
-        return blunt * 0.24f +
-               slash * 0.24f +
-               piercing * 0.24f +
-               heat * 0.10f +
+        return blunt * 0.20f +
+               slash * 0.20f +
+               piercing * 0.20f +
+               heat * 0.07f +
                explosion * 0.10f +
                stamina * 0.06f +
-               cold * 0.02f;
+               cold * 0.03f +
+               shock * 0.07f +
+               caustic * 0.07f;
     }
 
     private static float? GetThresholdForState(MobThresholdsComponent thresholds, MobState state)

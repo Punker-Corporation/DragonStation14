@@ -7,7 +7,7 @@ public sealed partial class TransformationSystem
 {
     private void InitializeStamina()
     {
-        SubscribeLocalEvent<TransformationComponent, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
+        SubscribeLocalEvent<SuperSaiyan1Component, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
     }
 
     // Drain stamina while transformed and force the form off before the user stamcrits.
@@ -15,7 +15,7 @@ public sealed partial class TransformationSystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<TransformationComponent, StaminaComponent>();
+        var query = EntityQueryEnumerator<SuperSaiyan1Component, StaminaComponent>();
         while (query.MoveNext(out var uid, out var transformation, out var staminaComp))
         {
             if (!transformation.Active)
@@ -30,7 +30,7 @@ public sealed partial class TransformationSystem
     }
 
     // Transformations can ignore outside stamina damage while still paying their own upkeep cost.
-    private void OnBeforeStaminaDamage(EntityUid uid, TransformationComponent component, ref BeforeStaminaDamageEvent args)
+    private void OnBeforeStaminaDamage(EntityUid uid, SuperSaiyan1Component component, ref BeforeStaminaDamageEvent args)
     {
         if (!component.Active || !component.IgnoreExternalStaminaDamage)
             return;

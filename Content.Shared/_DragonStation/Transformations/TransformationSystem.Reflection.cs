@@ -5,7 +5,7 @@ namespace Content.Shared._DragonStation.Transformations;
 public sealed partial class TransformationSystem
 {
     // Borrow the same reflect component used by Sleeping Carp while the form is active.
-    private void EnableReflection(EntityUid uid, TransformationComponent component)
+    private void EnableReflection(EntityUid uid, SuperSaiyan1Component component)
     {
         var reflect = EnsureComp<ReflectComponent>(uid);
         reflect.Examinable = false;

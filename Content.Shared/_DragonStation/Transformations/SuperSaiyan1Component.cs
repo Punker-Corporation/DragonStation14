@@ -9,8 +9,8 @@ namespace Content.Shared._DragonStation.Transformations;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 
-// Core tuning values for the transformation. We can later move these into reusable form configs.
-public sealed partial class TransformationComponent : Component
+// Core tuning values for Super Saiyan 1. We can later move these into reusable form configs.
+public sealed partial class SuperSaiyan1Component : Component
 {
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string? ToggleAction = "ActionToggleSuperSaiyan";
@@ -64,13 +64,13 @@ public sealed partial class TransformationComponent : Component
     public float StaminaDrainRate = 2f;
 
     [DataField, AutoNetworkedField]
-    public float SpeedModifier = 2.0f;
+    public float SpeedModifier = 1.3f;
 
     [DataField, AutoNetworkedField]
-    public float MeleeDamageModifier = 10.0f;
+    public float MeleeDamageModifier = 2.0f;
 
     [DataField, AutoNetworkedField]
-    public float LowStaminaThreshold = 40f;
+    public float LowStaminaThreshold = 5f;
 
     [DataField]
     public TimeSpan RangedPopupCooldown = TimeSpan.FromSeconds(1f);
@@ -85,19 +85,31 @@ public sealed partial class TransformationComponent : Component
     public Angle ReflectSpread = Angle.FromDegrees(60f);
 
     [DataField, AutoNetworkedField]
-    public float BluntResistanceCoefficient = 0.7f;
+    public float BluntResistanceCoefficient = 0.8f;
 
     [DataField, AutoNetworkedField]
-    public float SlashResistanceCoefficient = 0.7f;
+    public float SlashResistanceCoefficient = 0.8f;
 
     [DataField, AutoNetworkedField]
-    public float PiercingResistanceCoefficient = 0.75f;
+    public float PiercingResistanceCoefficient = 0.8f;
 
     [DataField, AutoNetworkedField]
-    public float HeatResistanceCoefficient = 0.9f;
+    public float HeatResistanceCoefficient = 0.8f;
 
     [DataField, AutoNetworkedField]
-    public float ColdResistanceCoefficient = 0.9f;
+    public float ColdResistanceCoefficient = 0.8f;
+
+    [DataField, AutoNetworkedField]
+    public float ShockResistanceCoefficient = 0.8f;
+
+    [DataField, AutoNetworkedField]
+    public float CausticResistanceCoefficient = 0.8f;
+
+    [DataField, AutoNetworkedField]
+    public float AsphyxiationResistanceCoefficient = 0.8f;
+
+    [DataField, AutoNetworkedField]
+    public float LowPressureProtectionMultiplier = 1.3f;
 
     public DamageModifierSet Resistances => new()
     {
@@ -108,6 +120,15 @@ public sealed partial class TransformationComponent : Component
             ["Piercing"] = PiercingResistanceCoefficient,
             ["Heat"] = HeatResistanceCoefficient,
             ["Cold"] = ColdResistanceCoefficient,
+            ["Shock"] = ShockResistanceCoefficient,
+            ["Caustic"] = CausticResistanceCoefficient,
+            ["Asphyxiation"] = AsphyxiationResistanceCoefficient,
         }
     };
 }
+
+/// <summary>
+/// Raised when a transformation is toggled so server-side systems can refresh derived state.
+/// </summary>
+[ByRefEvent]
+public record struct TransformationStateChangedEvent(bool Active);

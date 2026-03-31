@@ -9,11 +9,11 @@ public sealed partial class TransformationSystem
 {
     private void InitializeRanged()
     {
-        SubscribeLocalEvent<TransformationComponent, ShotAttemptedEvent>(OnShotAttempted);
+        SubscribeLocalEvent<SuperSaiyan1Component, ShotAttemptedEvent>(OnShotAttempted);
     }
 
     // Melee-focused transformations can disable guns while active.
-    private void OnShotAttempted(EntityUid uid, TransformationComponent component, ref ShotAttemptedEvent args)
+    private void OnShotAttempted(EntityUid uid, SuperSaiyan1Component component, ref ShotAttemptedEvent args)
     {
         if (!component.Active || !component.BlockRangedWeapons)
             return;
@@ -31,7 +31,7 @@ public sealed partial class TransformationSystem
     }
 
     // Force-drop any held guns on transformation so the user commits to close combat.
-    private void DropHeldGuns(EntityUid uid, TransformationComponent component)
+    private void DropHeldGuns(EntityUid uid, SuperSaiyan1Component component)
     {
         if (!component.BlockRangedWeapons)
             return;

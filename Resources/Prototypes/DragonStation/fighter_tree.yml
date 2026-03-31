@@ -808,146 +808,188 @@
 
 - type: fighterSkill
   id: FighterSaiyanTrainingI
-  name: fighter-tree-skill-saiyan-training-1
-  description: fighter-tree-skill-saiyan-training-1-desc
-  icon: /Textures/Interface/VerbIcons/zap.svg.192dpi.png
-  branch: FighterSaiyan
-  prerequisites:
-  - FighterSaiyanPath
-  position: 25,11
-  effectDescriptions:
-  - fighter-tree-effect-saiyan-training-1
-  passiveMeleeBonus: 0.03
-
-- type: fighterSkill
-  id: FighterSaiyanTrainingII
-  name: fighter-tree-skill-saiyan-training-2
-  description: fighter-tree-skill-saiyan-training-2-desc
-  icon: /Textures/Interface/VerbIcons/zap.svg.192dpi.png
-  branch: FighterSaiyan
-  prerequisites:
-  - FighterSaiyanTrainingI
-  position: 26,11
-  effectDescriptions:
-  - fighter-tree-effect-saiyan-training-2
-  passiveUnarmedAttackSpeedBonus: 0.03
-
-- type: fighterSkill
-  id: FighterSaiyanTrainingIII
-  name: fighter-tree-skill-saiyan-training-3
-  description: fighter-tree-skill-saiyan-training-3-desc
-  icon: /Textures/Interface/VerbIcons/zap.svg.192dpi.png
-  branch: FighterSaiyan
-  prerequisites:
-  - FighterSaiyanTrainingII
-  position: 27,11
-  effectDescriptions:
-  - fighter-tree-effect-saiyan-training-3
-  passiveSpeedBonus: 0.03
-
-- type: fighterSkill
-  id: FighterSaiyanTrainingIV
-  name: fighter-tree-skill-saiyan-training-4
-  description: fighter-tree-skill-saiyan-training-4-desc
-  icon: /Textures/Interface/VerbIcons/zap.svg.192dpi.png
-  branch: FighterSaiyan
-  prerequisites:
-  - FighterSaiyanTrainingIII
-  position: 28,11
-  effectDescriptions:
-  - fighter-tree-effect-saiyan-training-4
-  passiveStaminaDrainMultiplier: 0.97
-
-- type: fighterSkill
-  id: FighterSaiyanBodyTrainingI
   name: fighter-tree-skill-saiyan-body-training-1
   description: fighter-tree-skill-saiyan-body-training-1-desc
   icon: /Textures/Interface/VerbIcons/point.svg.192dpi.png
   branch: FighterSaiyan
   prerequisites:
-  - FighterSaiyanTrainingIV
-  position: 29,11
+  - FighterSaiyanPath
+  position: 25,11
   effectDescriptions:
   - fighter-tree-effect-saiyan-body-training-1
   passiveMeleeBonus: 0.03
 
 - type: fighterSkill
-  id: FighterSaiyanBodyTrainingII
+  id: FighterSaiyanTrainingII
   name: fighter-tree-skill-saiyan-body-training-2
   description: fighter-tree-skill-saiyan-body-training-2-desc
   icon: /Textures/Interface/VerbIcons/point.svg.192dpi.png
   branch: FighterSaiyan
   prerequisites:
+  - FighterSaiyanTrainingI
+  position: 26,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-body-training-2
+  passivePhysicalResistanceCoefficientMultiplier: 0.98
+
+- type: fighterSkill
+  id: FighterSaiyanTrainingIII
+  name: fighter-tree-skill-saiyan-body-training-3
+  description: fighter-tree-skill-saiyan-body-training-3-desc
+  icon: /Textures/Interface/VerbIcons/point.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanTrainingII
+  position: 27,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-body-training-3
+  passiveUnarmedAttackSpeedBonus: 0.03
+
+- type: fighterSkill
+  id: FighterSaiyanTrainingIV
+  name: fighter-tree-skill-saiyan-battle-training-1
+  description: fighter-tree-skill-saiyan-battle-training-1-desc
+  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanTrainingIII
+  position: 28,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-battle-training-1
+  passiveMeleeBonus: 0.03
+
+- type: fighterSkill
+  id: FighterSaiyanBodyTrainingI
+  name: fighter-tree-skill-saiyan-battle-training-2
+  description: fighter-tree-skill-saiyan-battle-training-2-desc
+  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanTrainingIV
+  position: 29,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-battle-training-2
+  passiveSpeedBonus: 0.03
+
+- type: fighterSkill
+  id: FighterSaiyanBodyTrainingII
+  name: fighter-tree-skill-saiyan-battle-training-3
+  description: fighter-tree-skill-saiyan-battle-training-3-desc
+  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
   - FighterSaiyanBodyTrainingI
   position: 30,11
   effectDescriptions:
-  - fighter-tree-effect-saiyan-body-training-2
-  passivePhysicalResistanceCoefficientMultiplier: 0.97
+  - fighter-tree-effect-saiyan-battle-training-3
+  passiveStaminaDrainMultiplier: 0.98
 
 - type: fighterSkill
   id: FighterSaiyanBodyTrainingIII
-  name: fighter-tree-skill-saiyan-body-training-3
-  description: fighter-tree-skill-saiyan-body-training-3-desc
+  name: fighter-tree-skill-saiyan-combat-training-1
+  description: fighter-tree-skill-saiyan-combat-training-1-desc
   icon: /Textures/Interface/VerbIcons/point.svg.192dpi.png
   branch: FighterSaiyan
   prerequisites:
   - FighterSaiyanBodyTrainingII
   position: 31,11
   effectDescriptions:
-  - fighter-tree-effect-saiyan-body-training-3
-  passiveUnarmedAttackSpeedBonus: 0.05
+  - fighter-tree-effect-saiyan-combat-training-1
+  passiveMeleeBonus: 0.04
 
 - type: fighterSkill
-  id: FighterSaiyanSpiritI
-  name: fighter-tree-skill-saiyan-spirit-1
-  description: fighter-tree-skill-saiyan-spirit-1-desc
-  icon: /Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png
+  id: FighterSaiyanCombatTrainingII
+  name: fighter-tree-skill-saiyan-combat-training-2
+  description: fighter-tree-skill-saiyan-combat-training-2-desc
+  icon: /Textures/Interface/VerbIcons/point.svg.192dpi.png
   branch: FighterSaiyan
   prerequisites:
   - FighterSaiyanBodyTrainingIII
   position: 32,11
   effectDescriptions:
-  - fighter-tree-effect-saiyan-spirit-1
-  passiveSpeedBonus: 0.05
+  - fighter-tree-effect-saiyan-combat-training-2
+  passiveUnarmedAttackSpeedBonus: 0.05
+
+- type: fighterSkill
+  id: FighterSaiyanSpiritI
+  name: fighter-tree-skill-saiyan-conditioning-1
+  description: fighter-tree-skill-saiyan-conditioning-1-desc
+  icon: /Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanCombatTrainingII
+  position: 33,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-conditioning-1
+  passivePhysicalResistanceCoefficientMultiplier: 0.96
 
 - type: fighterSkill
   id: FighterSaiyanSpiritII
+  name: fighter-tree-skill-saiyan-conditioning-2
+  description: fighter-tree-skill-saiyan-conditioning-2-desc
+  icon: /Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanSpiritI
+  position: 34,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-conditioning-2
+  passiveSpeedBonus: 0.05
+  passiveMeleeBonus: 0.04
+
+- type: fighterSkill
+  id: FighterSaiyanBattleTrainingI
+  name: fighter-tree-skill-saiyan-training-1
+  description: fighter-tree-skill-saiyan-training-1-desc
+  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanSpiritII
+  position: 35,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-training-1
+  passiveMeleeBonus: 0.05
+
+- type: fighterSkill
+  id: FighterSaiyanBattleTrainingII
+  name: fighter-tree-skill-saiyan-training-2
+  description: fighter-tree-skill-saiyan-training-2-desc
+  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanBattleTrainingI
+  position: 36,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-training-2
+  passiveUnarmedAttackSpeedBonus: 0.10
+
+- type: fighterSkill
+  id: FighterSaiyanSpiritIII
+  name: fighter-tree-skill-saiyan-spirit-1
+  description: fighter-tree-skill-saiyan-spirit-1-desc
+  icon: /Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png
+  branch: FighterSaiyan
+  prerequisites:
+  - FighterSaiyanBattleTrainingII
+  position: 37,11
+  effectDescriptions:
+  - fighter-tree-effect-saiyan-spirit-1
+  passiveSpeedBonus: 0.10
+
+- type: fighterSkill
+  id: FighterSaiyanSpiritIV
   name: fighter-tree-skill-saiyan-spirit-2
   description: fighter-tree-skill-saiyan-spirit-2-desc
   icon: /Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png
   branch: FighterSaiyan
   prerequisites:
-  - FighterSaiyanSpiritI
-  position: 33,11
+  - FighterSaiyanSpiritIII
+  position: 38,11
   effectDescriptions:
   - fighter-tree-effect-saiyan-spirit-2
-  passiveStaminaDrainMultiplier: 0.95
-
-- type: fighterSkill
-  id: FighterSaiyanBattleTrainingI
-  name: fighter-tree-skill-saiyan-battle-training-1
-  description: fighter-tree-skill-saiyan-battle-training-1-desc
-  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
-  branch: FighterSaiyan
-  prerequisites:
-  - FighterSaiyanSpiritII
-  position: 34,11
-  effectDescriptions:
-  - fighter-tree-effect-saiyan-battle-training-1
+  passiveStaminaDrainMultiplier: 0.92
+  passivePhysicalResistanceCoefficientMultiplier: 0.92
   passiveMeleeBonus: 0.05
-
-- type: fighterSkill
-  id: FighterSaiyanBattleTrainingII
-  name: fighter-tree-skill-saiyan-battle-training-2
-  description: fighter-tree-skill-saiyan-battle-training-2-desc
-  icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
-  branch: FighterSaiyan
-  prerequisites:
-  - FighterSaiyanBattleTrainingI
-  position: 35,11
-  effectDescriptions:
-  - fighter-tree-effect-saiyan-battle-training-2
-  passivePhysicalResistanceCoefficientMultiplier: 0.95
 
 - type: fighterSkill
   id: FighterEliteSaiyanPath
@@ -956,10 +998,12 @@
   icon: /Textures/Interface/VerbIcons/light.svg.192dpi.png
   branch: FighterEliteSaiyan
   prerequisites:
-  - FighterSaiyanBattleTrainingII
-  position: 37,9
+  - FighterSaiyanSpiritIV
+  position: 40,9
   effectDescriptions:
   - fighter-tree-effect-elite-saiyan-path
+  passiveMeleeBonus: 0.02
+  passiveSpeedBonus: 0.02
 
 - type: fighterSkill
   id: FighterPrimalSaiyanPath
@@ -968,10 +1012,12 @@
   icon: /Textures/Interface/VerbIcons/point.svg.192dpi.png
   branch: FighterPrimalSaiyan
   prerequisites:
-  - FighterSaiyanBattleTrainingII
-  position: 37,11
+  - FighterSaiyanSpiritIV
+  position: 40,11
   effectDescriptions:
   - fighter-tree-effect-primal-saiyan-path
+  passivePhysicalResistanceCoefficientMultiplier: 0.88
+  passiveOtherResistanceCoefficientMultiplier: 0.80
 
 - type: fighterSkill
   id: FighterLegendarySaiyanPath
@@ -980,8 +1026,8 @@
   icon: /Textures/Interface/VerbIcons/group.svg.192dpi.png
   branch: FighterLegendarySaiyan
   prerequisites:
-  - FighterSaiyanBattleTrainingII
-  position: 37,13
+  - FighterSaiyanSpiritIV
+  position: 40,13
   effectDescriptions:
   - fighter-tree-effect-legendary-saiyan-path
 
@@ -993,10 +1039,10 @@
   branch: FighterEliteSaiyan
   prerequisites:
   - FighterEliteSaiyanPath
-  position: 38,9
+  position: 41,9
   effectDescriptions:
   - fighter-tree-effect-ascension-training
-  transformationStaminaDrainMultiplier: 0.92
+  passivePhysicalResistanceCoefficientMultiplier: 0.92
 
 - type: fighterSkill
   id: FighterGoldenWarriorAwakening
@@ -1006,9 +1052,11 @@
   branch: FighterEliteSaiyan
   prerequisites:
   - FighterAscensionTraining
-  position: 39,9
+  position: 42,9
   effectDescriptions:
   - fighter-tree-effect-super-saiyan-awakening
+  passiveUnarmedAttackSpeedBonus: 0.02
+  passiveStaminaDrainMultiplier: 0.98
 
 - type: fighterSkill
   id: FighterGoldenWarriorMastery
@@ -1018,12 +1066,11 @@
   branch: FighterEliteSaiyan
   prerequisites:
   - FighterGoldenWarriorAwakening
-  position: 40,9
+  position: 43,9
   effectDescriptions:
   - fighter-tree-effect-super-saiyan-mastery-1
-  transformationMeleeBonus: 0.05
-  transformationSpeedBonus: 0.05
-  transformationResistanceCoefficientMultiplier: 0.95
+  passiveMeleeBonus: 0.02
+  passiveSpeedBonus: 0.02
 
 - type: fighterSkill
   id: FighterGoldenWarriorFullMastery
@@ -1033,13 +1080,31 @@
   branch: FighterEliteSaiyan
   prerequisites:
   - FighterGoldenWarriorMastery
-  position: 41,9
+  position: 44,9
   effectDescriptions:
   - fighter-tree-effect-super-saiyan-mastery-2
-  transformationMeleeBonus: 0.10
-  transformationSpeedBonus: 0.10
-  transformationResistanceCoefficientMultiplier: 0.90
-  transformationStaminaDrainMultiplier: 0.0
+  passiveUnarmedAttackSpeedBonus: 0.02
+  passivePhysicalResistanceCoefficientMultiplier: 0.90
+  passiveStaminaDrainMultiplier: 0.97
+
+- type: fighterSkill
+  id: FighterEliteSupremacy
+  name: fighter-tree-skill-elite-supremacy
+  description: fighter-tree-skill-elite-supremacy-desc
+  icon: /Textures/Interface/VerbIcons/light.svg.192dpi.png
+  branch: FighterEliteSaiyan
+  prerequisites:
+  - FighterGoldenWarriorFullMastery
+  position: 45,9
+  effectDescriptions:
+  - fighter-tree-effect-elite-supremacy
+  passiveMeleeBonus: 0.04
+  passiveSpeedBonus: 0.05
+  passiveUnarmedAttackSpeedBonus: 0.02
+  passivePhysicalResistanceCoefficientMultiplier: 0.84
+  passiveStaminaDrainMultiplier: 0.954
+  passiveMobThresholdMultiplier: 1.5
+  passiveStaminaCritThresholdMultiplier: 1.5
 
 - type: fighterSkill
   id: FighterInstinctTrainingI
@@ -1049,10 +1114,11 @@
   branch: FighterPrimalSaiyan
   prerequisites:
   - FighterPrimalSaiyanPath
-  position: 38,11
+  position: 41,11
   effectDescriptions:
   - fighter-tree-effect-instinct-training-1
-  passiveSpeedBonus: 0.05
+  passiveStaminaDrainMultiplier: 0.92
+  passiveMeleeBonus: -0.04
 
 - type: fighterSkill
   id: FighterInstinctTrainingII
@@ -1062,10 +1128,12 @@
   branch: FighterPrimalSaiyan
   prerequisites:
   - FighterInstinctTrainingI
-  position: 39,11
+  position: 42,11
   effectDescriptions:
   - fighter-tree-effect-instinct-training-2
-  passiveMeleeBonus: 0.08
+  passivePhysicalResistanceCoefficientMultiplier: 0.82
+  passiveSpeedBonus: -0.02
+  passiveUnarmedAttackSpeedBonus: -0.02
 
 - type: fighterSkill
   id: FighterGreatBeastEcho
@@ -1075,10 +1143,12 @@
   branch: FighterPrimalSaiyan
   prerequisites:
   - FighterInstinctTrainingII
-  position: 40,11
+  position: 43,11
   effectDescriptions:
   - fighter-tree-effect-great-beast-echo
-  passiveUnarmedAttackSpeedBonus: 0.08
+  passiveStaminaDrainMultiplier: 0.88
+  passiveMeleeBonus: -0.06
+  passiveUnarmedAttackSpeedBonus: -0.02
 
 - type: fighterSkill
   id: FighterPrimalAwakening
@@ -1088,11 +1158,33 @@
   branch: FighterPrimalSaiyan
   prerequisites:
   - FighterGreatBeastEcho
-  position: 41,11
+  position: 44,11
   effectDescriptions:
   - fighter-tree-effect-primal-awakening
-  passiveMeleeBonus: 0.12
-  passiveSpeedBonus: 0.10
+  passivePhysicalResistanceCoefficientMultiplier: 0.80
+  passiveOtherResistanceCoefficientMultiplier: 0.625
+  passiveMeleeBonus: -0.06
+  passiveSpeedBonus: -0.02
+  passiveUnarmedAttackSpeedBonus: -0.02
+
+- type: fighterSkill
+  id: FighterPrimalApex
+  name: fighter-tree-skill-primal-apex
+  description: fighter-tree-skill-primal-apex-desc
+  icon: /Textures/Interface/VerbIcons/light.svg.192dpi.png
+  branch: FighterPrimalSaiyan
+  prerequisites:
+  - FighterPrimalAwakening
+  position: 45,11
+  effectDescriptions:
+  - fighter-tree-effect-primal-apex
+  passiveStaminaDrainMultiplier: 0.823
+  passivePhysicalResistanceCoefficientMultiplier: 0.72
+  passiveMeleeBonus: -0.06
+  passiveSpeedBonus: -0.02
+  passiveUnarmedAttackSpeedBonus: -0.02
+  passiveMobThresholdMultiplier: 3.0
+  passiveStaminaCritThresholdMultiplier: 3.0
 
 - type: fighterSkill
   id: FighterPowerBodyI
@@ -1102,7 +1194,7 @@
   branch: FighterLegendarySaiyan
   prerequisites:
   - FighterLegendarySaiyanPath
-  position: 38,13
+  position: 41,13
   effectDescriptions:
   - fighter-tree-effect-power-body-1
   passivePhysicalResistanceCoefficientMultiplier: 0.92
@@ -1115,7 +1207,7 @@
   branch: FighterLegendarySaiyan
   prerequisites:
   - FighterPowerBodyI
-  position: 39,13
+  position: 42,13
   effectDescriptions:
   - fighter-tree-effect-power-body-2
   passiveMeleeBonus: 0.08
@@ -1128,7 +1220,7 @@
   branch: FighterLegendarySaiyan
   prerequisites:
   - FighterPowerBodyII
-  position: 40,13
+  position: 43,13
   effectDescriptions:
   - fighter-tree-effect-berserker-heart
   passivePhysicalResistanceCoefficientMultiplier: 0.88
@@ -1141,7 +1233,7 @@
   branch: FighterLegendarySaiyan
   prerequisites:
   - FighterBerserkerHeart
-  position: 41,13
+  position: 44,13
   effectDescriptions:
   - fighter-tree-effect-legendary-awakening
   passiveMeleeBonus: 0.12

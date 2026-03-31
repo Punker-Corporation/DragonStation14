@@ -61,6 +61,9 @@ public sealed partial class FighterSkillPrototype : IPrototype
     public float PassiveTemperatureResistanceCoefficientMultiplier = 1f;
 
     [DataField]
+    public float PassiveOtherResistanceCoefficientMultiplier = 1f;
+
+    [DataField]
     public float PassiveMobThresholdMultiplier = 1f;
 
     [DataField]

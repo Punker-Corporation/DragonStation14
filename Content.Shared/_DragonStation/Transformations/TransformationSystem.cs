@@ -30,27 +30,27 @@ public sealed partial class TransformationSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TransformationComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<TransformationComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<TransformationComponent, ToggleActionEvent>(OnToggleAction);
+        SubscribeLocalEvent<SuperSaiyan1Component, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<SuperSaiyan1Component, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<SuperSaiyan1Component, ToggleActionEvent>(OnToggleAction);
         InitializeStamina();
         InitializeCombat();
         InitializeInventory();
         InitializeRanged();
     }
 
-    private void OnStartup(EntityUid uid, TransformationComponent component, ComponentStartup args)
+    private void OnStartup(EntityUid uid, SuperSaiyan1Component component, ComponentStartup args)
     {
         RefreshActionAvailability(uid, component);
     }
 
-    private void OnShutdown(EntityUid uid, TransformationComponent component, ComponentShutdown args)
+    private void OnShutdown(EntityUid uid, SuperSaiyan1Component component, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, component.ToggleActionEntity);
         DisableAura(uid);
     }
 
-    private void OnToggleAction(EntityUid uid, TransformationComponent component, ToggleActionEvent args)
+    private void OnToggleAction(EntityUid uid, SuperSaiyan1Component component, ToggleActionEvent args)
     {
         if (!_timing.IsFirstTimePredicted)
             return;
@@ -65,6 +65,18 @@ public sealed partial class TransformationSystem : EntitySystem
             return;
         }
 
+        TryActivateTransformation(uid, component);
+        args.Handled = true;
+    }
+
+    public bool TryActivateTransformation(EntityUid uid, SuperSaiyan1Component? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return false;
+
+        if (component.Active || !CanUseTransformation(uid, component))
+            return false;
+
         component.Active = true;
 
         if (_net.IsServer)
@@ -77,27 +89,26 @@ public sealed partial class TransformationSystem : EntitySystem
 
             if (component.GrantsReflection)
                 EnableReflection(uid, component);
+
+            EnableAura(uid, component);
+            _popup.PopupEntity(Loc.GetString(component.ActivationPopup), uid, uid);
         }
 
-        if (_net.IsServer)
-            EnableAura(uid, component);
         _actions.SetToggled(component.ToggleActionEntity, true);
         _movement.RefreshMovementSpeedModifiers(uid);
         RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
-
-        if (_net.IsServer)
-            _popup.PopupEntity(Loc.GetString(component.ActivationPopup), uid, uid);
-
+        var toggledOn = new TransformationStateChangedEvent(true);
+        RaiseLocalEvent(uid, ref toggledOn, true);
         Dirty(uid, component);
-        args.Handled = true;
+        return true;
     }
 
-    private bool CanUseTransformation(EntityUid uid, TransformationComponent component)
+    private bool CanUseTransformation(EntityUid uid, SuperSaiyan1Component component)
     {
         return component.RequiredFighterSkill == null || _fighterProgression.HasSkill(uid, component.RequiredFighterSkill);
     }
 
-    private void RefreshActionAvailability(EntityUid uid, TransformationComponent component)
+    private void RefreshActionAvailability(EntityUid uid, SuperSaiyan1Component component)
     {
         if (CanUseTransformation(uid, component))
             _actions.AddAction(uid, ref component.ToggleActionEntity, component.ToggleAction);
@@ -105,7 +116,7 @@ public sealed partial class TransformationSystem : EntitySystem
             _actions.RemoveAction(uid, component.ToggleActionEntity);
     }
 
-    private void DisableTransformation(EntityUid uid, TransformationComponent component)
+    public void DisableTransformation(EntityUid uid, SuperSaiyan1Component component)
     {
         if (!component.Active)
             return;
@@ -118,6 +129,8 @@ public sealed partial class TransformationSystem : EntitySystem
 
         _movement.RefreshMovementSpeedModifiers(uid);
         RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
+        var toggledOff = new TransformationStateChangedEvent(false);
+        RaiseLocalEvent(uid, ref toggledOff, true);
         if (_net.IsServer && component.GrantsReflection)
             DisableReflection(uid);
 

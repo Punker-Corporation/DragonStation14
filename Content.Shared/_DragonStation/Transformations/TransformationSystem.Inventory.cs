@@ -7,11 +7,11 @@ public sealed partial class TransformationSystem
 {
     private void InitializeInventory()
     {
-        SubscribeLocalEvent<TransformationComponent, IsEquippingTargetAttemptEvent>(OnEquipAttempt);
+        SubscribeLocalEvent<SuperSaiyan1Component, IsEquippingTargetAttemptEvent>(OnEquipAttempt);
     }
 
     // Some transformations reject protective gear so the form itself is the protection.
-    private void OnEquipAttempt(EntityUid uid, TransformationComponent component, ref IsEquippingTargetAttemptEvent args)
+    private void OnEquipAttempt(EntityUid uid, SuperSaiyan1Component component, ref IsEquippingTargetAttemptEvent args)
     {
         if (!component.Active || !component.BlockArmorSlots)
             return;
@@ -24,7 +24,7 @@ public sealed partial class TransformationSystem
     }
 
     // Drop incompatible worn gear when the form activates.
-    private void StripBlockedGear(EntityUid uid, TransformationComponent component)
+    private void StripBlockedGear(EntityUid uid, SuperSaiyan1Component component)
     {
         if (!component.BlockArmorSlots)
             return;

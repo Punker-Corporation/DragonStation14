@@ -6,6 +6,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared._DragonStation.FighterProgression.Prototypes;
+using Content.Shared._DragonStation.Transformations;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Prototypes;
 
@@ -13,6 +14,13 @@ namespace Content.Shared._DragonStation.FighterProgression;
 
 public abstract class SharedFighterProgressionSystem : EntitySystem
 {
+    private static readonly HashSet<string> LegacyMainTreeTransformationSkills =
+    [
+        "FighterGoldenWarriorAwakening",
+        "FighterGoldenWarriorMastery",
+        "FighterGoldenWarriorFullMastery"
+    ];
+
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] protected readonly IPrototypeManager _prototype = default!;
@@ -56,7 +64,7 @@ public abstract class SharedFighterProgressionSystem : EntitySystem
     private void OnRefreshMovementSpeed(EntityUid uid, FighterProgressionComponent component, ref RefreshMovementSpeedModifiersEvent args)
     {
         var bonuses = GetBonuses(uid, component);
-        if (bonuses.PassiveSpeedMultiplier <= 1f)
+        if (Math.Abs(bonuses.PassiveSpeedMultiplier - 1f) < 0.0001f)
             return;
 
         args.ModifySpeed(bonuses.PassiveSpeedMultiplier, bonuses.PassiveSpeedMultiplier);
@@ -65,7 +73,7 @@ public abstract class SharedFighterProgressionSystem : EntitySystem
     private void OnGetUserMeleeDamage(EntityUid uid, FighterProgressionComponent component, ref GetUserMeleeDamageEvent args)
     {
         var bonuses = GetBonuses(uid, component);
-        if (bonuses.PassiveMeleeMultiplier <= 1f || !IsFighterStyleWeapon(uid, args.Weapon))
+        if (Math.Abs(bonuses.PassiveMeleeMultiplier - 1f) < 0.0001f || !IsFighterStyleWeapon(uid, args.Weapon))
             return;
 
         args.Damage *= bonuses.PassiveMeleeMultiplier;
@@ -74,7 +82,7 @@ public abstract class SharedFighterProgressionSystem : EntitySystem
     private void OnGetMeleeAttackRate(EntityUid uid, FighterProgressionComponent component, ref GetMeleeAttackRateEvent args)
     {
         var bonuses = GetBonuses(uid, component);
-        if (bonuses.PassiveUnarmedAttackSpeedMultiplier <= 1f || !IsFighterStyleWeapon(uid, args.Weapon))
+        if (Math.Abs(bonuses.PassiveUnarmedAttackSpeedMultiplier - 1f) < 0.0001f || !IsFighterStyleWeapon(uid, args.Weapon))
             return;
 
         args.Multipliers *= bonuses.PassiveUnarmedAttackSpeedMultiplier;
@@ -96,8 +104,12 @@ public abstract class SharedFighterProgressionSystem : EntitySystem
     {
         var bonuses = GetBonuses(uid, component);
         if (bonuses.PassivePhysicalResistanceCoefficientMultiplier >= 1f &&
-            bonuses.PassiveTemperatureResistanceCoefficientMultiplier >= 1f)
+            bonuses.PassiveTemperatureResistanceCoefficientMultiplier >= 1f &&
+            bonuses.PassiveOtherResistanceCoefficientMultiplier >= 1f)
             return;
+
+        var temperatureResistance = bonuses.PassiveTemperatureResistanceCoefficientMultiplier *
+            bonuses.PassiveOtherResistanceCoefficientMultiplier;
 
         var resistances = new DamageModifierSet
         {
@@ -106,8 +118,11 @@ public abstract class SharedFighterProgressionSystem : EntitySystem
                 ["Blunt"] = bonuses.PassivePhysicalResistanceCoefficientMultiplier,
                 ["Slash"] = bonuses.PassivePhysicalResistanceCoefficientMultiplier,
                 ["Piercing"] = bonuses.PassivePhysicalResistanceCoefficientMultiplier,
-                ["Heat"] = bonuses.PassiveTemperatureResistanceCoefficientMultiplier,
-                ["Cold"] = bonuses.PassiveTemperatureResistanceCoefficientMultiplier,
+                ["Heat"] = temperatureResistance,
+                ["Cold"] = temperatureResistance,
+                ["Shock"] = bonuses.PassiveOtherResistanceCoefficientMultiplier,
+                ["Caustic"] = bonuses.PassiveOtherResistanceCoefficientMultiplier,
+                ["Explosion"] = bonuses.PassiveOtherResistanceCoefficientMultiplier,
             }
         };
 
@@ -356,8 +371,23 @@ public abstract class SharedFighterProgressionSystem : EntitySystem
             bonuses.PassiveUnarmedAttackSpeedMultiplier += skill.PassiveUnarmedAttackSpeedBonus;
             bonuses.PassivePhysicalResistanceCoefficientMultiplier *= skill.PassivePhysicalResistanceCoefficientMultiplier;
             bonuses.PassiveTemperatureResistanceCoefficientMultiplier *= skill.PassiveTemperatureResistanceCoefficientMultiplier;
+            bonuses.PassiveOtherResistanceCoefficientMultiplier *= skill.PassiveOtherResistanceCoefficientMultiplier;
             bonuses.PassiveMobThresholdMultiplier *= skill.PassiveMobThresholdMultiplier;
             bonuses.PassiveStaminaCritThresholdMultiplier *= skill.PassiveStaminaCritThresholdMultiplier;
+            if (!LegacyMainTreeTransformationSkills.Contains(skill.ID))
+            {
+                bonuses.TransformationMeleeMultiplier += skill.TransformationMeleeBonus;
+                bonuses.TransformationSpeedMultiplier += skill.TransformationSpeedBonus;
+                bonuses.TransformationStaminaDrainMultiplier *= skill.TransformationStaminaDrainMultiplier;
+                bonuses.TransformationResistanceCoefficientMultiplier *= skill.TransformationResistanceCoefficientMultiplier;
+            }
+        }
+
+        foreach (var skillId in component.UnlockedTransformationSkills)
+        {
+            if (!_prototype.TryIndex(skillId, out FighterTransformationSkillPrototype? skill))
+                continue;
+
             bonuses.TransformationMeleeMultiplier += skill.TransformationMeleeBonus;
             bonuses.TransformationSpeedMultiplier += skill.TransformationSpeedBonus;
             bonuses.TransformationStaminaDrainMultiplier *= skill.TransformationStaminaDrainMultiplier;
@@ -377,6 +407,7 @@ public record struct FighterProgressionBonuses(
     float PassiveUnarmedAttackSpeedMultiplier,
     float PassivePhysicalResistanceCoefficientMultiplier,
     float PassiveTemperatureResistanceCoefficientMultiplier,
+    float PassiveOtherResistanceCoefficientMultiplier,
     float PassiveMobThresholdMultiplier,
     float PassiveStaminaCritThresholdMultiplier,
     float TransformationMeleeMultiplier,
@@ -385,6 +416,7 @@ public record struct FighterProgressionBonuses(
     float TransformationResistanceCoefficientMultiplier)
 {
     public static readonly FighterProgressionBonuses Default = new(
+        1f,
         1f,
         1f,
         1f,

@@ -2,7 +2,7 @@ namespace Content.Shared._DragonStation.Transformations;
 
 public sealed partial class TransformationSystem
 {
-    private void EnableAura(EntityUid uid, TransformationComponent component)
+    private void EnableAura(EntityUid uid, SuperSaiyan1Component component)
     {
         if (!component.GrantsAura)
             return;

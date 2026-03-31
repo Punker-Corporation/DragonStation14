@@ -14,17 +14,17 @@ public sealed partial class TransformationSystem
 {
     private void InitializeCombat()
     {
-        SubscribeLocalEvent<TransformationComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
-        SubscribeLocalEvent<TransformationComponent, GetUserMeleeDamageEvent>(OnGetUserMeleeDamage);
-        SubscribeLocalEvent<TransformationComponent, BeforeOldStatusEffectAddedEvent>(OnBeforeStatusEffect);
-        SubscribeLocalEvent<TransformationComponent, BeforeStunEvent>(OnBeforeStun);
-        SubscribeLocalEvent<TransformationComponent, DamageModifyEvent>(OnDamageModify);
-        SubscribeLocalEvent<TransformationComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<TransformationComponent, SleepStateChangedEvent>(OnSleep);
-        SubscribeLocalEvent<TransformationComponent, FighterProgressionChangedEvent>(OnFighterProgressionChanged);
+        SubscribeLocalEvent<SuperSaiyan1Component, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
+        SubscribeLocalEvent<SuperSaiyan1Component, GetUserMeleeDamageEvent>(OnGetUserMeleeDamage);
+        SubscribeLocalEvent<SuperSaiyan1Component, BeforeOldStatusEffectAddedEvent>(OnBeforeStatusEffect);
+        SubscribeLocalEvent<SuperSaiyan1Component, BeforeStunEvent>(OnBeforeStun);
+        SubscribeLocalEvent<SuperSaiyan1Component, DamageModifyEvent>(OnDamageModify);
+        SubscribeLocalEvent<SuperSaiyan1Component, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<SuperSaiyan1Component, SleepStateChangedEvent>(OnSleep);
+        SubscribeLocalEvent<SuperSaiyan1Component, FighterProgressionChangedEvent>(OnFighterProgressionChanged);
     }
 
-    private void OnRefreshMovementSpeed(EntityUid uid, TransformationComponent component, ref RefreshMovementSpeedModifiersEvent args)
+    private void OnRefreshMovementSpeed(EntityUid uid, SuperSaiyan1Component component, ref RefreshMovementSpeedModifiersEvent args)
     {
         if (!component.Active)
             return;
@@ -34,7 +34,7 @@ public sealed partial class TransformationSystem
         args.ModifySpeed(speed, speed);
     }
 
-    private void OnGetUserMeleeDamage(EntityUid uid, TransformationComponent component, ref GetUserMeleeDamageEvent args)
+    private void OnGetUserMeleeDamage(EntityUid uid, SuperSaiyan1Component component, ref GetUserMeleeDamageEvent args)
     {
         if (!component.Active)
             return;
@@ -44,7 +44,7 @@ public sealed partial class TransformationSystem
     }
 
     // Active transformations can provide their own defensive profile.
-    private void OnDamageModify(EntityUid uid, TransformationComponent component, ref DamageModifyEvent args)
+    private void OnDamageModify(EntityUid uid, SuperSaiyan1Component component, ref DamageModifyEvent args)
     {
         if (!component.Active)
             return;
@@ -59,6 +59,9 @@ public sealed partial class TransformationSystem
                 ["Piercing"] = component.PiercingResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier,
                 ["Heat"] = component.HeatResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier,
                 ["Cold"] = component.ColdResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier,
+                ["Shock"] = component.ShockResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier,
+                ["Caustic"] = component.CausticResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier,
+                ["Asphyxiation"] = component.AsphyxiationResistanceCoefficient * bonuses.TransformationResistanceCoefficientMultiplier,
             }
         };
 
@@ -66,7 +69,7 @@ public sealed partial class TransformationSystem
             DamageSpecifier.PenetrateArmor(resistances, args.Damage.ArmorPenetration));
     }
 
-    private void OnBeforeStatusEffect(EntityUid uid, TransformationComponent component, ref BeforeOldStatusEffectAddedEvent args)
+    private void OnBeforeStatusEffect(EntityUid uid, SuperSaiyan1Component component, ref BeforeOldStatusEffectAddedEvent args)
     {
         if (!component.Active || !component.SuppressStunEffects)
             return;
@@ -77,7 +80,7 @@ public sealed partial class TransformationSystem
         args.Cancelled = true;
     }
 
-    private void OnBeforeStun(EntityUid uid, TransformationComponent component, ref BeforeStunEvent args)
+    private void OnBeforeStun(EntityUid uid, SuperSaiyan1Component component, ref BeforeStunEvent args)
     {
         if (!component.Active || !component.SuppressStunEffects)
             return;
@@ -86,7 +89,7 @@ public sealed partial class TransformationSystem
     }
 
     // Critical condition or death immediately knocks the user out of the form.
-    private void OnMobStateChanged(EntityUid uid, TransformationComponent component, MobStateChangedEvent args)
+    private void OnMobStateChanged(EntityUid uid, SuperSaiyan1Component component, MobStateChangedEvent args)
     {
         if (!component.Active
             || args.NewMobState is not (MobState.Critical or MobState.Dead))
@@ -96,7 +99,7 @@ public sealed partial class TransformationSystem
     }
 
     // Falling asleep shuts the form off immediately.
-    private void OnSleep(EntityUid uid, TransformationComponent component, ref SleepStateChangedEvent args)
+    private void OnSleep(EntityUid uid, SuperSaiyan1Component component, ref SleepStateChangedEvent args)
     {
         if (!component.Active
             || !args.FellAsleep)
@@ -105,7 +108,7 @@ public sealed partial class TransformationSystem
         DisableTransformation(uid, component);
     }
 
-    private void OnFighterProgressionChanged(EntityUid uid, TransformationComponent component, FighterProgressionChangedEvent args)
+    private void OnFighterProgressionChanged(EntityUid uid, SuperSaiyan1Component component, FighterProgressionChangedEvent args)
     {
         RefreshActionAvailability(uid, component);
     }
