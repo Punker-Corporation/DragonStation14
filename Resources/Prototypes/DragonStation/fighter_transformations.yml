@@ -1,0 +1,55 @@
+- type: fighterTransformationSkill
+  id: FighterTransformationSuperSaiyanAwakened
+  name: fighter-tree-transformation-ssj-awakened
+  description: fighter-tree-transformation-ssj-awakened-desc
+  icon: /Textures/Interface/VerbIcons/zap.svg.192dpi.png
+  effectDescriptions:
+  - fighter-tree-transformation-ssj-awakened-effect
+
+- type: fighterTransformationSkill
+  id: FighterTransformationSuperSaiyanOne
+  name: fighter-tree-transformation-ssj-one
+  description: fighter-tree-transformation-ssj-one-desc
+  icon: /Textures/Interface/VerbIcons/light.svg.192dpi.png
+  prerequisites:
+  - FighterTransformationSuperSaiyanAwakened
+  requiredTransformedSeconds: 7200
+  requiredTransformedHits: 150
+  requiredTransformedKills: 8
+  effectDescriptions:
+  - fighter-tree-transformation-ssj-one-effect
+  transformationStaminaDrainMultiplier: 0.90
+  transformationSpeedBonus: 0.03
+
+- type: fighterTransformationSkill
+  id: FighterTransformationSuperSaiyanComfortable
+  name: fighter-tree-transformation-ssj-comfortable
+  description: fighter-tree-transformation-ssj-comfortable-desc
+  icon: /Textures/Interface/VerbIcons/light.svg.192dpi.png
+  prerequisites:
+  - FighterTransformationSuperSaiyanOne
+  requiredTransformedSeconds: 21600
+  requiredTransformedHits: 500
+  requiredTransformedKills: 20
+  effectDescriptions:
+  - fighter-tree-transformation-ssj-comfortable-effect
+  transformationMeleeBonus: 0.08
+  transformationResistanceCoefficientMultiplier: 0.95
+  transformationStaminaDrainMultiplier: 0.75
+
+- type: fighterTransformationSkill
+  id: FighterTransformationSuperSaiyanMastered
+  name: fighter-tree-transformation-ssj-mastered
+  description: fighter-tree-transformation-ssj-mastered-desc
+  icon: /Textures/Interface/VerbIcons/light.svg.192dpi.png
+  prerequisites:
+  - FighterTransformationSuperSaiyanComfortable
+  requiredTransformedSeconds: 43200
+  requiredTransformedHits: 1200
+  requiredTransformedKills: 40
+  effectDescriptions:
+  - fighter-tree-transformation-ssj-mastered-effect
+  transformationMeleeBonus: 0.15
+  transformationSpeedBonus: 0.07
+  transformationResistanceCoefficientMultiplier: 0.90
+  transformationStaminaDrainMultiplier: 0.0

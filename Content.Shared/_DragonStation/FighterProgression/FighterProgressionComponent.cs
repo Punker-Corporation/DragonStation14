@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
+using Content.Shared._DragonStation.FighterProgression.Prototypes;
 
 namespace Content.Shared._DragonStation.FighterProgression;
 
@@ -51,6 +52,24 @@ public sealed partial class FighterProgressionComponent : Component
     [DataField, AutoNetworkedField]
     public List<ProtoId<Prototypes.FighterSkillPrototype>> ClosedSkills = new();
 
+    [DataField, AutoNetworkedField]
+    public bool TransformationsPageUnlocked;
+
+    [DataField, AutoNetworkedField]
+    public bool SuperSaiyanUnlocked;
+
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<FighterTransformationSkillPrototype>> UnlockedTransformationSkills = new();
+
+    [DataField, AutoNetworkedField]
+    public float TransformedSeconds;
+
+    [DataField, AutoNetworkedField]
+    public int TransformedHits;
+
+    [DataField, AutoNetworkedField]
+    public int TransformedKills;
+
     public readonly Dictionary<string, FighterChallengeProgress> ChallengeProgress = new();
     public readonly HashSet<string> MissedChallengeSkills = new();
 
@@ -59,6 +78,9 @@ public sealed partial class FighterProgressionComponent : Component
 
     [NonSerialized]
     public float? BaseStaminaCritThreshold;
+
+    [NonSerialized]
+    public TimeSpan NextTransformationProgressSaveTime;
 }
 
 public sealed class FighterChallengeProgress

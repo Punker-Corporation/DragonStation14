@@ -2,7 +2,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Content.Goobstation.Shared.MartialArts;
 using Content.Goobstation.Maths.FixedPoint;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
@@ -24,11 +26,13 @@ using Content.Shared._DragonStation.Transformations;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Preferences;
 using Content.Server.Preferences.Managers;
+using Content.Shared.Rejuvenate;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Roles.Jobs;
+using Content.Shared._DragonStation.FighterProgression.Prototypes;
 
 namespace Content.Server._DragonStation.FighterProgression;
 
@@ -44,6 +48,11 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
     private const float TrainingXpScalePerThreshold = 0.97f;
     private const int FallbackPowerLevel = 100;
     private const int NonBoxerXpAwardCap = 5;
+    private const float SuperSaiyanAwakeningThresholdRatio = 0.9f;
+    private static readonly TimeSpan TransformationProgressSaveInterval = TimeSpan.FromSeconds(30);
+    private const string EliteSaiyanPathSkill = "FighterEliteSaiyanPath";
+    private const string PrimalSaiyanPathSkill = "FighterPrimalSaiyanPath";
+    private const string SuperSaiyanAwakenedNode = "FighterTransformationSuperSaiyanAwakened";
 
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedMartialArtsSystem _martialArts = default!;
@@ -57,6 +66,7 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholds = default!;
+    [Dependency] private readonly TransformationSystem _transformations = default!;
     private static readonly ProtoId<TagPrototype> CarpTag = "Carp";
 
     /// <summary>
@@ -69,10 +79,39 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
         SubscribeLocalEvent<MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<FighterProgressionComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<FighterProgressionComponent, FighterProgressionChangedEvent>(OnFighterProgressionChanged);
+        SubscribeLocalEvent<FighterProgressionComponent, TransformationStateChangedEvent>(OnTransformationStateChanged);
         SubscribeLocalEvent<FighterProgressionComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<FighterProgressionComponent, FighterChooseBranchMessage>(OnChooseBranch);
         SubscribeLocalEvent<FighterProgressionComponent, PowerLevelRefreshRequestedEvent>(OnPowerLevelRefreshRequested);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<FighterProgressionComponent, SuperSaiyan1Component>();
+        while (query.MoveNext(out var uid, out var progression, out var transformation))
+        {
+            if (!progression.SuperSaiyanUnlocked || !transformation.Active)
+                continue;
+
+            progression.TransformedSeconds += frameTime;
+
+            if (TryAdvanceTransformationMastery(uid, progression))
+            {
+                UpdateUi(uid, progression);
+                continue;
+            }
+
+            if (_timing.CurTime < progression.NextTransformationProgressSaveTime)
+                continue;
+
+            progression.NextTransformationProgressSaveTime = _timing.CurTime + TransformationProgressSaveInterval;
+            UpdateUi(uid, progression);
+            _ = SavePersistentProgression(uid, progression);
+        }
     }
 
     /// <summary>
@@ -81,6 +120,34 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
     private void OnFighterProgressionChanged(EntityUid uid, FighterProgressionComponent component, ref FighterProgressionChangedEvent args)
     {
         RefreshThresholdBonuses(uid, component);
+    }
+
+    /// <summary>
+    /// Tracks the hidden Super Saiyan awakening trigger at the intended near-death threshold.
+    /// </summary>
+    private void OnDamageChanged(EntityUid uid, FighterProgressionComponent component, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        TryAwakenSuperSaiyan(uid, component);
+    }
+
+    /// <summary>
+    /// Flushes transformation progress when the form state changes so long sessions are not lost on logout or restart.
+    /// </summary>
+    private void OnTransformationStateChanged(EntityUid uid, FighterProgressionComponent component, ref TransformationStateChangedEvent args)
+    {
+        if (args.Active)
+        {
+            component.NextTransformationProgressSaveTime = _timing.CurTime + TransformationProgressSaveInterval;
+            return;
+        }
+
+        if (!component.SuperSaiyanUnlocked)
+            return;
+
+        _ = SavePersistentProgression(uid, component);
     }
 
     /// <summary>
@@ -114,6 +181,7 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
 
         var awardedCombat = false;
         var awardedTraining = false;
+        var transformedHitAwarded = false;
 
         foreach (var hit in args.HitEntities.Distinct())
         {
@@ -136,9 +204,20 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
             if (!HasComp<MobStateComponent>(hit))
                 continue;
 
+            if (component.SuperSaiyanUnlocked &&
+                TryComp<SuperSaiyan1Component>(user, out var transformation) &&
+                transformation.Active)
+            {
+                component.TransformedHits++;
+                transformedHitAwarded = true;
+            }
+
             AddXp(user, component, GetCombatHitXp(user, hit, component));
             awardedCombat = true;
         }
+
+        if (transformedHitAwarded && TryAdvanceTransformationMastery(user, component))
+            UpdateUi(user, component);
 
         if (awardedCombat || awardedTraining)
             UpdateUi(user, component);
@@ -160,8 +239,19 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
 
             RefreshMissedChallenges(component);
 
+            var transformedKill = component.SuperSaiyanUnlocked &&
+                TryComp<SuperSaiyan1Component>(fighterUid, out var transformation) &&
+                transformation.Active;
+
             if (TryComp<PowerLevelComponent>(args.Target, out var targetPowerLevel))
                 AddXp(fighterUid, component, Math.Max(1, targetPowerLevel.CurrentPowerLevel / 2));
+
+            if (transformedKill)
+            {
+                component.TransformedKills++;
+                if (TryAdvanceTransformationMastery(fighterUid, component))
+                    UpdateUi(fighterUid, component);
+            }
 
             TryCompleteKillChallenge(fighterUid, component, args.Target);
         }
@@ -182,6 +272,61 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         ProcessThresholdAdvancement(uid, component);
         Dirty(uid, component);
         _ = SavePersistentProgression(uid, component);
+    }
+
+    /// <summary>
+    /// Adds an exact amount of fighter XP for debugging or test setup.
+    /// </summary>
+    public bool TryDebugAddXp(EntityUid uid, int amount, FighterProgressionComponent? component = null)
+    {
+        if (amount <= 0 || !Resolve(uid, ref component, false))
+            return false;
+
+        component.CurrentXp += amount;
+        ProcessThresholdAdvancement(uid, component);
+        Dirty(uid, component);
+        _ = SavePersistentProgression(uid, component);
+        UpdateUi(uid, component);
+        return true;
+    }
+
+    /// <summary>
+    /// Resets all fighter progression, hidden transformation state, and persisted counters for debugging.
+    /// </summary>
+    public bool TryDebugResetProgression(EntityUid uid, FighterProgressionComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return false;
+
+        RestoreThresholdBaselines(uid, component);
+
+        component.CurrentXp = 0;
+        component.ThresholdsReached = 0;
+        component.UnlockedSkills.Clear();
+        component.PendingChoiceOptions.Clear();
+        component.ClosedSkills.Clear();
+        component.TransformationsPageUnlocked = false;
+        component.SuperSaiyanUnlocked = false;
+        component.UnlockedTransformationSkills.Clear();
+        component.TransformedSeconds = 0f;
+        component.TransformedHits = 0;
+        component.TransformedKills = 0;
+        component.ChallengeProgress.Clear();
+        component.MissedChallengeSkills.Clear();
+        component.BaseMobThresholds = null;
+        component.BaseStaminaCritThreshold = null;
+        component.NextTrainingXpTime = TimeSpan.Zero;
+        component.NextTransformationProgressSaveTime = TimeSpan.Zero;
+
+        if (TryComp<SuperSaiyan1Component>(uid, out var transformation) && transformation.Active)
+            _transformations.DisableTransformation(uid, transformation);
+
+        RaiseLocalEvent(uid, new FighterProgressionChangedEvent(), true);
+        RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
+        Dirty(uid, component);
+        UpdateUi(uid, component);
+        _ = SavePersistentProgression(uid, component);
+        return true;
     }
 
     /// <summary>
@@ -270,10 +415,24 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         RefreshMissedChallenges(component);
 
         var states = new List<FighterSkillState>();
+        var transformationStates = new List<FighterTransformationSkillState>();
 
         foreach (var skill in _prototype.EnumeratePrototypes<FighterSkillPrototype>())
         {
             states.Add(new FighterSkillState(skill.ID, GetAvailability(uid, skill, component)));
+        }
+
+        if (component.TransformationsPageUnlocked)
+        {
+            foreach (var skill in _prototype.EnumeratePrototypes<FighterTransformationSkillPrototype>()
+                         .OrderBy(skill => skill.RequiredTransformedSeconds)
+                         .ThenBy(skill => skill.RequiredTransformedHits)
+                         .ThenBy(skill => skill.RequiredTransformedKills))
+            {
+                transformationStates.Add(new FighterTransformationSkillState(
+                    skill.ID,
+                    GetTransformationAvailability(skill, component)));
+            }
         }
 
         var powerLevel = CompOrNull<PowerLevelComponent>(uid)?.CurrentPowerLevel ?? 100;
@@ -284,7 +443,13 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
             component.CurrentXp,
             GetCurrentXpThreshold(component),
             component.PendingChoiceOptions.Count > 0,
-            states);
+            states,
+            component.TransformationsPageUnlocked,
+            component.SuperSaiyanUnlocked,
+            transformationStates,
+            component.TransformedSeconds,
+            component.TransformedHits,
+            component.TransformedKills);
 
         _ui.SetUiState(uid, FighterSkillTreeUiKey.Key, state);
     }
@@ -337,10 +502,6 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         component.ChallengeProgress.Remove(skill.ID);
         RefreshMissedChallenges(component);
 
-        // SSJ unlocks the transformation component the first time the awakening node is reached.
-        if (skill.ID == "FighterGoldenWarriorAwakening")
-            EnsureComp<TransformationComponent>(uid);
-
         if (skill.ID == "FighterKiWarriorPath")
             StripKiWarriorBlockedGear(uid);
 
@@ -371,6 +532,12 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         component.MissedChallengeSkills.Clear();
         component.BaseMobThresholds = null;
         component.BaseStaminaCritThreshold = null;
+        component.TransformationsPageUnlocked = saved.TransformationsPageUnlocked;
+        component.SuperSaiyanUnlocked = saved.SuperSaiyanUnlocked;
+        component.UnlockedTransformationSkills.Clear();
+        component.TransformedSeconds = saved.TransformedSeconds;
+        component.TransformedHits = saved.TransformedHits;
+        component.TransformedKills = saved.TransformedKills;
 
         foreach (var skillId in saved.UnlockedSkills)
         {
@@ -382,6 +549,12 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         {
             if (_prototype.HasIndex<FighterSkillPrototype>(skillId))
                 component.ClosedSkills.Add(skillId);
+        }
+
+        foreach (var skillId in saved.UnlockedTransformationSkills)
+        {
+            if (_prototype.HasIndex<FighterTransformationSkillPrototype>(skillId))
+                component.UnlockedTransformationSkills.Add(skillId);
         }
 
         ApplyUnlockedSkillSideEffects(uid, component);
@@ -403,12 +576,13 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
             if (skill.MartialArtUnlock != null)
                 _martialArts.TryGrantMartialArtKnowledge(uid, skill.MartialArtUnlock.Value);
 
-            if (skill.ID == "FighterGoldenWarriorAwakening")
-                EnsureComp<TransformationComponent>(uid);
         }
 
         if (component.UnlockedSkills.Any(skillId => skillId.Id == "FighterKiWarriorPath"))
             StripKiWarriorBlockedGear(uid);
+
+        if (component.SuperSaiyanUnlocked)
+            EnsureComp<SuperSaiyan1Component>(uid);
     }
 
     /// <summary>
@@ -422,6 +596,12 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
             ThresholdsReached = component.ThresholdsReached,
             UnlockedSkills = component.UnlockedSkills.Select(skill => skill.Id).Distinct().ToList(),
             ClosedSkills = component.ClosedSkills.Select(skill => skill.Id).Distinct().ToList(),
+            TransformationsPageUnlocked = component.TransformationsPageUnlocked,
+            SuperSaiyanUnlocked = component.SuperSaiyanUnlocked,
+            UnlockedTransformationSkills = component.UnlockedTransformationSkills.Select(skill => skill.Id).Distinct().ToList(),
+            TransformedSeconds = component.TransformedSeconds,
+            TransformedHits = component.TransformedHits,
+            TransformedKills = component.TransformedKills,
         };
     }
 
@@ -452,6 +632,123 @@ public sealed class FighterProgressionSystem : SharedFighterProgressionSystem
         {
             Log.Error($"Failed to save fighter progression for {ToPrettyString(uid)}: {ex}");
         }
+    }
+
+    /// <summary>
+    /// Returns the current availability state for a transformation mastery node on the hidden page.
+    /// </summary>
+    private FighterSkillAvailability GetTransformationAvailability(FighterTransformationSkillPrototype skill, FighterProgressionComponent component)
+    {
+        if (!component.TransformationsPageUnlocked)
+            return FighterSkillAvailability.Hidden;
+
+        if (component.UnlockedTransformationSkills.Contains(skill.ID))
+            return FighterSkillAvailability.Unlocked;
+
+        if (skill.Prerequisites.Any() && !skill.Prerequisites.All(component.UnlockedTransformationSkills.Contains))
+            return FighterSkillAvailability.Locked;
+
+        return IsTransformationSkillReady(skill, component)
+            ? FighterSkillAvailability.NextAutoUnlock
+            : FighterSkillAvailability.RequirementLocked;
+    }
+
+    /// <summary>
+    /// Checks whether the entity's persistent transformed-use counters satisfy a mastery node.
+    /// </summary>
+    private bool IsTransformationSkillReady(FighterTransformationSkillPrototype skill, FighterProgressionComponent component)
+    {
+        return component.TransformedSeconds >= skill.RequiredTransformedSeconds
+            && component.TransformedHits >= skill.RequiredTransformedHits
+            && component.TransformedKills >= skill.RequiredTransformedKills;
+    }
+
+    /// <summary>
+    /// Auto-unlocks any newly satisfied transformation mastery nodes in linear order.
+    /// </summary>
+    private bool TryAdvanceTransformationMastery(EntityUid uid, FighterProgressionComponent component)
+    {
+        if (!component.TransformationsPageUnlocked)
+            return false;
+
+        var changed = false;
+        var orderedSkills = _prototype.EnumeratePrototypes<FighterTransformationSkillPrototype>()
+            .OrderBy(skill => skill.RequiredTransformedSeconds)
+            .ThenBy(skill => skill.RequiredTransformedHits)
+            .ThenBy(skill => skill.RequiredTransformedKills)
+            .ToList();
+
+        foreach (var skill in orderedSkills)
+        {
+            if (component.UnlockedTransformationSkills.Contains(skill.ID))
+                continue;
+
+            if (skill.Prerequisites.Any() && !skill.Prerequisites.All(component.UnlockedTransformationSkills.Contains))
+                break;
+
+            if (!IsTransformationSkillReady(skill, component))
+                break;
+
+            component.UnlockedTransformationSkills.Add(skill.ID);
+            changed = true;
+            _popup.PopupEntity(Loc.GetString("fighter-progression-transformation-unlocked",
+                ("skill", Loc.GetString(skill.Name))), uid, uid);
+        }
+
+        if (!changed)
+            return false;
+
+        RaiseLocalEvent(uid, new FighterProgressionChangedEvent(), true);
+        RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
+        Dirty(uid, component);
+        _ = SavePersistentProgression(uid, component);
+        return true;
+    }
+
+    /// <summary>
+    /// Triggers the one-time hidden Super Saiyan awakening when an eligible Saiyan reaches the deep critical band.
+    /// </summary>
+    private void TryAwakenSuperSaiyan(EntityUid uid, FighterProgressionComponent component)
+    {
+        if (component.SuperSaiyanUnlocked)
+            return;
+
+        if (!HasSkill(uid, EliteSaiyanPathSkill, component) && !HasSkill(uid, PrimalSaiyanPathSkill, component))
+            return;
+
+        if (!TryComp<DamageableComponent>(uid, out var damageable) ||
+            !TryComp<MobThresholdsComponent>(uid, out var thresholds))
+            return;
+
+        if (!_mobThresholds.TryGetThresholdForState(uid, MobState.Critical, out var critThresholdValue, thresholds) ||
+            !_mobThresholds.TryGetDeadThreshold(uid, out var deadThresholdValue, thresholds) ||
+            critThresholdValue == null ||
+            deadThresholdValue == null)
+            return;
+
+        var critThreshold = critThresholdValue.Value.Float();
+        var deadThreshold = deadThresholdValue.Value.Float();
+        var currentDamage = damageable.TotalDamage.Float();
+        var awakeningThreshold = critThreshold + (deadThreshold - critThreshold) * SuperSaiyanAwakeningThresholdRatio;
+
+        if (currentDamage < awakeningThreshold || currentDamage >= deadThreshold)
+            return;
+
+        component.TransformationsPageUnlocked = true;
+        component.SuperSaiyanUnlocked = true;
+        if (!component.UnlockedTransformationSkills.Contains(SuperSaiyanAwakenedNode))
+            component.UnlockedTransformationSkills.Add(SuperSaiyanAwakenedNode);
+
+        var transformation = EnsureComp<SuperSaiyan1Component>(uid);
+        RaiseLocalEvent(uid, new RejuvenateEvent());
+        _transformations.TryActivateTransformation(uid, transformation);
+
+        RaiseLocalEvent(uid, new FighterProgressionChangedEvent(), true);
+        RaiseLocalEvent(uid, new PowerLevelRefreshRequestedEvent(), true);
+        _popup.PopupEntity(Loc.GetString("fighter-progression-super-saiyan-awakened"), uid, uid);
+        Dirty(uid, component);
+        UpdateUi(uid, component);
+        _ = SavePersistentProgression(uid, component);
     }
 
     /// <summary>

@@ -46,6 +46,7 @@ using Content.Server.Atmos.Components;
 using Content.Shared._Goobstation.Wizard.Spellblade;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
+using Content.Shared._DragonStation.Transformations;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Goobstation.Maths.FixedPoint;
@@ -79,6 +80,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
+            SubscribeLocalEvent<BarotraumaComponent, TransformationStateChangedEvent>(OnTransformationStateChanged);
         }
 
         private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
@@ -143,6 +145,14 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 UpdateCachedResistances(args.Equipee, barotrauma);
             }
+        }
+
+        /// <summary>
+        /// Refreshes cached pressure resistance when a transformation toggles and changes innate vacuum protection.
+        /// </summary>
+        private void OnTransformationStateChanged(EntityUid uid, BarotraumaComponent barotrauma, ref TransformationStateChangedEvent args)
+        {
+            UpdateCachedResistances(uid, barotrauma);
         }
 
         /// <summary>

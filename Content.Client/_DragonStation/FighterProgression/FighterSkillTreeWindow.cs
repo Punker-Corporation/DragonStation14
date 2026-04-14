@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
@@ -16,6 +17,12 @@ namespace Content.Client._DragonStation.FighterProgression;
 
 public sealed class FighterSkillTreeWindow : DefaultWindow
 {
+    private enum FighterTreePage : byte
+    {
+        MainTree,
+        Transformations,
+    }
+
     private const bool MiniMapEnabled = false;
 
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -25,11 +32,15 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
     private readonly ProgressBar _xpBar;
     private readonly Label _xpLabel;
     private readonly Label _statusLabel;
+    private readonly Button _mainTreeTabButton;
+    private readonly Button _transformationsTabButton;
     private readonly LayoutContainer _graphLayout;
     private readonly FighterSkillTreeGraphControl _graph;
     private readonly FighterSkillTreeMiniMapControl _miniMap;
     private readonly PanelContainer _miniMapFrame;
     private readonly ScrollContainer _graphScroll;
+    private readonly ScrollContainer _transformationScroll;
+    private readonly BoxContainer _transformationList;
     private readonly Label _skillName;
     private readonly Label _branchName;
     private readonly RichTextLabel _description;
@@ -38,7 +49,10 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
 
     private FighterSkillTreeBoundUserInterfaceState? _state;
     private Dictionary<string, FighterSkillAvailability> _skillStates = new();
+    private Dictionary<string, FighterSkillAvailability> _transformationSkillStates = new();
     private ProtoId<FighterSkillPrototype>? _selectedSkill;
+    private ProtoId<FighterTransformationSkillPrototype>? _selectedTransformationSkill;
+    private FighterTreePage _page = FighterTreePage.MainTree;
 
     public event Action<ProtoId<FighterSkillPrototype>>? OnChoosePathPressed;
 
@@ -86,6 +100,36 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
         header.AddChild(_xpBar);
         header.AddChild(_xpLabel);
         header.AddChild(_statusLabel);
+
+        var tabBar = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Horizontal,
+            SeparationOverride = 6,
+        };
+        root.AddChild(tabBar);
+
+        _mainTreeTabButton = new Button
+        {
+            Text = Loc.GetString("fighter-tree-tab-main"),
+        };
+        _mainTreeTabButton.OnPressed += _ =>
+        {
+            _page = FighterTreePage.MainTree;
+            RefreshPage();
+        };
+
+        _transformationsTabButton = new Button
+        {
+            Text = Loc.GetString("fighter-tree-tab-transformations"),
+        };
+        _transformationsTabButton.OnPressed += _ =>
+        {
+            _page = FighterTreePage.Transformations;
+            RefreshPage();
+        };
+
+        tabBar.AddChild(_mainTreeTabButton);
+        tabBar.AddChild(_transformationsTabButton);
 
         var body = new BoxContainer
         {
@@ -144,6 +188,22 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
         _graphScroll.AddChild(_graph);
         _graphLayout.AddChild(_graphScroll);
 
+        _transformationScroll = new ScrollContainer
+        {
+            HorizontalExpand = true,
+            VerticalExpand = true,
+            Visible = false,
+        };
+        LayoutContainer.SetAnchorPreset(_transformationScroll, LayoutContainer.LayoutPreset.Wide);
+        _transformationList = new BoxContainer
+        {
+            Orientation = BoxContainer.LayoutOrientation.Vertical,
+            SeparationOverride = 8,
+            Margin = new Thickness(12),
+        };
+        _transformationScroll.AddChild(_transformationList);
+        _graphLayout.AddChild(_transformationScroll);
+
         _miniMapFrame = new PanelContainer
         {
             MinSize = new Vector2(192f, 128f),
@@ -167,8 +227,8 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
 
         var rightPanel = new PanelContainer
         {
-            MinSize = new Vector2(180f, 0f),
-            MaxWidth = 180f,
+            MinSize = new Vector2(220f, 0f),
+            MaxWidth = 220f,
             PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#101010") },
         };
 
@@ -207,6 +267,7 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
     {
         _state = state;
         _skillStates = state.Skills.ToDictionary(s => s.SkillId, s => s.Availability);
+        _transformationSkillStates = state.TransformationSkills.ToDictionary(s => s.SkillId, s => s.Availability);
         _thresholdsLabel.Text = Loc.GetString("fighter-tree-thresholds-label", ("count", state.ThresholdsReached));
         _powerLevelLabel.Text = Loc.GetString("fighter-tree-power-level-label", ("powerLevel", state.CurrentPowerLevel));
         _xpBar.MaxValue = Math.Max(state.XpThreshold, 1);
@@ -216,14 +277,13 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
             ? "fighter-tree-status-branch-choice"
             : "fighter-tree-status-auto-advance");
 
+        if (!state.TransformationsPageUnlocked && _page == FighterTreePage.Transformations)
+            _page = FighterTreePage.MainTree;
+
         SelectRelevantSkill();
-        _graph.UpdateTree(_skillStates, _selectedSkill);
-        if (MiniMapEnabled)
-        {
-            _miniMap.UpdateTree(_skillStates, _selectedSkill, _graph.Zoom);
-            UpdateMiniMapViewport();
-        }
-        UpdateDetails();
+        SelectRelevantTransformationSkill();
+        RebuildTransformationList();
+        RefreshPage();
     }
 
     private void OnNodeSelected(ProtoId<FighterSkillPrototype> skillId)
@@ -275,7 +335,142 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
         _selectedSkill = selected?.ID;
     }
 
+    private void SelectRelevantTransformationSkill()
+    {
+        if (_selectedTransformationSkill != null &&
+            _prototype.HasIndex(_selectedTransformationSkill.Value) &&
+            _transformationSkillStates.ContainsKey(_selectedTransformationSkill.Value))
+            return;
+
+        var selected = _transformationSkillStates
+            .Select(pair => _prototype.TryIndex(pair.Key, out FighterTransformationSkillPrototype? skill) ? skill : null)
+            .OfType<FighterTransformationSkillPrototype>()
+            .OrderByDescending(skill => _transformationSkillStates.GetValueOrDefault(skill.ID) == FighterSkillAvailability.NextAutoUnlock)
+            .ThenByDescending(skill => _transformationSkillStates.GetValueOrDefault(skill.ID) == FighterSkillAvailability.Unlocked)
+            .ThenBy(skill => skill.RequiredTransformedSeconds)
+            .ThenBy(skill => skill.RequiredTransformedHits)
+            .ThenBy(skill => skill.RequiredTransformedKills)
+            .FirstOrDefault();
+
+        _selectedTransformationSkill = selected?.ID;
+    }
+
+    private void RefreshPage()
+    {
+        if (_state == null)
+            return;
+
+        _transformationsTabButton.Visible = _state.TransformationsPageUnlocked;
+        _transformationsTabButton.Disabled = !_state.TransformationsPageUnlocked;
+
+        _graphScroll.Visible = _page == FighterTreePage.MainTree;
+        _transformationScroll.Visible = _page == FighterTreePage.Transformations;
+        _miniMapFrame.Visible = MiniMapEnabled && _page == FighterTreePage.MainTree;
+        _mainTreeTabButton.Disabled = _page == FighterTreePage.MainTree;
+        _transformationsTabButton.Disabled = !_state.TransformationsPageUnlocked || _page == FighterTreePage.Transformations;
+
+        if (_page == FighterTreePage.MainTree)
+        {
+            _graph.UpdateTree(_skillStates, _selectedSkill);
+            if (MiniMapEnabled)
+            {
+                _miniMap.UpdateTree(_skillStates, _selectedSkill, _graph.Zoom);
+                UpdateMiniMapViewport();
+            }
+        }
+
+        UpdateDetails();
+    }
+
+    private void RebuildTransformationList()
+    {
+        foreach (var child in _transformationList.Children.ToArray())
+        {
+            _transformationList.RemoveChild(child);
+        }
+
+        foreach (var pair in _transformationSkillStates
+                     .Select(pair => (_prototype.TryIndex(pair.Key, out FighterTransformationSkillPrototype? skill) ? skill : null, pair.Value))
+                     .Where(pair => pair.Item1 != null)
+                     .Select(pair => (skill: pair.Item1!, availability: pair.Value))
+                     .OrderBy(skill => skill.skill.RequiredTransformedSeconds)
+                     .ThenBy(skill => skill.skill.RequiredTransformedHits)
+                     .ThenBy(skill => skill.skill.RequiredTransformedKills))
+        {
+            var skill = pair.skill;
+            var availability = pair.availability;
+            var button = new Button
+            {
+                Text = Loc.GetString(skill.Name),
+                HorizontalExpand = true,
+                ToolTip = Loc.GetString(skill.Description),
+            };
+            button.OnPressed += _ =>
+            {
+                _selectedTransformationSkill = skill.ID;
+                RebuildTransformationList();
+                UpdateDetails();
+            };
+
+            button.StyleBoxOverride = new StyleBoxFlat
+            {
+                BackgroundColor = GetTransformationNodeColor(availability),
+                BorderColor = _selectedTransformationSkill == skill.ID ? Color.White : Color.Gray,
+                BorderThickness = new Thickness(2f),
+            };
+
+            var info = new Label
+            {
+                Text = GetTransformationSummary(skill, availability),
+                HorizontalExpand = true,
+                Margin = new Thickness(6, 0, 6, 6),
+            };
+
+            var entry = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Vertical,
+                SeparationOverride = 4,
+            };
+            entry.AddChild(button);
+            entry.AddChild(info);
+            _transformationList.AddChild(entry);
+        }
+    }
+
+    private string GetTransformationSummary(FighterTransformationSkillPrototype skill, FighterSkillAvailability availability)
+    {
+        if (_state == null)
+            return string.Empty;
+
+        if (availability == FighterSkillAvailability.Unlocked)
+            return Loc.GetString("fighter-tree-transformation-unlocked-summary");
+
+        return string.Join(" | ", new[]
+        {
+            Loc.GetString("fighter-tree-transformation-time-progress",
+                ("current", FormatHours(_state.TransformedSeconds)),
+                ("required", FormatHours(skill.RequiredTransformedSeconds))),
+            Loc.GetString("fighter-tree-transformation-hit-progress",
+                ("current", _state.TransformedHits),
+                ("required", skill.RequiredTransformedHits)),
+            Loc.GetString("fighter-tree-transformation-kill-progress",
+                ("current", _state.TransformedKills),
+                ("required", skill.RequiredTransformedKills)),
+        });
+    }
+
     private void UpdateDetails()
+    {
+        if (_page == FighterTreePage.Transformations)
+        {
+            UpdateTransformationDetails();
+            return;
+        }
+
+        UpdateMainTreeDetails();
+    }
+
+    private void UpdateMainTreeDetails()
     {
         if (_selectedSkill == null || !_prototype.TryIndex(_selectedSkill.Value, out FighterSkillPrototype? skill))
             return;
@@ -305,10 +500,59 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
         _choosePathButton.Disabled = availability != FighterSkillAvailability.BranchChoiceAvailable;
     }
 
+    private void UpdateTransformationDetails()
+    {
+        if (_selectedTransformationSkill == null ||
+            !_prototype.TryIndex(_selectedTransformationSkill.Value, out FighterTransformationSkillPrototype? skill))
+            return;
+
+        var availability = _transformationSkillStates.GetValueOrDefault(skill.ID);
+
+        _skillName.Text = Loc.GetString(skill.Name);
+        _branchName.Text = Loc.GetString("fighter-tree-transformations-branch-label");
+        _branchName.ModulateSelfOverride = Color.Gold;
+        _description.SetMessage(Loc.GetString(skill.Description));
+
+        var effectLines = string.Join('\n', skill.EffectDescriptions.Select(e => $"- {Loc.GetString(e)}"));
+        if (string.IsNullOrWhiteSpace(effectLines))
+            effectLines = Loc.GetString("fighter-tree-no-effects");
+
+        var prereqLines = skill.Prerequisites.Count == 0
+            ? Loc.GetString("fighter-tree-no-prereqs")
+            : string.Join('\n', skill.Prerequisites.Select(p => $"- {Loc.GetString(_prototype.Index(p).Name)}"));
+
+        var progressLines = _state == null
+            ? string.Empty
+            : string.Join('\n', new[]
+            {
+                Loc.GetString("fighter-tree-transformation-time-progress",
+                    ("current", FormatHours(_state.TransformedSeconds)),
+                    ("required", FormatHours(skill.RequiredTransformedSeconds))),
+                Loc.GetString("fighter-tree-transformation-hit-progress",
+                    ("current", _state.TransformedHits),
+                    ("required", skill.RequiredTransformedHits)),
+                Loc.GetString("fighter-tree-transformation-kill-progress",
+                    ("current", _state.TransformedKills),
+                    ("required", skill.RequiredTransformedKills)),
+            });
+
+        var mergedEffects = string.IsNullOrWhiteSpace(progressLines)
+            ? effectLines
+            : $"{effectLines}\n\n{Loc.GetString("fighter-tree-transformation-progress-label")}\n{progressLines}";
+
+        _effects.SetMessage(Loc.GetString("fighter-tree-details-template",
+            ("availability", Loc.GetString(GetAvailabilityLoc(availability))),
+            ("prereqs", prereqLines),
+            ("effects", mergedEffects)));
+
+        _choosePathButton.Visible = false;
+        _choosePathButton.Disabled = true;
+    }
+
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
-        if (!MiniMapEnabled)
+        if (!MiniMapEnabled || _page != FighterTreePage.MainTree)
             return;
 
         UpdateMiniMapPlacement();
@@ -324,6 +568,23 @@ public sealed class FighterSkillTreeWindow : DefaultWindow
     private void UpdateMiniMapViewport()
     {
         _miniMap.UpdateViewport(_graphScroll.GetScrollValue(), _graphScroll.Size, _graph.MinSize);
+    }
+
+    private static string FormatHours(float seconds)
+    {
+        var hours = seconds / 3600f;
+        return hours.ToString("0.00", CultureInfo.InvariantCulture) + "h";
+    }
+
+    private static Color GetTransformationNodeColor(FighterSkillAvailability availability)
+    {
+        return availability switch
+        {
+            FighterSkillAvailability.Unlocked => Color.LightGreen,
+            FighterSkillAvailability.NextAutoUnlock => Color.Gold.WithAlpha(0.9f),
+            FighterSkillAvailability.RequirementLocked => Color.FromHex("#6b5330"),
+            _ => Color.DimGray,
+        };
     }
 
     private static string GetAvailabilityLoc(FighterSkillAvailability availability)

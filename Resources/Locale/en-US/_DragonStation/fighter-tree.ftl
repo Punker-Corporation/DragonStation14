@@ -1,10 +1,13 @@
 fighter-tree-action-name = Open Fighter Tree
 fighter-tree-action-description = Review your training path and see where your next threshold will take you.
 fighter-tree-window-title = Fighter Skill Tree
+fighter-tree-tab-main = Main Tree
+fighter-tree-tab-transformations = Transformations
 fighter-tree-thresholds-label = Thresholds: {$count}
 fighter-tree-power-level-label = Power level: {$powerLevel}
 fighter-tree-xp-label = XP: {$xp} / {$threshold}
 fighter-tree-branch-label = Path: {$branch}
+fighter-tree-transformations-branch-label = Path: Transformations
 fighter-tree-choose-path-button = Choose Path
 fighter-tree-no-effects = No immediate passive effects.
 fighter-tree-no-prereqs = No prerequisites.
@@ -27,6 +30,13 @@ fighter-tree-details-template = Status: {$availability}
 fighter-progression-threshold-earned = Threshold reached. {$skill} unlocks.
 fighter-progression-branch-choice-ready = Your next threshold opened a branching path.
 fighter-progression-skill-unlocked = You committed to {$skill}.
+fighter-progression-transformation-unlocked = Your transformed training deepened into {$skill}.
+fighter-progression-super-saiyan-awakened = On the edge of death, your power breaks through and erupts into Super Saiyan.
+fighter-tree-transformation-progress-label = Progress:
+fighter-tree-transformation-unlocked-summary = Unlocked and permanently mastered at this stage.
+fighter-tree-transformation-time-progress = Time transformed: {$current} / {$required}
+fighter-tree-transformation-hit-progress = Transformed hits: {$current} / {$required}
+fighter-tree-transformation-kill-progress = Transformed kills: {$current} / {$required}
 
 fighter-tree-branch-training = Training
 fighter-tree-branch-martial = Martial Artist
@@ -260,12 +270,12 @@ fighter-tree-skill-saiyan-path-desc = Enter the long road of Saiyan conditioning
 fighter-tree-effect-saiyan-path = Locks you into the Saiyan route.
 
 fighter-tree-skill-saiyan-training-1 = Saiyan Training I
-fighter-tree-skill-saiyan-training-1-desc = Simple brutal repetition starts toughening your body in a more aggressive way.
-fighter-tree-effect-saiyan-training-1 = Deal 3% more unarmed damage.
+fighter-tree-skill-saiyan-training-1-desc = Real Saiyan training finally starts showing through in your base body, adding obvious force behind every clean strike.
+fighter-tree-effect-saiyan-training-1 = Deal 5% more unarmed damage.
 
 fighter-tree-skill-saiyan-training-2 = Saiyan Training II
-fighter-tree-skill-saiyan-training-2-desc = Fast combinations and recovery drills teach your hands to cycle quicker.
-fighter-tree-effect-saiyan-training-2 = Attack 3% faster with fists and fist-style glove weapons.
+fighter-tree-skill-saiyan-training-2-desc = Pride, repetition, and constant sparring push your hands into a level of speed ordinary conditioning no longer matches.
+fighter-tree-effect-saiyan-training-2 = Attack 10% faster with fists and fist-style glove weapons.
 
 fighter-tree-skill-saiyan-training-3 = Saiyan Training III
 fighter-tree-skill-saiyan-training-3-desc = Your movement gets sharper the more your body adapts to pressure.
@@ -276,76 +286,104 @@ fighter-tree-skill-saiyan-training-4-desc = You learn how to keep pushing withou
 fighter-tree-effect-saiyan-training-4 = Spend 3% less stamina on exertion.
 
 fighter-tree-skill-saiyan-body-training-1 = Body Training I
-fighter-tree-skill-saiyan-body-training-1-desc = Saiyan conditioning begins to put real weight behind your base strikes.
+fighter-tree-skill-saiyan-body-training-1-desc = The first layer of Saiyan training is raw body work, building heavier strikes through simple physical brutality.
 fighter-tree-effect-saiyan-body-training-1 = Deal 3% more unarmed damage.
 
 fighter-tree-skill-saiyan-body-training-2 = Body Training II
-fighter-tree-skill-saiyan-body-training-2-desc = Constant impact slowly makes your body harder to break.
-fighter-tree-effect-saiyan-body-training-2 = Take 3% less physical damage.
+fighter-tree-skill-saiyan-body-training-2-desc = Constant impact and punishment make your body a little harder to break.
+fighter-tree-effect-saiyan-body-training-2 = Take 2% less physical damage.
 
 fighter-tree-skill-saiyan-body-training-3 = Body Training III
-fighter-tree-skill-saiyan-body-training-3-desc = Your body starts reacting before your mind finishes deciding.
-fighter-tree-effect-saiyan-body-training-3 = Attack 5% faster with fists and fist-style glove weapons.
+fighter-tree-skill-saiyan-body-training-3-desc = Pure repetition starts speeding up your hands before any deeper Saiyan instincts kick in.
+fighter-tree-effect-saiyan-body-training-3 = Attack 3% faster with fists and fist-style glove weapons.
 
 fighter-tree-skill-saiyan-spirit-1 = Spirit Training I
-fighter-tree-skill-saiyan-spirit-1-desc = Energy and motion begin to reinforce each other instead of pulling apart.
-fighter-tree-effect-saiyan-spirit-1 = Move 5% faster.
+fighter-tree-skill-saiyan-spirit-1-desc = Your spirit stops lagging behind your body, making your movement surge with unmistakable Saiyan force.
+fighter-tree-effect-saiyan-spirit-1 = Move 10% faster.
 
 fighter-tree-skill-saiyan-spirit-2 = Spirit Training II
-fighter-tree-skill-saiyan-spirit-2-desc = Your breathing and fighting rhythm stop wasting effort.
-fighter-tree-effect-saiyan-spirit-2 = Spend 5% less stamina on exertion.
+fighter-tree-skill-saiyan-spirit-2-desc = By the end of this base Saiyan route, your body and spirit can keep fighting through punishment while still driving more force into your strikes.
+fighter-tree-effect-saiyan-spirit-2 = Spend 8% less stamina on exertion, take 8% less physical damage, and deal 5% more unarmed damage.
 
 fighter-tree-skill-saiyan-battle-training-1 = Battle Training I
-fighter-tree-skill-saiyan-battle-training-1-desc = Real combat pressure adds harder impact to every clean punch.
-fighter-tree-effect-saiyan-battle-training-1 = Deal 5% more unarmed damage.
+fighter-tree-skill-saiyan-battle-training-1-desc = Real combat pressure starts teaching you how to put more violence into your basic punches.
+fighter-tree-effect-saiyan-battle-training-1 = Deal 3% more unarmed damage.
 
 fighter-tree-skill-saiyan-battle-training-2 = Battle Training II
-fighter-tree-skill-saiyan-battle-training-2-desc = Constant adaptation makes your body a little harder to put down.
-fighter-tree-effect-saiyan-battle-training-2 = Take 5% less physical damage.
+fighter-tree-skill-saiyan-battle-training-2-desc = Hard fighting sharpens your footwork and lets you carry pressure faster between exchanges.
+fighter-tree-effect-saiyan-battle-training-2 = Move 3% faster.
+
+fighter-tree-skill-saiyan-battle-training-3 = Battle Training III
+fighter-tree-skill-saiyan-battle-training-3-desc = You get used to staying in violent exchanges without wasting as much energy on panic and hesitation.
+fighter-tree-effect-saiyan-battle-training-3 = Spend 2% less stamina on exertion.
+
+fighter-tree-skill-saiyan-combat-training-1 = Combat Training I
+fighter-tree-skill-saiyan-combat-training-1-desc = Cleaner pressure and better commitment make your fists hit harder in real close-range fighting.
+fighter-tree-effect-saiyan-combat-training-1 = Deal 4% more unarmed damage.
+
+fighter-tree-skill-saiyan-combat-training-2 = Combat Training II
+fighter-tree-skill-saiyan-combat-training-2-desc = Your combinations start chaining together with the faster, rougher tempo expected of a Saiyan fighter.
+fighter-tree-effect-saiyan-combat-training-2 = Attack 5% faster with fists and fist-style glove weapons.
+
+fighter-tree-skill-saiyan-conditioning-1 = Saiyan Conditioning I
+fighter-tree-skill-saiyan-conditioning-1-desc = Heavy conditioning begins reinforcing your body in a way ordinary fighters cannot easily copy.
+fighter-tree-effect-saiyan-conditioning-1 = Take 4% less physical damage.
+
+fighter-tree-skill-saiyan-conditioning-2 = Saiyan Conditioning II
+fighter-tree-skill-saiyan-conditioning-2-desc = Better conditioning and better confidence let you move harder and hit harder without losing control.
+fighter-tree-effect-saiyan-conditioning-2 = Move 5% faster and deal 4% more unarmed damage.
 
 fighter-tree-skill-elite-saiyan-path = Elite Saiyan Path
-fighter-tree-skill-elite-saiyan-path-desc = Follow the refined route of ascension, control, and the golden transformation.
-fighter-tree-effect-elite-saiyan-path = Locks you into the Elite Saiyan route.
+fighter-tree-skill-elite-saiyan-path-desc = Enter the route of royal Saiyan discipline, where elite pride turns into clean physical superiority.
+fighter-tree-effect-elite-saiyan-path = Gain a 2% passive melee bonus and a 2% passive speed bonus.
 
 fighter-tree-skill-primal-saiyan-path = Primal Saiyan Path
-fighter-tree-skill-primal-saiyan-path-desc = Give in to instinct and sharpen it into overwhelming offense.
-fighter-tree-effect-primal-saiyan-path = Locks you into the Primal Saiyan route.
+fighter-tree-skill-primal-saiyan-path-desc = Abandon refined Saiyan polish and enter the brutal route of primal survival, monstrous body-hardening, and savage resilience.
+fighter-tree-effect-primal-saiyan-path = Take 12% less physical damage and 20% less heat, cold, shock, caustic, and explosion damage.
 
 fighter-tree-skill-legendary-saiyan-path = Legendary Saiyan Path
 fighter-tree-skill-legendary-saiyan-path-desc = Follow the route of overwhelming force and monstrous durability.
 fighter-tree-effect-legendary-saiyan-path = Locks you into the Legendary Saiyan route.
 
-fighter-tree-skill-ascension-training = Ascension Training
-fighter-tree-skill-ascension-training-desc = Better control and breath management prepare your body to carry a higher state without breaking.
-fighter-tree-effect-ascension-training = Reduce transformation upkeep drain.
+fighter-tree-skill-ascension-training = Royal Conditioning I
+fighter-tree-skill-ascension-training-desc = Elite body conditioning hardens you through constant pressure until heavy punishment starts feeling normal.
+fighter-tree-effect-ascension-training = Take 8% less physical damage.
 
-fighter-tree-skill-super-saiyan-awakening = Super Saiyan Awakening
-fighter-tree-skill-super-saiyan-awakening-desc = Break into the golden form and unlock the transformation for real.
-fighter-tree-effect-super-saiyan-awakening = Unlocks the Super Saiyan transformation.
+fighter-tree-skill-super-saiyan-awakening = Royal Conditioning II
+fighter-tree-skill-super-saiyan-awakening-desc = Better elite conditioning lets you move your hands faster while spending less energy on strain.
+fighter-tree-effect-super-saiyan-awakening = Attack 2% faster with fists and fist-style glove weapons, and spend 2% less stamina on exertion.
 
-fighter-tree-skill-super-saiyan-mastery-1 = Super Saiyan Mastery I
-fighter-tree-skill-super-saiyan-mastery-1-desc = Start learning how to control the golden form instead of merely surviving its power.
-fighter-tree-effect-super-saiyan-mastery-1 = Improves transformed melee damage, speed, and defenses by a small amount.
+fighter-tree-skill-super-saiyan-mastery-1 = Royal Combat I
+fighter-tree-skill-super-saiyan-mastery-1-desc = Elite combat drills refine your movement and striking until every exchange looks cleaner and hits harder.
+fighter-tree-effect-super-saiyan-mastery-1 = Gain a 2% passive melee bonus and a 2% passive speed bonus.
 
-fighter-tree-skill-super-saiyan-mastery-2 = Super Saiyan Mastery II
-fighter-tree-skill-super-saiyan-mastery-2-desc = Complete your mastery of the golden form and wield it without bleeding stamina away.
-fighter-tree-effect-super-saiyan-mastery-2 = Further improves transformed melee damage, speed, and defenses, and nullifies transformation upkeep drain.
+fighter-tree-skill-super-saiyan-mastery-2 = Royal Combat II
+fighter-tree-skill-super-saiyan-mastery-2-desc = Your body starts keeping elite speed, efficiency, and durability together even in long fights.
+fighter-tree-effect-super-saiyan-mastery-2 = Attack 2% faster with fists and fist-style glove weapons, take 10% less physical damage, and spend 3% less stamina on exertion.
 
-fighter-tree-skill-instinct-training-1 = Instinct Training I
-fighter-tree-skill-instinct-training-1-desc = Your body learns to lunge, pivot, and strike before hesitation can slow it.
-fighter-tree-effect-instinct-training-1 = Move 5% faster.
+fighter-tree-skill-elite-supremacy = Elite Supremacy
+fighter-tree-skill-elite-supremacy-desc = Complete the elite route and become a Saiyan whose body, stamina, and durability clearly stand above ordinary warriors.
+fighter-tree-effect-elite-supremacy = Gain a 4% passive melee bonus, a 5% passive speed bonus, a 2% passive unarmed attack speed bonus, take 16% less physical damage, spend 4.6% less stamina on exertion, and increase your health and stamina thresholds by 50%.
 
-fighter-tree-skill-instinct-training-2 = Instinct Training II
-fighter-tree-skill-instinct-training-2-desc = The more you trust instinct, the harder your strikes begin to land.
-fighter-tree-effect-instinct-training-2 = Deal 8% more unarmed damage.
+fighter-tree-skill-instinct-training-1 = Primal Endurance I
+fighter-tree-skill-instinct-training-1-desc = Your body begins surviving through raw endurance rather than refined technique, spending less energy while letting some striking precision fall away.
+fighter-tree-effect-instinct-training-1 = Spend 8% less stamina on exertion, but deal 4% less unarmed damage.
 
-fighter-tree-skill-great-beast-echo = Great Beast Echo
-fighter-tree-skill-great-beast-echo-desc = A deeper, older fury starts surfacing in the speed of your body.
-fighter-tree-effect-great-beast-echo = Attack 8% faster with fists and fist-style glove weapons.
+fighter-tree-skill-instinct-training-2 = Primal Endurance II
+fighter-tree-skill-instinct-training-2-desc = Dense primal conditioning makes you harder to injure, but your movement and hand speed grow rougher and heavier.
+fighter-tree-effect-instinct-training-2 = Take 18% less physical damage, but move 2% slower and attack 2% slower with fists and fist-style glove weapons.
 
-fighter-tree-skill-primal-awakening = Primal Awakening
-fighter-tree-skill-primal-awakening-desc = Instinct becomes strength, speed, and violence all at once.
-fighter-tree-effect-primal-awakening = Gain a large passive melee and movement speed bonus.
+fighter-tree-skill-great-beast-echo = Predatory Instinct I
+fighter-tree-skill-great-beast-echo-desc = Your body starts acting like a hunting beast built to keep going, not a clean duelist built for refined exchanges.
+fighter-tree-effect-great-beast-echo = Spend 12% less stamina on exertion, but deal 6% less unarmed damage and attack 2% slower with fists and fist-style glove weapons.
+
+fighter-tree-skill-primal-awakening = Predatory Instinct II
+fighter-tree-skill-primal-awakening-desc = Primal adaptation keeps turning more of your body into armor, and even the environment starts losing some of its edge against you.
+fighter-tree-effect-primal-awakening = Take 20% less physical damage and 37.5% less heat, cold, shock, caustic, and explosion damage, but deal 6% less unarmed damage, move 2% slower, and attack 2% slower with fists and fist-style glove weapons.
+
+fighter-tree-skill-primal-apex = Primal Apex
+fighter-tree-skill-primal-apex-desc = Complete the primal route and become a Saiyan monster built to endure punishment that would destroy ordinary fighters.
+fighter-tree-effect-primal-apex = Spend 17.7% less stamina on exertion, take 28% less physical damage, deal 6% less unarmed damage, move 2% slower, attack 2% slower with fists and fist-style glove weapons, and triple your health and stamina thresholds.
 
 fighter-tree-skill-power-body-1 = Power Body I
 fighter-tree-skill-power-body-1-desc = Your body starts thickening around absurd force and impact.
@@ -363,3 +401,19 @@ fighter-tree-skill-legendary-awakening = Legendary Awakening
 fighter-tree-skill-legendary-awakening-desc = Your power swells into a brutal state built on force and endurance.
 fighter-tree-effect-legendary-awakening = Gain a large passive melee bonus and a very large passive physical resistance bonus.
 fighter-progression-ki-warrior-blocked-armor = Your ki training rejects protective gear.
+
+fighter-tree-transformation-ssj-awakened = Awakened Super Saiyan 1
+fighter-tree-transformation-ssj-awakened-desc = On the edge of death, everything you trained for finally detonates into the unstable golden form.
+fighter-tree-transformation-ssj-awakened-effect = Permanently unlock Super Saiyan 1 for this character.
+
+fighter-tree-transformation-ssj-one = Super Saiyan 1
+fighter-tree-transformation-ssj-one-desc = After long use in real fights, the form stops feeling completely alien and starts becoming something you can enter on purpose.
+fighter-tree-transformation-ssj-one-effect = Reduce Super Saiyan 1 upkeep drain by 10% and gain a 3% transformed speed bonus.
+
+fighter-tree-transformation-ssj-comfortable = Confortable Super Saiyan 1
+fighter-tree-transformation-ssj-comfortable-desc = The golden form still strains your body, but now you can stay inside it without feeling like it will tear itself apart every second.
+fighter-tree-transformation-ssj-comfortable-effect = Gain an 8% transformed melee bonus, 5% better transformed defenses, and reduce Super Saiyan 1 upkeep drain by 25%.
+
+fighter-tree-transformation-ssj-mastered = Mastered Super Saiyan 1
+fighter-tree-transformation-ssj-mastered-desc = The form finally settles into something natural. The power remains violent, but carrying it no longer costs your body constant pain.
+fighter-tree-transformation-ssj-mastered-effect = Gain a 15% transformed melee bonus, a 7% transformed speed bonus, 10% better transformed defenses, and remove Super Saiyan 1 upkeep drain.

@@ -8,16 +8,34 @@ namespace Content.Shared._DragonStation.FighterProgression;
 public sealed partial class PersistentFighterProgression
 {
     [DataField]
-    public int CurrentXp;
+    public int CurrentXp { get; set; }
 
     [DataField]
-    public int ThresholdsReached;
+    public int ThresholdsReached { get; set; }
 
     [DataField]
-    public List<string> UnlockedSkills = new();
+    public List<string> UnlockedSkills { get; set; } = new();
 
     [DataField]
-    public List<string> ClosedSkills = new();
+    public List<string> ClosedSkills { get; set; } = new();
+
+    [DataField]
+    public bool TransformationsPageUnlocked { get; set; }
+
+    [DataField]
+    public bool SuperSaiyanUnlocked { get; set; }
+
+    [DataField]
+    public List<string> UnlockedTransformationSkills { get; set; } = new();
+
+    [DataField]
+    public float TransformedSeconds { get; set; }
+
+    [DataField]
+    public int TransformedHits { get; set; }
+
+    [DataField]
+    public int TransformedKills { get; set; }
 
     /// <summary>
     /// Creates an empty persistent fighter progression payload.
@@ -35,6 +53,12 @@ public sealed partial class PersistentFighterProgression
         ThresholdsReached = other.ThresholdsReached;
         UnlockedSkills = new List<string>(other.UnlockedSkills ?? Enumerable.Empty<string>());
         ClosedSkills = new List<string>(other.ClosedSkills ?? Enumerable.Empty<string>());
+        TransformationsPageUnlocked = other.TransformationsPageUnlocked;
+        SuperSaiyanUnlocked = other.SuperSaiyanUnlocked;
+        UnlockedTransformationSkills = new List<string>(other.UnlockedTransformationSkills ?? Enumerable.Empty<string>());
+        TransformedSeconds = other.TransformedSeconds;
+        TransformedHits = other.TransformedHits;
+        TransformedKills = other.TransformedKills;
     }
 
     /// <summary>
@@ -44,8 +68,12 @@ public sealed partial class PersistentFighterProgression
     {
         CurrentXp = Math.Max(0, CurrentXp);
         ThresholdsReached = Math.Max(0, ThresholdsReached);
+        TransformedSeconds = Math.Max(0f, TransformedSeconds);
+        TransformedHits = Math.Max(0, TransformedHits);
+        TransformedKills = Math.Max(0, TransformedKills);
         UnlockedSkills ??= new List<string>();
         ClosedSkills ??= new List<string>();
+        UnlockedTransformationSkills ??= new List<string>();
         UnlockedSkills = UnlockedSkills
             .Where(skill => !string.IsNullOrWhiteSpace(skill))
             .Distinct()
@@ -57,6 +85,13 @@ public sealed partial class PersistentFighterProgression
         UnlockedSkills = UnlockedSkills
             .Except(ClosedSkills)
             .ToList();
+        UnlockedTransformationSkills = UnlockedTransformationSkills
+            .Where(skill => !string.IsNullOrWhiteSpace(skill))
+            .Distinct()
+            .ToList();
+
+        if (SuperSaiyanUnlocked || UnlockedTransformationSkills.Count > 0)
+            TransformationsPageUnlocked = true;
     }
 
     /// <summary>
@@ -69,8 +104,14 @@ public sealed partial class PersistentFighterProgression
 
         return CurrentXp == other.CurrentXp
             && ThresholdsReached == other.ThresholdsReached
+            && TransformationsPageUnlocked == other.TransformationsPageUnlocked
+            && SuperSaiyanUnlocked == other.SuperSaiyanUnlocked
+            && Math.Abs(TransformedSeconds - other.TransformedSeconds) < 0.001f
+            && TransformedHits == other.TransformedHits
+            && TransformedKills == other.TransformedKills
             && UnlockedSkills.SequenceEqual(other.UnlockedSkills)
-            && ClosedSkills.SequenceEqual(other.ClosedSkills);
+            && ClosedSkills.SequenceEqual(other.ClosedSkills)
+            && UnlockedTransformationSkills.SequenceEqual(other.UnlockedTransformationSkills);
     }
 
     /// <inheritdoc />
@@ -79,6 +120,11 @@ public sealed partial class PersistentFighterProgression
         var hashCode = new HashCode();
         hashCode.Add(CurrentXp);
         hashCode.Add(ThresholdsReached);
+        hashCode.Add(TransformationsPageUnlocked);
+        hashCode.Add(SuperSaiyanUnlocked);
+        hashCode.Add(TransformedSeconds);
+        hashCode.Add(TransformedHits);
+        hashCode.Add(TransformedKills);
 
         foreach (var skill in UnlockedSkills)
         {
@@ -86,6 +132,11 @@ public sealed partial class PersistentFighterProgression
         }
 
         foreach (var skill in ClosedSkills)
+        {
+            hashCode.Add(skill);
+        }
+
+        foreach (var skill in UnlockedTransformationSkills)
         {
             hashCode.Add(skill);
         }
