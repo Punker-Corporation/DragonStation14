@@ -678,6 +678,7 @@ namespace Content.Server.Database
         public float Width { get; set; } = 1f; // Goobstation: port EE height/width sliders
         public string BarkVoice { get; set; } = null!; // Goob Station - Barks
         [Column(TypeName = "jsonb")] public JsonDocument? Markings { get; set; } = null!;
+        [Column(TypeName = "jsonb")] public JsonDocument? FighterProgression { get; set; }
         public string HairName { get; set; } = null!;
         public string HairColor { get; set; } = null!;
         public string FacialHairName { get; set; } = null!;

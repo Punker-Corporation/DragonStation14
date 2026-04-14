@@ -1123,6 +1123,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("REAL")
                         .HasColumnName("height");
 
+                    b.Property<byte[]>("FighterProgression")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("fighter_progression");
+
                     b.Property<byte[]>("Markings")
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");

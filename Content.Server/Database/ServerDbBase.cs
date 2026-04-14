@@ -159,6 +159,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
+using Content.Shared._DragonStation.FighterProgression;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
@@ -383,6 +384,9 @@ namespace Content.Server.Database
             prefs.SelectedCharacterSlot = newSlot;
         }
 
+        /// <summary>
+        /// Converts a database profile row into the runtime humanoid profile used by preferences and spawning.
+        /// </summary>
         private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
@@ -432,6 +436,11 @@ namespace Content.Server.Database
             var cdRecords = profile.CDProfile?.CharacterRecords != null
                 ? RecordsSerialization.Deserialize(profile.CDProfile.CharacterRecords, profile.CDProfile.CharacterRecordEntries)
                 : PlayerProvidedCharacterRecords.DefaultRecords();
+            var fighterProgression = profile.FighterProgression != null
+                ? JsonSerializer.Deserialize<PersistentFighterProgression>(profile.FighterProgression.RootElement)
+                : null;
+
+            fighterProgression?.EnsureValid();
             // End CD - Character Records
             var loadouts = new Dictionary<string, RoleLoadout>();
 
@@ -486,10 +495,14 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 barkVoice, // Goob Station - Barks
-                cdRecords // CD - Character Records
+                cdRecords,
+                fighterProgression // CD - Character Records
             );
         }
 
+        /// <summary>
+        /// Converts a runtime humanoid profile back into the database profile model.
+        /// </summary>
         private static Profile ConvertProfiles(HumanoidCharacterProfile humanoid, int slot, Profile? profile = null)
         {
             profile ??= new Profile();
@@ -540,6 +553,9 @@ namespace Content.Server.Database
             );
 
             profile.BarkVoice = humanoid.BarkVoice; // Goob Station - Barks
+            profile.FighterProgression = humanoid.FighterProgression == null
+                ? null
+                : JsonSerializer.SerializeToDocument(humanoid.FighterProgression);
 
             // Gaby change start
             profile.AltTitles.Clear();
